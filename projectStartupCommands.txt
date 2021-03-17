@@ -1,0 +1,7 @@
+init tailwind
+tailwind purge options
+daisyui purge options
+tailwind purge output path
+
+-- Vercel Build command
+purge css build ejs templates
