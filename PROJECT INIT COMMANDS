@@ -1,1 +1,2 @@
 npx tailwindcss init -p
+npx tailwindcss build source-styles.css -o ./public/global.css for building
