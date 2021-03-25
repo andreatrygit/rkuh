@@ -1,7 +1,7 @@
 favicon.ico
-configurare disyui
-daisy ui whitelist in postcss
 modificqre i breakpoint di tailwind
 mettere landscape e portrait
 verificare che il purge sui js e' lestensione giusta
 prima il comando di build dei template
+turbo IE11??
+bloccare sotto IE 11 con alpine
