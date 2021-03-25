@@ -1,7 +1,7 @@
 module.exports = {
   purge: {
     enabled: true,
-    content: ['./api/**/*.js'],
+    content: ['./api/**/*.js','./public/index.html'],
     options: {
         safelist: [
           /data-theme$/,
