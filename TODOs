@@ -13,3 +13,4 @@ metti x-if su header
 metti x-bind su class su composer
 metto @logout su composer
 vercel timeout
+empty composer -> scroll bar hori??
