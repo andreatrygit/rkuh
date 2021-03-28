@@ -14,3 +14,5 @@ metti x-bind su class su composer
 metto @logout su composer
 vercel timeout
 empty composer -> scroll bar hori??
+togli scroll dai frame del composer e poi testalo se fa overflow
+metti bg trasparente al flex orizzontale
