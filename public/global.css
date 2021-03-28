@@ -1217,18 +1217,9 @@ html {
   background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
 }
 
-.bg-gray-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
-}
-
 .bg-purple-500 {
   --tw-bg-opacity: 1;
   background-color: rgba(139, 92, 246, var(--tw-bg-opacity));
-}
-
-.rounded-xl {
-  border-radius: 0.75rem;
 }
 
 .flex {
@@ -1263,12 +1254,8 @@ html {
   justify-content: center;
 }
 
-.h-40 {
-  height: 10rem;
-}
-
-.m-4 {
-  margin: 1rem;
+.h-full {
+  height: 100%;
 }
 
 .fixed {
@@ -1290,10 +1277,6 @@ html {
   --tw-ring-color: rgba(59, 130, 246, 0.5);
   --tw-ring-offset-shadow: 0 0 #0000;
   --tw-ring-shadow: 0 0 #0000;
-}
-
-.w-40 {
-  width: 10rem;
 }
 
 .w-full {
