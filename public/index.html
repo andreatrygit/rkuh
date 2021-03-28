@@ -2,44 +2,33 @@
 <html lang="en">
 
 <head>
-  <meta name="description" content="Rkuh Home" />
-  <meta charset="utf-8">
-  <title>Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Andrea Scotti">
-  <link rel="stylesheet" type="text/css" href="./global.css">
-  <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
-  <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
-  <script type="module">
-    import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
-  </script>
+    <meta name="description" content="Rkuh Home" />
+    <meta charset="utf-8">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Andrea Scotti">
+    <link rel="stylesheet" type="text/css" href="./global.css">
+    <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
+    <script type="module">
+        import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
+    </script>
 </head>
 
 <body>
-  <div class="absolute w-screen">
-<header class="w-full fixed bg-purple-500" style="height:10vh"></header>
-<div class="flex flex-col justify-center" style="min-height:90vh;margin-top:10vh">
-  <div class="w-full bg-black flex flex-row flex-wrap content-center justify-center items-start">
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-    <div class="w-40 h-40 bg-gray-800 m-4 rounded-xl"></div>
-  </div>
-<div>
-<div>
+    <div class="absolute w-screen">
+        <header class="w-full fixed bg-purple-500" style="height:10vh"></header>
+        <div class="flex flex-col justify-center" style="min-height:90vh;margin-top:10vh">
+            <div x-data="{frames:[]}" class="w-full bg-black flex flex-row flex-wrap content-center justify-center items-start">
+                <template x-for="frame in frames" :key="frame.src">
+                    <div x-bind:class="frame.classes">
+                        <turbo-frame x-bind:id="frame.src" x-bind:src="frame.src">
+                        </turbo-frame>
+                    <div>
+                </template>
+            </div>
+        <div>
+    <div>
 </body>
 
 </html>
