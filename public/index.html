@@ -19,7 +19,7 @@
     <div class="absolute w-screen">
         <header class="w-full fixed bg-purple-500" style="height:10vh"></header>
         <div class="flex flex-col justify-center" style="min-height:90vh;margin-top:10vh">
-            <div x-data="{frames:[{src:'/api/site-pages-frames/landing',classes:'w-1/4 m-1'},{src:'/api/site-pages-frames/landing2',classes:'w-1/4 m-1'}]}" class="w-full flex flex-row flex-wrap content-center justify-center items-start">
+            <div x-data="{frames:[{src:'/api/site-pages-frames/landing',classes:'w-1/4 p-1'},{src:'/api/site-pages-frames/landing2',classes:'w-1/4 p-1'}]}" class="w-full flex flex-row flex-wrap content-center justify-center items-start">
                 <template x-for="frame in frames" :key="frame.src">
                     <turbo-frame x-bind:class="frame.classes" x-bind:id="frame.src" x-bind:src="frame.src">
                     </turbo-frame>
