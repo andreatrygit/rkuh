@@ -3,10 +3,11 @@ verificare che il purge sui js e' lestensione giusta
 prima il comando di build dei template
 turbo IE11??
 bloccare sotto IE 11 con alpine
-test rkuh custom breakpoints
 can i set cookie when sending a frame?
 add semantics to composer
 gestione del hide dell'header/barra
 metti x-if su header
 metto @logout su composer
 vercel timeout
+
+test rkuh custom breakpoints
