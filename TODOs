@@ -1,6 +1,4 @@
 favicon.ico
-modificqre i breakpoint di tailwind
-mettere landscape e portrait
 verificare che il purge sui js e' lestensione giusta
 prima il comando di build dei template
 turbo IE11??
@@ -10,9 +8,5 @@ can i set cookie when sending a frame?
 add semantics to composer
 gestione del hide dell'header/barra
 metti x-if su header
-metti x-bind su class su composer
 metto @logout su composer
 vercel timeout
-empty composer -> scroll bar hori??
-togli scroll dai frame del composer e poi testalo se fa overflow
-metti bg trasparente al flex orizzontale
