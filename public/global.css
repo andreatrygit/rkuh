@@ -1212,11 +1212,6 @@ html {
   --bc: 37 67% 58%;
 }
 
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
-}
-
 .bg-purple-500 {
   --tw-bg-opacity: 1;
   background-color: rgba(139, 92, 246, var(--tw-bg-opacity));
@@ -1254,8 +1249,12 @@ html {
   justify-content: center;
 }
 
-.h-full {
-  height: 100%;
+.h-40 {
+  height: 10rem;
+}
+
+.m-1 {
+  margin: 0.25rem;
 }
 
 .fixed {
@@ -1369,9 +1368,15 @@ html {
 }
 
 @media (max-width:480) {
+  .pho-po\:w-full {
+    width: 100%;
+  }
 }
 
 @media (orientation: landscape) and (min-width:481) and (max-width:768) {
+  .pho-la\:w-1\/2 {
+    width: 50%;
+  }
 }
 
 @media (orientation: portrait) and (min-width:481) and (max-width:768) {
