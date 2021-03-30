@@ -728,6 +728,10 @@ html {
   color: hsla(var(--bc,215 28% 17%)/var(--tw-text-opacity,1));
 }
 
+.menu[class*=p-] li a {
+  border-radius: var(--rounded-btn,.5rem);
+}
+
 .menu li a:focus,.menu li a:hover {
   --tw-bg-opacity: 1;
   background-color: hsla(var(--p,259 94% 51%)/var(--tw-bg-opacity,1));
@@ -1217,6 +1221,11 @@ html {
   background-color: rgba(139, 92, 246, var(--tw-bg-opacity));
 }
 
+.bg-pink-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(236, 72, 153, var(--tw-bg-opacity));
+}
+
 .flex {
   display: flex;
 }
@@ -1257,6 +1266,10 @@ html {
   margin: 0.25rem;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
 .fixed {
   position: fixed;
 }
@@ -1276,6 +1289,10 @@ html {
   --tw-ring-color: rgba(59, 130, 246, 0.5);
   --tw-ring-offset-shadow: 0 0 #0000;
   --tw-ring-shadow: 0 0 #0000;
+}
+
+.w-1\/4 {
+  width: 25%;
 }
 
 .w-full {
@@ -1365,25 +1382,4 @@ html {
 }
 
 @media (min-width: 1536px) {
-}
-
-@media (max-width:480) {
-  .pho-po\:w-full {
-    width: 100%;
-  }
-}
-
-@media (orientation: landscape) and (min-width:481) and (max-width:768) {
-  .pho-la\:w-1\/2 {
-    width: 50%;
-  }
-}
-
-@media (orientation: portrait) and (min-width:481) and (max-width:768) {
-}
-
-@media (min-width:769) and (max-width:1279) {
-}
-
-@media (min-width:1280) {
 }
