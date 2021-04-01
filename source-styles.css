@@ -5,5 +5,5 @@
 @tailwind utilities;
 
 .frame-fade-in:not(.frame-fade-in:empty){
-    @apply opacity-1000
+    @apply opacity-100
 }
