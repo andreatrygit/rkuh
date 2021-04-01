@@ -3,3 +3,7 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.frame-fade-in:empty{
+    @apply opacity-0
+}

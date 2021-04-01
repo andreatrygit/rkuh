@@ -1291,16 +1291,22 @@ html {
   --tw-ring-shadow: 0 0 #0000;
 }
 
-.w-1\/4 {
-  width: 25%;
-}
-
 .w-full {
   width: 100%;
 }
 
 .w-screen {
   width: 100vw;
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-1000 {
+  transition-duration: 1000ms;
 }
 
 @-webkit-keyframes spin {
@@ -1369,13 +1375,23 @@ html {
   }
 }
 
+.frame-fade-in:empty{
+  opacity: 0
+}
+
 @media (min-width: 640px) {
 }
 
 @media (min-width: 768px) {
+  .md\:w-1\/2 {
+    width: 50%;
+  }
 }
 
 @media (min-width: 1024px) {
+  .lg\:w-1\/4 {
+    width: 25%;
+  }
 }
 
 @media (min-width: 1280px) {
