@@ -4,6 +4,6 @@
 
 @tailwind utilities;
 
-.frame-fade-in:empty{
-    @apply opacity-0
+.frame-fade-in:not(.frame-fade-in:empty){
+    @apply opacity-1000
 }
