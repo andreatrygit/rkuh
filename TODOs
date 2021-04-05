@@ -9,5 +9,4 @@ gestione del hide dell'header/barra
 metti x-if su header
 metto @logout su composer
 vercel timeout
-animate flex
-add x-init with alpha 0 on frames
+fix flex behavior on small devices portrait
