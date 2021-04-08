@@ -7,3 +7,12 @@
 .frame-fade-in:empty{
     @apply opacity-0
 }
+.h-10vh{
+    height: 10vh;
+}
+.min-h-90vh{
+    min-height: 90vh;
+}
+.mt-10vh{
+    margin-top: 10vh;
+}
