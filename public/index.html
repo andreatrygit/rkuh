@@ -28,8 +28,7 @@
                             }" 
                  class="w-full flex flex-row flex-wrap content-center justify-center items-start">
                 <template x-for="frame in frames" :key="frame.src">
-                    <turbo-frame class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/3 p-1 opacity-100 transition-opacity duration-1000 frame-fade-in"
-                                 x-bind:class="{frame.classes:true}" 
+                    <turbo-frame x-bind:class="'w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/3 p-1 opacity-100 transition-opacity duration-1000 frame-fade-in' + ' ' + frame.classes" 
                                  x-bind:id="frame.src" 
                                  x-bind:src="frame.src"></turbo-frame>
                 </template>
