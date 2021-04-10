@@ -1062,12 +1062,36 @@ html {
 	position: fixed;
 }
 
+.mt-\[10vh\] {
+	margin-top: 10vh;
+}
+
+.mt-\[0vh\] {
+	margin-top: 0vh;
+}
+
 .flex {
 	display: flex;
 }
 
+.h-\[10vh\] {
+	height: 10vh;
+}
+
+.h-\[0vh\] {
+	height: 0vh;
+}
+
 .h-40 {
 	height: 10rem;
+}
+
+.min-h-\[90vh\] {
+	min-height: 90vh;
+}
+
+.min-h-\[100vh\] {
+	min-height: 100vh;
 }
 
 .w-screen {
@@ -1139,42 +1163,28 @@ html {
 .frame-fade-in:empty {
 	opacity: 0;
 }
-.h-0vh{
-    height: 0vh;
-}
-.h-10vh{
-    height: 10vh;
-}
-.min-h-90vh{
-    min-height: 90vh;
-}
-.min-h-100vh{
-    min-height: 100vh;
-}
-.mt-0vh{
-    margin-top: 0vh;
-}
-.mt-10vh{
-    margin-top: 10vh;
-}
+
 @media (min-width: 640px) {
 
 	.sm\:w-1\/2 {
 		width: 50%;
 	}
 }
+
 @media (min-width: 768px) {
 
 	.md\:w-1\/2 {
 		width: 50%;
 	}
 }
+
 @media (min-width: 1024px) {
 
 	.lg\:w-1\/3 {
 		width: 33.333333%;
 	}
 }
+
 @media (min-width: 1280px) {
 
 	.xl\:w-1\/3 {
