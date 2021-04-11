@@ -16,10 +16,13 @@
 </head>
 
 <body>
-    <div x-data="{isApp:false, title:Rkuh}" @this-is-an-app="isApp=true" @this-is-not-an-app="isApp=false" class="absolute w-screen">
+    <div x-data="{isApp:false, title:Rkuh}" 
+         @this-is-an-app="isApp=true" 
+         @this-is-not-an-app="isApp=false" 
+         class="absolute w-screen">
         <header class="w-full fixed bg-base-200 transition-all duration-1000"
                 x-bind:class="isApp ? 'h-[10vh]' : 'h-[0vh]'">
-                <span x-text="title" class="mx-auto text-primary text-large font-bold"></span>
+                <span x-text="title" class="mx-auto text-primary text-lg font-bold"></span>
         </header>
         <div class="bg-base-100 flex flex-col justify-center transition-all duration-1000" 
              x-bind:class="isApp ? 'min-h-[90vh] mt-[10vh]' : 'min-h-[100vh] mt-[0vh]'">
