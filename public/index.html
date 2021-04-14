@@ -18,19 +18,21 @@
 <body>
     <div x-data="{isApp:false, title:'Rkuh'}" 
          @this-is-an-app="isApp=true" 
-         @this-is-not-an-app="isApp=false" 
+         @this-is-not-an-app="isApp=false"
+         @set-title="title=$event.detail"
          class="absolute w-screen">
         <header class="w-full fixed ml-0 mt-0 flex items-center bg-base-200 transition-all duration-1000 overflow-hidden"
                 x-bind:class="isApp ? 'h-[10vh]' : 'h-[0vh]'">
                 <div class="w-1/4 "></div>
-                <div x-text="title" class="w-1/2 text-primary-focus text-4xl font-semibold text-center"></div>
+                <div x-text="title" class="w-1/2 text-primary text-4xl font-semibold text-center"></div>
                 <div class="w-1/4 "></div>
         </header>
         <div class="bg-base-100 flex flex-col justify-center transition-all duration-1000" 
              x-bind:class="isApp ? 'min-h-[90vh] mt-[10vh]' : 'min-h-[100vh] mt-[0vh]'">
             <div x-data="{frames:[
                                     {src:'/api/site-pages-frames/landing',classes:''},
-                                    {src:'/api/site-pages-frames/landing2',classes:''}
+                                    {src:'/api/site-pages-frames/landing2',classes:''},
+                                    {src:'/api/site-pages-frames/landing3',classes:''}
                                   ]
                             }" 
                  class="w-full flex flex-row flex-wrap content-center justify-center items-start">
