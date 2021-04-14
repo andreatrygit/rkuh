@@ -20,9 +20,11 @@
          @this-is-an-app="isApp=true" 
          @this-is-not-an-app="isApp=false" 
          class="absolute w-screen">
-        <header class="w-full fixed ml-0 mt-0 bg-base-200 transition-all duration-1000"
+        <header class="w-full fixed ml-0 mt-0 bg-base-200 transition-all duration-1000 overflow-hidden"
                 x-bind:class="isApp ? 'h-[10vh]' : 'h-[0vh]'">
-                <div x-text="title" class="absolute m-auto text-primary-focus text-4xl font-semibold"></div>
+                <div class="h-screen w-1/4 "></div>
+                <div x-text="title" class="h-screen w-1/2 text-primary-focus text-4xl font-semibold text-center"></div>
+                <div class="h-screen w-1/4 "></div>
         </header>
         <div class="bg-base-100 flex flex-col justify-center transition-all duration-1000" 
              x-bind:class="isApp ? 'min-h-[90vh] mt-[10vh]' : 'min-h-[100vh] mt-[0vh]'">
