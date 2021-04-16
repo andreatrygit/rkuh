@@ -38,7 +38,7 @@
             <button class="mx-auto mt-4 btn btn-primary">Chiudi</button>
             <div class="w-full overflow-auto flex flex-col flex-nowrap items-center"
                  x-data="{themes:['aqua','black','bumblebee','cupcake','cyberpunk','dark','dracula','fantasy','forest','garden','halloween','light','luxury','pastel','retro','synthwave','valentine']}">
-                 <template x-for="theme in thems" :key="theme">
+                 <template x-for="theme in themes" :key="theme">
                     <button class="btn hover:btn-secondary" x-text="theme"></button>
                  </template>
             </div>
