@@ -16,11 +16,11 @@
 </head>
 
 <body>
-    <div class="hidden w-screen h-screen z-10 bg-base-100 overflow-auto">
-        <div class="sticky top-0 p-2 flex justify-center items-center">
+    <div class="hidden w-screen z-10 bg-base-100">
+        <div class="sticky w-full top-0 p-2 flex justify-center items-center">
             <button class="btn btn-lg btn-primary">Chiudi</button>
         </div>
-        <div class="flex flex-col flex-nowrap items-center"
+        <div class="w-full flex flex-col flex-nowrap items-center"
              x-data="{themes:['aqua','black','bumblebee','cupcake','cyberpunk','dark','dracula','fantasy','forest','garden','halloween','light','luxury','pastel','retro','synthwave','valentine']}">
              <template x-for="theme in themes" :key="theme">
                 <button class="btn btn-ghost hover:btn-accent" x-text="theme"></button>
