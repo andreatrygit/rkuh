@@ -16,6 +16,17 @@
 </head>
 
 <body>
+    <div class="fixed z-10 bg-base-100">
+        <div class="sticky top-0 p-2 flex justify-center items-center">
+            <button class="btn btn-lg btn-primary">Chiudi</button>
+        </div>
+        <div class="flex flex-col flex-nowrap items-center"
+             x-data="{themes:['aqua','black','bumblebee','cupcake','cyberpunk','dark','dracula','fantasy','forest','garden','halloween','light','luxury','pastel','retro','synthwave','valentine']}">
+             <template x-for="theme in themes" :key="theme">
+                <button class="btn btn-ghost hover:btn-accent" x-text="theme"></button>
+             </template>
+        </div>
+    </div>
     <div x-data="{isApp:false, title:'Rkuh'}" 
          @this-is-an-app="isApp=true" 
          @this-is-not-an-app="isApp=false"
@@ -34,17 +45,6 @@
                     </svg>
                 </div>
         </header>
-        <div class="fixed top-0 z-10 bg-base-100">
-            <div class="sticky top-0 p-2 flex justify-center items-center">
-                <button class="btn btn-lg btn-primary">Chiudi</button>
-            </div>
-            <div class="flex flex-col flex-nowrap items-center"
-                 x-data="{themes:['aqua','black','bumblebee','cupcake','cyberpunk','dark','dracula','fantasy','forest','garden','halloween','light','luxury','pastel','retro','synthwave','valentine']}">
-                 <template x-for="theme in themes" :key="theme">
-                    <button class="btn btn-ghost hover:btn-accent" x-text="theme"></button>
-                 </template>
-            </div>
-        </div>
         <div class="bg-base-100 flex flex-col justify-center transition-all duration-1000" 
              x-bind:class="isApp ? 'min-h-[90vh] mt-[10vh]' : 'min-h-[100vh] mt-[0vh]'">
             <div x-data="{frames:[
