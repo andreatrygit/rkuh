@@ -74,8 +74,8 @@
         </div>
     </div>
     <div x-data="{isApp:false, title:'Rkuh'}" 
-         @this-is-an-app="isApp=true" 
-         @this-is-not-an-app="isApp=false"
+         @logged-in="isApp=true" 
+         @log-out="isApp=false"
          @set-title="title=$event.detail"
          class="absolute w-screen">
         <header class="w-full z-0 fixed ml-0 mt-0 flex items-center bg-base-200 transition-all duration-1000 overflow-hidden"
