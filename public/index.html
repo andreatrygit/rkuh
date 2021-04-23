@@ -47,11 +47,11 @@
     <div class="fixed w-screen h-screen hidden z-10 bg-base-100 transition-opacity opacity-0"
          x-data="{themer:'out',default:'dark',current='dark'}"
          x-bind:class="{'block':themer!=='out', 'opacity-100':themer==='in', 'opacity-0':themer==='leaving'}"
-         x-init="$watch('themer',value=>(themer==='leaving'?setTimeout(()=>(themer='out'),1000)))"
+         x-init="$watch('themer',value=>(themer==='leaving'?setTimeout(()=>(themer='out'),1000)));
+                 $watch('current',value=>($dispatch('set-body-theme',value)))"
          @logged-in.window="storageAvailable?(current=localStorage.getItem('rkuh-theme')||'dark')"
          @log-out.window="themer='leaving';current=default"
-         @set-theme="current=$event.detail;storageAvailable?(localStorage.setItem('rkuh-theme',current));
-                     $dispatch('set-body-theme',current)"
+         @set-theme="current=$event.detail;storageAvailable?(localStorage.setItem('rkuh-theme',current))"
          @reset-theme="$dispatch('set-theme',default)"
          @open-themer="themer='in'"
          @close-themer="themer='leaving'">
