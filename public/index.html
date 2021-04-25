@@ -49,9 +49,9 @@
          x-bind:class="{'block':themer!=='out', 'opacity-100':themer==='in', 'opacity-0':themer==='leaving'}"
          x-init="$watch('themer',value=>(value==='leaving'?setTimeout(()=>(themer='out'),1000)));
                  $watch('current',value=>($dispatch('set-body-theme',value)))"
-         @logged-in.window="storageAvailable?(current=localStorage.getItem('rkuh-theme')||default)"
+         @logged-in.window="storageAvailable()?(current=localStorage.getItem('rkuh-theme')||default)"
          @log-out.window="themer='leaving';current=default"
-         @set-theme.window="current=$event.detail;storageAvailable?(localStorage.setItem('rkuh-theme',current))"
+         @set-theme.window="current=$event.detail;storageAvailable()?(localStorage.setItem('rkuh-theme',current))"
          @reset-theme="$dispatch('set-theme',default)"
          @open-themer="themer='in'"
          @close-themer="themer='leaving'">
@@ -78,7 +78,7 @@
          @log-out="isApp=false"
          @set-title="title=$event.detail"
          class="absolute w-screen">
-        <header class="w-full z-0 fixed ml-0 mt-0 flex items-center bg-base-200 transition-all duration-1000 overflow-hidden"
+        <header class="w-full fixed ml-0 mt-0 flex items-center bg-base-200 transition-all duration-1000 overflow-hidden"
                 x-bind:class="isApp ? 'h-[10vh]' : 'h-[0vh]'">
                 <div class="h-full w-1/4 p-1 pl-2 flex justify-start items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3/5 text-base-content" @click="$dispatch('open-themer')" fill="none" viewBox="0 0 24 24" stroke="currentColor">

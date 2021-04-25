@@ -8,12 +8,6 @@ add semantics to composer
 gestione del hide dell'header/barra
 metto @logout su composer
 vercel timeout
-passa a daisy
-header title semantic
-bottone menu
-bottone themer
-overlay
-sidebar
-overlay
+header in rem
 toasts
 frame semantics partendo da /? su landing
