@@ -47,14 +47,15 @@
     <div class="fixed w-screen h-screen hidden overscroll-none z-10 bg-base-100 transition-opacity opacity-0"
          x-data="{themer:'out',default:'dark',current:'dark'}"
          x-bind:class="{'block':themer!=='out', 'opacity-100':themer==='in', 'opacity-0':themer==='leaving'}"
-         x-init="$watch('themer',value=>(value==='leaving'?console.log('hey')))"
-                 
+         x-init="$watch('themer',value=>{value==='leaving'?setTimeout((themer)=>(themer='out'),1000)});
+                 $watch('current',value=>$dispatch('set-body-theme',value))"
          @logged-in.window="storageAvailable()?(current=localStorage.getItem('rkuh-theme')||default)"
          @log-out.window="themer='leaving';current=default"
          @set-theme.window="current=$event.detail;storageAvailable()?(localStorage.setItem('rkuh-theme',current))"
          @reset-theme="$dispatch('set-theme',default)"
          @open-themer="themer='in'"
-         @close-themer="themer='leaving'">
+         @close-themer="themer='leaving'"
+         @what-is-the-current-theme="$dispatch('current-theme-is',current)">
         <div class="w-full h-full overflow-auto">
             <div class="w-full flex flex-col flex-nowrap items-center"
                 x-data="{themes:['aqua','black','bumblebee','cupcake','cyberpunk','dark','dracula','fantasy','forest','garden','halloween','light','luxury','pastel','retro','synthwave','valentine']}">
@@ -67,7 +68,9 @@
             <div class="fixed bottom-10 right-10 flex flex-col items-center flex-nowrap space-y-2">
                 <button class="btn btn-accent" @click="$dispatch('reset-theme')">Resetta</button>
                 <button class="btn btn-secondary"
-                        x-data="{pastTheme:current}"
+                        x-data="{pastTheme:''}"
+                        x-init="$dispatch('what-is-the-current-theme')"
+                        @current-theme-is.window="pastTheme=$event.detail"
                         @click="$dispatch('set-theme',pastTheme)">Annulla</button>
                 <button class="btn btn-primary" @click="$dispatch('close-themer')">Chiudi</button>
             </div>
