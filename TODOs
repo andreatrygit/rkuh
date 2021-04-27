@@ -11,3 +11,4 @@ vercel timeout
 header in rem
 toasts
 frame semantics partendo da /? su landing
+launch toast if localstorage fails
