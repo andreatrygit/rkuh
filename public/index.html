@@ -49,7 +49,7 @@
          x-bind:class="{'block':themer!=='out', 'opacity-100':themer==='in', 'opacity-0':themer==='leaving'}"
           x-init="$watch('themer',value=>value==='leaving'?setTimeout(themer=>themer='out',1000):null);
                  $watch('current',value=>$dispatch('set-body-theme',value))"
-         @logged-in.window="storageAvailable()?current=(localStorage.getItem('rkuh-theme')||default):null"
+         @logged-in.window="storageAvailable()?current=(localStorage.getItem('rkuh-theme')):null"
          @log-out.window="themer='leaving';current=default"
          @set-theme.window="current=$event.detail;storageAvailable()?(localStorage.setItem('rkuh-theme',current)):null"
          @reset-theme="$dispatch('set-theme',default)"
