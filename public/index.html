@@ -53,7 +53,7 @@
          @log-out.window="themer='leaving';current=defaultTheme"
          @set-theme.window="current=$event.detail;storageAvailable()?(localStorage.setItem('rkuh-theme',current)):null"
          @reset-theme="$dispatch('set-theme',defaultTheme)"
-         @open-themer="themer='in'"
+         @open-themer.window="themer='in'"
          @close-themer="themer='leaving'"
          @what-is-the-current-theme="$dispatch('current-theme-is',current)">
         <div class="w-full h-full overflow-auto">
