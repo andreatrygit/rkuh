@@ -45,14 +45,14 @@
       x-bind:data-theme="bodyTheme"
       @set-body-theme="bodyTheme=$event.detail">
     <div class="fixed w-screen h-screen hidden overscroll-none z-10 bg-base-100 transition-opacity opacity-0"
-         x-data="{themer:'out',default:'dark',current:'dark'}"
+         x-data="{themer:'out',defaultTheme:'dark',current:'dark'}"
          x-bind:class="{'block':themer!=='out', 'opacity-100':themer==='in', 'opacity-0':themer==='leaving'}"
           x-init="$watch('themer',value=>value==='leaving'?setTimeout(themer=>themer='out',1000):null);
                  $watch('current',value=>$dispatch('set-body-theme',value))"
-         @logged-in.window="storageAvailable()?current=(localStorage.getItem('rkuh-theme')||default):null"
-         @log-out.window="themer='leaving';current=default"
+         @logged-in.window="storageAvailable()?current=(localStorage.getItem('rkuh-theme')||defaultTheme):null"
+         @log-out.window="themer='leaving';current=defaultTheme"
          @set-theme.window="current=$event.detail;storageAvailable()?(localStorage.setItem('rkuh-theme',current)):null"
-         @reset-theme="$dispatch('set-theme',default)"
+         @reset-theme="$dispatch('set-theme',defaultTheme)"
          @open-themer="themer='in'"
          @close-themer="themer='leaving'"
          @what-is-the-current-theme="$dispatch('current-theme-is',current)">
