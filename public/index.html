@@ -44,17 +44,16 @@
 <body x-data="{bodyTheme:'dark'}"
       x-bind:data-theme="bodyTheme"
       @set-body-theme="bodyTheme=$event.detail">
-    <div class="fixed w-screen h-screen overscroll-none z-10 bg-base-100 transition-opacity duration-1000"
-         x-data="{themer:'out',defaultTheme:'dark',current:'dark'}"
-         x-bind:class="{'hidden':themer==='out', 'opacity-100':themer==='in', 'opacity-0':themer!=='in'}"
-          x-init="$watch('themer',value=>value==='leaving'?setTimeout(themer=>themer='out',1000):null);
-                 $watch('current',value=>$dispatch('set-body-theme',value))"
+    <div class="fixed w-screen h-screen overscroll-none z-10 bg-base-100"
+         x-data="{open:false,defaultTheme:'dark',current:'dark'}"
+         x-init="$watch('current',value=>$dispatch('set-body-theme',value))"
+         x-show.opacity.in.duration.1000.out.duration.1000="open"
          @logged-in.window="storageAvailable()?current=(localStorage.getItem('rkuh-theme')||defaultTheme):null"
-         @log-out.window="themer==='in'?themer='leaving':null;current=defaultTheme"
+         @log-out.window="open=false"
          @set-theme.window="current=$event.detail;storageAvailable()?(localStorage.setItem('rkuh-theme',current)):null"
          @reset-theme="$dispatch('set-theme',defaultTheme)"
-         @open-themer.window="themer='in';$dispatch('current-theme-is',current)"
-         @close-themer="themer='leaving'">
+         @open-themer.window="open=true;$dispatch('current-theme-is',current)"
+         @close-themer="open=false">
         <div class="w-full h-full overflow-auto">
             <div class="w-full flex flex-col flex-nowrap items-center"
                 x-data="{themes:['aqua','black','bumblebee','cupcake','cyberpunk','dark','dracula','fantasy','forest','garden','halloween','light','luxury','pastel','retro','synthwave','valentine']}">
