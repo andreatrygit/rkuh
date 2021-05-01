@@ -57,7 +57,7 @@
          @close-themer="themer='leaving'"
          @what-is-the-current-theme="$dispatch('current-theme-is',current)">
         <div class="w-full h-full overflow-auto">
-            <div class="w-full flex flex-col flex-nowrap items-center"
+            <div class="w-full flex flex-col flex-nowrap items-end"
                 x-data="{themes:['aqua','black','bumblebee','cupcake','cyberpunk','dark','dracula','fantasy','forest','garden','halloween','light','luxury','pastel','retro','synthwave','valentine']}">
                 <template x-for="theme in themes" :key="theme">
                     <button class="btn btn-ghost text-accent-content hover:btn-accent" 
