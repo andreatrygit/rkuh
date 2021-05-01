@@ -49,7 +49,7 @@
          x-init="$watch('current',value=>$dispatch('set-body-theme',value))"
          x-show.opacity.in.duration.1000.out.duration.1000="open"
          @logged-in.window="storageAvailable()?current=(localStorage.getItem('rkuh-theme')||defaultTheme):null"
-         @log-out.window="open=false"
+         @log-out.window="open=false;current=defaultTheme"
          @set-theme.window="current=$event.detail;storageAvailable()?(localStorage.setItem('rkuh-theme',current)):null"
          @reset-theme="$dispatch('set-theme',defaultTheme)"
          @open-themer.window="open=true;$dispatch('current-theme-is',current)"
