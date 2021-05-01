@@ -60,7 +60,7 @@
             <div class="w-full flex flex-col flex-nowrap items-end"
                 x-data="{themes:['aqua','black','bumblebee','cupcake','cyberpunk','dark','dracula','fantasy','forest','garden','halloween','light','luxury','pastel','retro','synthwave','valentine']}">
                 <template x-for="theme in themes" :key="theme">
-                    <button class="btn btn-ghost text-accent-content hover:btn-accent" 
+                    <button class="btn btn-ghost text-base-content hover:btn-accent" 
                             x-text="theme"
                             @click="$dispatch('set-theme',theme)"></button>
                 </template>
