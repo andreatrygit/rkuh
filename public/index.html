@@ -48,7 +48,7 @@
     <div class="fixed w-screen h-screen overscroll-none z-20 bg-base-100"
          x-data="{open:false,defaultTheme:'dark',current:'dark'}"
          x-init="$watch('current',value=>$dispatch('set-body-theme',value))"
-         x-show.transition.opacity.in.duration.1000.out.duration.1000="open"
+         x-show.transition.in.opacity.duration.1000ms.out.opacity.duration.1000ms="open"
          @logged-in.window="storageAvailable()?current=(localStorage.getItem('rkuh-theme')||defaultTheme):null"
          @log-out.window="open=false;current=defaultTheme"
          @set-theme.window="current=$event.detail;storageAvailable()?(localStorage.setItem('rkuh-theme',current)):null"
@@ -76,7 +76,7 @@
     </div>
     <div class="fixed w-screen h-screen overscroll-none z-10 bg-base-100"
          x-data="{open:false, content:false}"
-         x-show.transition.opacity.in.duration.1000.out.duration.1000="open"
+         x-show.transition.in.opacity.duration.1000ms.out.opacity.duration.1000ms="open"
          @logged-in.window="content=true"
          @log-out.window="open=false;content=false"
          @open-menu.window="open=true"
