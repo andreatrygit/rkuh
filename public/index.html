@@ -45,7 +45,7 @@
 <body x-data="{bodyTheme:'dark'}"
       x-bind:data-theme="bodyTheme"
       @set-body-theme="bodyTheme=$event.detail">
-    <div class="fixed w-screen h-screen overscroll-none z-10 bg-base-100"
+    <div class="fixed w-screen h-screen overscroll-none z-20 bg-base-100"
          x-data="{open:false,defaultTheme:'dark',current:'dark'}"
          x-init="$watch('current',value=>$dispatch('set-body-theme',value))"
          x-show.transition.opacity.in.duration.1000.out.duration.1000="open"
@@ -74,6 +74,22 @@
             </div>
         </div>
     </div>
+    <div class="fixed w-screen h-screen overscroll-none z-10 bg-base-100"
+         x-data="{open:false, content:false}"
+         x-show.transition.opacity.in.duration.1000.out.duration.1000="open"
+         @logged-in.window="content=true"
+         @log-out.window="open=false;content=false"
+         @open-menu.window="open=true"
+         @close-menu="open=false">
+        <div class="w-full h-full overflow-auto">
+            <div class=""> 
+                
+            </div>
+            
+            <button class="fixed bottom-2 right-2 btn btn-primary" @click="$dispatch('close-menu')">Chiudi</button>
+           
+        </div>
+    </div>
     <div x-data="{isApp:false, title:'Rkuh'}" 
          @logged-in="isApp=true" 
          @log-out="isApp=false"
@@ -88,7 +104,7 @@
                 </div>
                 <div x-text="title" class="w-1/2 text-4xl font-semibold text-center text-base-content"></div>
                 <div class="h-full w-1/4 p-2 flex justify-end items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-full ml-1 text-base-content" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-full ml-1 text-base-content" @click="$dispatch('open-menu')" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </div>
