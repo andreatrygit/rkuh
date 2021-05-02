@@ -56,7 +56,7 @@
          @open-themer.window="open=true;$dispatch('current-theme-is',current)"
          @close-themer="open=false">
         <div class="w-full h-full overflow-auto">
-            <div class="w-full flex flex-col flex-nowrap items-center py-1"
+            <div class="w-full flex flex-col flex-nowrap items-center py-2"
                 x-data="{themes:['aqua','black','bumblebee','cupcake','cyberpunk','dark','dracula','fantasy','forest','garden','halloween','light','luxury','pastel','retro','synthwave','valentine']}">
                 <template x-for="theme in themes" :key="theme">
                     <button class="btn btn-ghost text-base-content hover:btn-accent" 
@@ -64,7 +64,7 @@
                             @click="$dispatch('set-theme',theme)"></button>
                 </template>
             </div>
-            <div class="fixed bottom-1 right-1 flex flex-col items-end flex-nowrap space-y-2">
+            <div class="fixed bottom-2 right-2 flex flex-col items-end flex-nowrap space-y-2">
                 <button class="btn btn-accent" @click="$dispatch('reset-theme')">Resetta</button>
                 <button class="btn btn-secondary"
                         x-data="{pastTheme:''}"
