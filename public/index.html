@@ -90,7 +90,7 @@
     </div>
     <div x-data="{isApp:false, title:'Rkuh'}" 
          @logged-in="isApp=true" 
-         @log-out="isApp=false"
+         @log-out.window="isApp=false"
          @set-title="title=$event.detail"
          class="absolute w-screen">
         <header class="w-full fixed ml-0 mt-0 flex items-center bg-base-200 transition-all duration-1000 overflow-hidden"
