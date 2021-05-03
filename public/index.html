@@ -82,8 +82,7 @@
          @open-menu.window="open=true"
          @close-menu="open=false">
         <div class="w-full h-full overflow-auto">
-            <div class=""> 
-            </div>
+            <turbo-frame x-if="content" id="/api/app-pages-frames/personal-menu" src="/api/app-pages-frames/personal-menu"><turbo-frame>
             <button class="fixed bottom-2 left-2 btn btn-accent" @click="$dispatch('log-out')">Esci dall'App</button>
             <button class="fixed bottom-2 right-2 btn btn-primary" @click="$dispatch('close-menu')">Chiudi</button>
         </div>
