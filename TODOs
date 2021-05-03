@@ -15,3 +15,4 @@ launch toast if localstorage fails
 mettere tutti gli effetti di logout
 togli la parola pages dall'alberatura
 themer buttons flicker
+themer buttons pad on big screens
