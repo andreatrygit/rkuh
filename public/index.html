@@ -83,11 +83,9 @@
          @close-menu="open=false">
         <div class="w-full h-full overflow-auto">
             <div class=""> 
-                
             </div>
-            
+            <button class="fixed bottom-2 left-2 btn btn-accent" @click="$dispatch('log-out')">Esci dall'App</button>
             <button class="fixed bottom-2 right-2 btn btn-primary" @click="$dispatch('close-menu')">Chiudi</button>
-           
         </div>
     </div>
     <div x-data="{isApp:false, title:'Rkuh'}" 
@@ -117,7 +115,7 @@
                             }" 
                  class="w-full flex flex-row flex-wrap content-center justify-center items-start">
                 <template x-for="frame in frames" :key="frame.src">
-                    <turbo-frame x-bind:class="'w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/3 p-1 opacity-100 transition-opacity duration-1000 frame-fade-in' + ' ' + frame.classes" 
+                    <turbo-frame x-bind:class="'w-full sm:w-1/2 lg:w-1/3 p-1 opacity-100 transition-opacity duration-1000 frame-fade-in' + ' ' + frame.classes" 
                                  x-bind:id="frame.src" 
                                  x-bind:src="frame.src"></turbo-frame>
                 </template>

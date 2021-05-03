@@ -1,8 +1,8 @@
 const ejs = require('ejs');
 const templateString =
 `<turbo-frame id="/api/site-pages-frames/landing">`+
-    `<div @click="$dispatch('logged-in')" class="w-full h-40 bg-base-200">`+
-`</div></turbo-frame>`;
+    `<button @click="$dispatch('logged-in')" class="w-full btn btn-primary btn-lg">`+
+`</turbo-frame>`;
 
 const resBody = ejs.render(templateString);
 
