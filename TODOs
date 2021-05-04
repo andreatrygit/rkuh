@@ -16,3 +16,10 @@ mettere tutti gli effetti di logout
 togli la parola pages dall'alberatura
 themer buttons flicker
 themer buttons pad on big screens
+menu content x-if oppure src ""
+menu slug vuoto o scorretto
+si apre su visitor oppure login
+dopo login va a scelta ruoli
+il content del menu si carica su @role-chosen anziché @login
+e va via sia su logout sia su role-unchosen
+poi metti 3 bottoni come per il themer

@@ -1,10 +1,19 @@
 const ejs = require('ejs');
+
+const menus = {
+    baseOperator:{
+        Ruoli:{
+
+        }
+    }
+}
 const templateString =
 `<turbo-frame id="/api/app-frames/personal-menu">`+
-    `<ol>`+
-        `<li>Opzione 1</li>`+
-        `<li>Opzione 2</li>`+
-    `<ol>`+
+   `<div class="bg-base-100 flex flex-col justify-center transition-all duration-1000"> `+
+        `<div class="w-full flex flex-row flex-wrap content-center justify-center items-start">`+
+               
+        `</div>`+
+    `<div>`+
 `</turbo-frame>`;
 
 const resBody = ejs.render(templateString);
