@@ -1,10 +1,7 @@
 const ejs = require('ejs');
 const templateString =
-`<turbo-frame id="/api/app-pages-frames/personal-menu">`+
-    `<ol>`+
-        `<li>Opzione 1</li>`+
-        `<li>Opzione 2</li>`+
-    `<ol>`+
+`<turbo-frame id="/api/site-frames/landing">`+
+    `<button @click="$dispatch('logged-in')" class="w-full btn btn-primary btn-lg">Entra nell&apos&nbspApp<button>`+
 `</turbo-frame>`;
 
 const resBody = ejs.render(templateString);
