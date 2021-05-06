@@ -16,3 +16,5 @@ mettere tutti gli effetti di logout
 themer buttons flicker
 menu content x-if oppure src ""
 menu slug vuoto o scorretto
+client req timeout
+turbo timeout
