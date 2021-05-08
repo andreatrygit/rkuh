@@ -14,9 +14,9 @@ const successString =
 `<head>`+
 `<body>`+
     `<div class="w-screen h-screen p-4 flex flex-col flex-nowrap justify-center items-center space-y-10">`+
-        `<div class="text-9xl animate-bounce">&#128516</div>`+
-        `<div class="text-6xl text-center">Il tuo dispositivo è associato ad Rkuh!</div>`+
-        `<button class="btn btn-primary btn-large">EFFETTUA L&#39&nbspACCESSO</button>`+
+        `<div class="text-6xl md:text-9xl animate-bounce">&#128516</div>`+
+        `<div class="text-4xl md:text-6xl text-center">Il tuo dispositivo è associato ad Rkuh!</div>`+
+        `<a href="../../../../index.html" class="btn btn-primary btn-large">EFFETTUA L&#39&nbspACCESSO</a>`+
     `</div>`+
 `</body>`;
 
