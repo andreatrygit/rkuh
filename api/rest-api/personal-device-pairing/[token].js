@@ -10,7 +10,7 @@ const successString =
     `<title>Rkuh Personal Device Pairing Successful</title>`+
     `<meta name="viewport" content="width=device-width, initial-scale=1">`+
     `<meta name="author" content="Andrea Scotti">`+
-    `<link rel="stylesheet" type="text/css" href="./global.css">`+
+    `<link rel="stylesheet" type="text/css" href="../../../../public/global.css">`+
 `<head>`+
 `<body>`+
     `<div class="w-screen h-screen p-4 flex flex-col flex-nowrap justify-center items-center space-y-10">`+
@@ -24,7 +24,7 @@ const successString =
 const failureString =""
 
 
-const resBody = ejs.render("");
+const resBody = ejs.render(successString);
 
 module.exports = (req, res) => {
   res.status(200).send(resBody);
