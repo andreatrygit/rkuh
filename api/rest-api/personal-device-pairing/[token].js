@@ -1,7 +1,6 @@
 const ejs = require('ejs');
 
 const baseString =
-
 `<!DOCTYPE html>`+
 `<html lang="en">`+
 `<head>`+
