@@ -33,7 +33,8 @@ const failureString =
 
 
 module.exports = (req, res) => {
-  const outputString = baseString + (req.query.token in ['personal','shared','timeclock'] ? successString : failureString);
+  const outputString = baseString + (['personal','shared','timeclock'].includes(req.query.token) ? successString : failureString);
+  const deviceToken = 'rkuh-device=' + ['personal','shared','timeclock'].includes(req.query.token) ? req.query.token : '""';
   const resBody = ejs.render(outputString);
-  res.status(200).send(resBody);
+  res.setHeadeer('Set-Cookie',[deviceToken]).status(200).send(resBody);
 }
