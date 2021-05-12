@@ -2,7 +2,7 @@ module.exports = {
   mode:'jit',
   purge: {
     enabled: true,
-    content: ['./api/**/*.js','./public/index.html'],
+    content: ['./api/**/*.js','./public/**/*.html'],
     options: {
         safelist: [
           /data-theme$/,
