@@ -18,7 +18,7 @@
         <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col flex-nowrap justify-center items-center space-y-2 p-2 transition-all duration-1000"
              x-data="{mode:'start', step:'', error:'', qr:false, qrCode:'', pinPad:false, pin:''}"
              @shared="mode='shared'; step='qr'; qr=true"
-             @personal="mode='personal'; step='qr'; qr=true"
+             @personal="mode='personal'; step='pinPad'; pinPad=true"
              @clocking="mode='clocking'; step='qr'; qr=true"
              @cancel="mode='start'; step=''; error=''; qr=false; qrCode=''; pinPad=false; pin=''"
              @qr-ok="qr=false;pinPad=true"
