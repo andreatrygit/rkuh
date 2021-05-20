@@ -20,7 +20,7 @@
              @shared="mode='shared'; step='qr'; qr=true"
              @personal="mode='personal'; step='qr'; qr=true"
              @clocking="mode='clocking'; step='qr'; qr=true"
-             @cancel="mode='start'; step=''; error=''; pin='' qr=false; pinPad=false"
+             @cancel="mode='start'; step=''; error=''; qr=false; qrCode=''; pinPad=false; pin=''"
              @qr-ok="qr=false;pinPad=true"
              @qr-error="qr=false; qrCode=''; error='qr code error'"
              @pin-pad-pressed="pin.length < 5 ? pin+=$event.detail : null"
