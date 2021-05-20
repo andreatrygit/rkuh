@@ -15,7 +15,7 @@
 <body class="relative top-0 left-0">
     
     <div class="absolute top-0 left-0 w-screen min-h-screen flex flex-col justify-center items-center bg-black">
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col flex-nowrap justify-center items-center space-y-2 p-2"
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col flex-nowrap justify-center items-center space-y-2 p-2 transition-all duration-1000"
              x-data="{mode:'start', step:'', error:'', qr:false, qrCode:'', pinPad:false, pin:''}"
              @shared="mode='shared'; step='qr'; qr=true"
              @personal="mode='personal'; step='qr'; qr=true"
