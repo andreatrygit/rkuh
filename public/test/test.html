@@ -25,7 +25,7 @@
              @qr-error="qr=false; qrCode=''; error=true; message='Errore nel QR scansionato. CLICCA per riprovare.'"
              @pin-pad-pressed="pin.length < 5 ? pin+=$event.detail : null"
              @error-click="qr=step==='qr'; pinPad=step==='pinPad'; error=false; message=''"
-             x-init="$watch('pin',value=>(value==='12345' ? $dispatch('logged-in') : {error=true; message='PIN scorretto. CLICCA per riprovare.'}))">
+             x-init="$watch('pin',value=>(value==='12345' ? $dispatch('logged-in') : error=true, message='PIN scorretto. CLICCA per riprovare.'))">
             <div class="btn btn-outline btn-wide btn-lg"
                  x-bind:class="{'btn-primary':mode==='personal', 'btn-secondary':mode==='shared', 'btn-accent':mode==='clocking'}"
                  x-show.transition.in.opacity.duration.1000ms="message"
