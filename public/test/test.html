@@ -21,47 +21,62 @@
                      switch (s){
                          case 'start': message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
                          break;
-                         case 'personal': message='Digita il tuo PIN', qr=false, qrCode='', pinPad=true, pin='', cancel=true;
+                         case 'personal': message='Digita il tuo PIN.', qr=false, qrCode='', pinPad=true, pin='', cancel=true;
                          break;
-                         case 'personalPinWrong': message='PIN errato. CLICCAMI per riprovare', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
+                         case 'personalPinCheck': message='Verifica del PIN in corso...', qr=false, qrCode='', pinPad=false, cancel=false;
                          break;
-                         case 'personalPinOk': $dispatch('logged-in');
+                         case 'personalPinCheckFailed': message='PIN errato. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=true, pin='', cancel=true;
                          break;
-                         case 'clocking': message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
+                         case 'personalPinCheckOk': $dispatch('logged-in');
                          break;
-                         case 'clockingScanFailed': message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
+                         case 'personalPinChecktimeout': message='Verifica del PIN scaduta. CLICCAMI per riprpvare.', qr=false, qrCode='', pinPad=true, pin='', cancel=true;
                          break;
-                         case 'clockingScanOk': message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
+                         case 'clocking': message='Scansiona il codice QR sul timbrino.', qr=true, qrCode='', pinPad=false, pin='', cancel=true;
                          break;
-                         case 'clockingtimeout': message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
+                         case 'clockingScanFailed': message='Codice QR non valido. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
                          break;
-                         case 'clockingDone': message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
+                         case 'clockingScanCheck': message='Verifica del codice QR in corso...', qr=false, pinPad=false, pin='', cancel=false;
                          break;
-                         case 'shared': message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
+                         case 'clockingScanCheckFailed': message='Codice QR errato. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
                          break;
-                         case 'sharedDeviceScanFailed': message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
+                         case 'clockingScanCheckTimeout': message='Verifica del codice QR scaduta. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
                          break;
-                         case 'sharedDeviceScanOk': message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
+                         case 'clockingScanCheckOk': message='Bene, hai timbrato. CLICCAMI per chiudermi.', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
                          break;
-                         case 'sharedPinWrong': message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
+                         case 'shared': message='1. Scansiona il codire QR sulla postazione condivisa.', qr=true, qrCode='', pinPad=false, pin='', cancel=true;
                          break;
-                         case 'sharedPinOk': message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
+                         case 'sharedDeviceScanFailed': message='Codice QR non valido. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
                          break;
-                     }
+                         case 'sharedDeviceScanOk': message='2. Ora digita il tuo PIN.', qr=false, qrCode='', pinPad=true, pin='', cancel=true;
+                         break;
+                         case 'sharedCheck': message='Verifica delle credenziali in corso...', qr=false, pinPad=false, cancel=false;
+                         break;
+                         case 'sharedCheckFailed': message='Credenziali errate. CLICCAMI per riprovare da capo.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
+                         break;
+                         case 'sharedCheckTimeout': message='Verifica delle credenziali scaduta. CLICCAMI per riprovare da capo.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
+                         break;
+                         case 'sharedCheckOk': message='Bene, puoi cliccare ACCEDI sulla postazione condivisa. CLICCAMI per chiudermi.', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
+                         break;
+                        }
                      )"
              
-             @pin-pad-pressed="pin.length < 5 ? pin+=$event.detail : null">
+             @pin-pad-pressed="pin.length < 5 ? pin+=$event.detail : null"
+             @qr-value=""
+             @message-click=""
+             @clocking="state=clocking"
+             @shared="state=shared"
+             @personal="state=personal"
+             @home-page=""
+             @cancel="state=start">
              
             <div class="btn btn-outline btn-wide btn-lg leading-tight"
                  x-bind:class="{'btn-primary':state==='personal', 'btn-secondary':state==='shared', 'btn-accent':state==='clocking'}"
                  x-show.transition.in.opacity.duration.500ms="message"
                  x-text="message"
-                 @click="error ? $dispatch('message-click') : null">
+                 @click="$dispatch('message-click')">
             </div>
             <div class="w-60 h-60 bg-gray-200 rounded-xl mb-10"
-                 x-show.transition.in.opacity.duration.500ms="qr"
-                 @click="!$event.ctrlKey ? $dispatch('qr-ok') : null"
-                 @click="$event.ctrlKey ? $dispatch('qr-error') : null">
+                 x-show.transition.in.opacity.duration.500ms="qr">
             </div>
             <div class="btn btn-wide btn-lg text-4xl"
                  x-bind:class="{'btn-primary':state==='personal', 'btn-secondary':state==='shared'}"
@@ -84,7 +99,7 @@
             <div class="btn btn-wide btn-lg btn-accent" @click="$dispatch('clocking')" x-show.transition.in.opacity.duration.500ms="state==='start'">TIMBRA</div>
             <div class="btn btn-wide btn-lg btn-secondary leading-tight" @click="$dispatch('shared')" x-show.transition.in.opacity.duration.500ms="state==='start'">ENTRA SU POSTAZIONE CONDIVISA</div>
             <div class="btn btn-wide btn-lg btn-primary" @click="$dispatch('personal')" x-show.transition.in.opacity.duration.500ms="state==='start'">ENTRA QUI</div>
-            <div class="btn btn-outline btn-wide btn-lg btn-ghost" x-show.transition.in.opacity.duration.500ms="state==='start'">VISITA HOME PAGE</div>
+            <div class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('home-page')" x-show.transition.in.opacity.duration.500ms="state==='start'">VISITA HOME PAGE</div>
             <div class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('cancel')" x-show.transition.in.opacity.duration.500ms="cancel">ANNULLA</div>
         </div>
     </div>
