@@ -48,7 +48,7 @@
     <div class="fixed w-screen h-screen overscroll-none z-20 bg-base-100"
          x-data="{open:false,defaultTheme:'dark',current:'dark'}"
          x-init="$watch('current',value=>$dispatch('set-body-theme',value))"
-         x-show.transition.in.opacity.duration.1000ms.out.opacity.duration.1000ms="open"
+         x-show.transition.in.opacity.duration.500ms.out.opacity.duration.500ms="open"
          @logged-in.window="storageAvailable()?current=(localStorage.getItem('rkuh-theme')||defaultTheme):null"
          @log-out.window="open=false;current=defaultTheme"
          @set-theme.window="current=$event.detail;storageAvailable()?(localStorage.setItem('rkuh-theme',current)):null"
@@ -76,7 +76,7 @@
     </div>
     <div class="fixed w-screen h-screen overscroll-none z-10 bg-base-100"
          x-data="{open:false, content:false}"
-         x-show.transition.in.opacity.duration.1000ms.out.opacity.duration.1000ms="open"
+         x-show.transition.in.opacity.duration.500ms.out.opacity.duration.500ms="open"
          @role-chosen.window="content=true"
          @choose-role="content=false;open=false"
          @log-out.window="open=false;content=false"
@@ -95,7 +95,7 @@
          @log-out.window="isApp=false;title=''"
          @set-title="title=$event.detail"
          class="absolute w-screen">
-        <header class="w-full fixed ml-0 mt-0 flex items-center bg-base-200 transition-all duration-1000 overflow-hidden"
+        <header class="w-full fixed ml-0 mt-0 flex items-center bg-base-200 transition-all duration-500 overflow-hidden"
                 x-bind:class="isApp ? 'h-[10vh]' : 'h-[0vh]'">
                 <div class="h-full w-1/4 p-1 pl-2 flex justify-start items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3/5 text-base-content" @click="$dispatch('open-themer')" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -109,7 +109,7 @@
                     </svg>
                 </div>
         </header>
-        <div class="bg-base-100 flex flex-col justify-center transition-all duration-1000" 
+        <div class="bg-base-100 flex flex-col justify-center transition-all duration-500" 
              x-bind:class="isApp ? 'min-h-[90vh] mt-[10vh]' : 'min-h-[100vh] mt-[0vh]'">
             <div x-data="{frames:[
                                     {src:'/api/site-frames/landing',classes:''}
@@ -119,7 +119,7 @@
                  @log-out.window="frames=[{src:'/api/site-frames/landing',classes:''}]" 
                  class="w-full flex flex-row flex-wrap content-center justify-center items-start">
                 <template x-for="frame in frames" :key="frame.src">
-                    <turbo-frame x-bind:class="'w-full sm:w-1/2 lg:w-1/3 p-2 opacity-100 transition-opacity duration-1000 frame-fade-in' + ' ' + frame.classes" 
+                    <turbo-frame x-bind:class="'w-full sm:w-1/2 lg:w-1/3 p-2 opacity-100 transition-opacity duration-500 frame-fade-in' + ' ' + frame.classes" 
                                  x-bind:id="frame.src" 
                                  x-bind:src="frame.src"></turbo-frame>
                 </template>

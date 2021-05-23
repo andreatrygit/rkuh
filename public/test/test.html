@@ -15,7 +15,7 @@
 <body class="relative top-0 left-0">
     
     <div class="absolute top-0 left-0 w-screen min-h-screen flex flex-col justify-center items-center bg-black">
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col flex-nowrap justify-center items-center space-y-2 p-2 transition-all duration-1000"
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col flex-nowrap justify-center items-center space-y-2 p-2 transition-all duration-500"
              x-data="{state:'start', message:'', qr:false, qrCode:'', pinPad:false, pin:'', cancel:false}"
              x-init="$watch('state', s =>
                      switch (s){
@@ -54,22 +54,22 @@
              
             <div class="btn btn-outline btn-wide btn-lg leading-tight"
                  x-bind:class="{'btn-primary':state==='personal', 'btn-secondary':state==='shared', 'btn-accent':state==='clocking'}"
-                 x-show.transition.in.opacity.duration.1000ms="message"
+                 x-show.transition.in.opacity.duration.500ms="message"
                  x-text="message"
                  @click="error ? $dispatch('message-click') : null">
             </div>
             <div class="w-60 h-60 bg-gray-200 rounded-xl mb-10"
-                 x-show.transition.in.opacity.duration.1000ms="qr"
+                 x-show.transition.in.opacity.duration.500ms="qr"
                  @click="!$event.ctrlKey ? $dispatch('qr-ok') : null"
                  @click="$event.ctrlKey ? $dispatch('qr-error') : null">
             </div>
             <div class="btn btn-wide btn-lg text-4xl"
                  x-bind:class="{'btn-primary':state==='personal', 'btn-secondary':state==='shared'}"
-                 x-show.transition.in.opacity.duration.1000ms="pinPad"
+                 x-show.transition.in.opacity.duration.500ms="pinPad"
                  x-text="'&bull; '.repeat(pin.length)">
             </div>
             <div class="flex flex-row flex-wrap justify-center items-center content-start w-72"
-                 x-show.transition.in.opacity.duration.1000ms="pinPad">
+                 x-show.transition.in.opacity.duration.500ms="pinPad">
                 <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state==='personal', 'btn-secondary':state==='shared'}" @click="$dispatch('pin-pad-pressed','1')">1</div>
                 <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state==='personal', 'btn-secondary':state==='shared'}" @click="$dispatch('pin-pad-pressed','2')">2</div>
                 <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state==='personal', 'btn-secondary':state==='shared'}" @click="$dispatch('pin-pad-pressed','3')">3</div>
@@ -81,11 +81,11 @@
                 <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state==='personal', 'btn-secondary':state==='shared'}" @click="$dispatch('pin-pad-pressed','9')">9</div>
                 <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state==='personal', 'btn-secondary':state==='shared'}" @click="$dispatch('pin-pad-pressed','0')">0</div>
             </div>
-            <div class="btn btn-wide btn-lg btn-accent" @click="$dispatch('clocking')" x-show.transition.in.opacity.duration.1000ms="state==='start'">TIMBRA</div>
-            <div class="btn btn-wide btn-lg btn-secondary leading-tight" @click="$dispatch('shared')" x-show.transition.in.opacity.duration.1000ms="state==='start'">ENTRA SU POSTAZIONE CONDIVISA</div>
-            <div class="btn btn-wide btn-lg btn-primary" @click="$dispatch('personal')" x-show.transition.in.opacity.duration.1000ms="state==='start'">ENTRA QUI</div>
-            <div class="btn btn-outline btn-wide btn-lg btn-ghost" x-show.transition.in.opacity.duration.1000ms="state==='start'">VISITA HOME PAGE</div>
-            <div class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('cancel')" x-show.transition.in.opacity.duration.1000ms="cancel">ANNULLA</div>
+            <div class="btn btn-wide btn-lg btn-accent" @click="$dispatch('clocking')" x-show.transition.in.opacity.duration.500ms="state==='start'">TIMBRA</div>
+            <div class="btn btn-wide btn-lg btn-secondary leading-tight" @click="$dispatch('shared')" x-show.transition.in.opacity.duration.500ms="state==='start'">ENTRA SU POSTAZIONE CONDIVISA</div>
+            <div class="btn btn-wide btn-lg btn-primary" @click="$dispatch('personal')" x-show.transition.in.opacity.duration.500ms="state==='start'">ENTRA QUI</div>
+            <div class="btn btn-outline btn-wide btn-lg btn-ghost" x-show.transition.in.opacity.duration.500ms="state==='start'">VISITA HOME PAGE</div>
+            <div class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('cancel')" x-show.transition.in.opacity.duration.500ms="cancel">ANNULLA</div>
         </div>
     </div>
 </body>
