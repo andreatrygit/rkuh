@@ -18,7 +18,7 @@
     <div class="absolute top-0 left-0 w-screen min-h-screen flex flex-col justify-center items-center bg-black">
         <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col flex-nowrap justify-center items-center space-y-2 p-2 transition-all duration-500"
              x-data="{state:'start', message:'', qr:false, qrCode:'', pinPad:false, pin:'', cancel:false}"
-             x-init="$watch('state', s =>
+             x-init="$watch('state', function(s){ 
                          if (s==='start') { message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;}
                          else if (s==='personal') { message='Digita il tuo PIN.', qr=false, qrCode='', pinPad=true, pin='', cancel=true;}
                          else if (s==='personalPinCheck') { message='Verifica del PIN in corso...', qr=false, qrCode='', pinPad=false, cancel=false;}
@@ -38,7 +38,7 @@
                          else if (s==='sharedCheckFailed') { message='Credenziali errate. CLICCAMI per riprovare da capo.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;}
                          else if (s==='sharedCheckTimeout') { message='Verifica delle credenziali scaduta. CLICCAMI per riprovare da capo.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;}
                          else if (s==='sharedCheckOk') { message='Bene, puoi cliccare ACCEDI sulla postazione condivisa. CLICCAMI per chiudermi.', qr=false, qrCode='', pinPad=false, pin='', cancel=false;}
-                         else {});
+                         else {}});
                      $watch('pin',p=>p.length===5?state=personalPinCheck:null);
                      $watch('state',s=>
                      if (s==='personalPinCheck'){
