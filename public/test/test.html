@@ -58,7 +58,7 @@
                             }
                         }
                         res.info ? state=personalPinCheckOk : res.timeout ? state = personalPinChecktimeout : res.error ? state=personalPinCheckFailed : null;
-                     };})"
+                     }})"
              
              @pin-pad-pressed="pin.length < 5 ? pin+=$event.detail : null"
              @qr-value=""
