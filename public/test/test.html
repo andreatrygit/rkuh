@@ -19,7 +19,7 @@
         <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col flex-nowrap justify-center items-center space-y-2 p-2 transition-all duration-500"
              x-data="{state:'start', message:'', qr:false, qrCode:'', pinPad:false, pin:'', cancel:false}"
              x-init="$watch('state', function(s){ 
-                         s==='start' ? message='' : null;
+                         if (s==='start') { message=''};
                         });
                      $watch('pin',p=>p.length===5?state=personalPinCheck:null);
                      $watch('state',s=>
