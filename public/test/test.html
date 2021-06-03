@@ -42,11 +42,11 @@
                      $watch('pin',p=>p.length===5?state=personalPinCheck:null);
                      $watch('state',s=>{
                      if (s==='personalPinCheck'){
-                            ky.post('api/rest-api/login/personal/'+pin, {
+                            ky.post(('api/rest-api/login/personal/'+pin), {
                             retry:0,
                             timeout:4000}).json()
-                            .then(res=>res.info ? state=personalPinCheckOk : null;)
-                            .catch(e=>e.name==='TimeoutError' ? state=personalPinChecktimeout : state=personalPinCheckFailed;)
+                            .then(res=>res.info ? state=personalPinCheckOk : null)
+                            .catch(e=>e.name==='TimeoutError' ? state=personalPinChecktimeout : state=personalPinCheckFailed)
                      }
                     })"
              
