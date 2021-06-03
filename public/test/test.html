@@ -40,7 +40,7 @@
                          if(s==='sharedCheckOk') { message='Bene, puoi cliccare ACCEDI sulla postazione condivisa. CLICCAMI per chiudermi.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=false;}
                         });
                      $watch('pin',p=>p.length===5?state=personalPinCheck:null);
-                     $watch('state',s=>
+                     $watch('state',s=>{
                      if (s==='personalPinCheck'){
                         let res;
                         try {
@@ -58,7 +58,8 @@
                             }
                         }
                         res.info ? state=personalPinCheckOk : res.timeout ? state = personalPinChecktimeout : res.error ? state=personalPinCheckFailed : null;
-                     })"
+                     }
+                    })"
              
              @pin-pad-pressed="pin.length < 5 ? pin+=$event.detail : null"
              @qr-value=""
