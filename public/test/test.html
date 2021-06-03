@@ -19,25 +19,25 @@
         <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col flex-nowrap justify-center items-center space-y-2 p-2 transition-all duration-500"
              x-data="{state:'start', message:'', qr:false, qrCode:'', pinPad:false, pin:'', cancel:false}"
              x-init="$watch('state', s =>
-                           s==='start' ? message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
-                         : s==='personal' ? message='Digita il tuo PIN.', qr=false, qrCode='', pinPad=true, pin='', cancel=true;
-                         : s==='personalPinCheck' ? message='Verifica del PIN in corso...', qr=false, qrCode='', pinPad=false, cancel=false;
-                         : s==='personalPinCheckFailed' ? message='PIN errato. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=true, pin='', cancel=true;
-                         : s==='personalPinCheckOk' ? $dispatch('logged-in');
-                         : s==='personalPinChecktimeout' ? message='Verifica del PIN scaduta. CLICCAMI per riprpvare.', qr=false, qrCode='', pinPad=true, pin='', cancel=true;
-                         : s==='clocking' ? message='Scansiona il codice QR sul timbrino.', qr=true, qrCode='', pinPad=false, pin='', cancel=true;
-                         : s==='clockingScanFailed' ? message='Codice QR non valido. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
-                         : s==='clockingScanCheck' ? message='Verifica del codice QR in corso...', qr=false, pinPad=false, pin='', cancel=false;
-                         : s==='clockingScanCheckFailed' ? message='Codice QR errato. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
-                         : s==='clockingScanCheckTimeout' ? message='Verifica del codice QR scaduta. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
-                         : s==='clockingScanCheckOk' ? message='Bene, hai timbrato. CLICCAMI per chiudermi.', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
-                         : s==='shared' ? message='1. Scansiona il codire QR sulla postazione condivisa.', qr=true, qrCode='', pinPad=false, pin='', cancel=true;
-                         : s==='sharedDeviceScanFailed' ? message='Codice QR non valido. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
-                         : s==='sharedDeviceScanOk' ? message='2. Ora digita il tuo PIN.', qr=false, qrCode='', pinPad=true, pin='', cancel=true;
-                         : s==='sharedCheck' ? message='Verifica delle credenziali in corso...', qr=false, pinPad=false, cancel=false;
-                         : s==='sharedCheckFailed' ? message='Credenziali errate. CLICCAMI per riprovare da capo.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
-                         : s==='sharedCheckTimeout' ? message='Verifica delle credenziali scaduta. CLICCAMI per riprovare da capo.', qr=false, qrCode='', pinPad=false, pin='', cancel=true;
-                         : s==='sharedCheckOk' ? message='Bene, puoi cliccare ACCEDI sulla postazione condivisa. CLICCAMI per chiudermi.', qr=false, qrCode='', pinPad=false, pin='', cancel=false;
+                           s==='start' ? message='', qr=false, qrCode='', pinPad=false, pin='', cancel=false
+                         : s==='personal' ? message='Digita il tuo PIN.', qr=false, qrCode='', pinPad=true, pin='', cancel=true
+                         : s==='personalPinCheck' ? message='Verifica del PIN in corso...', qr=false, qrCode='', pinPad=false, cancel=false
+                         : s==='personalPinCheckFailed' ? message='PIN errato. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=true, pin='', cancel=true
+                         : s==='personalPinCheckOk' ? $dispatch('logged-in')
+                         : s==='personalPinChecktimeout' ? message='Verifica del PIN scaduta. CLICCAMI per riprpvare.', qr=false, qrCode='', pinPad=true, pin='', cancel=true
+                         : s==='clocking' ? message='Scansiona il codice QR sul timbrino.', qr=true, qrCode='', pinPad=false, pin='', cancel=true
+                         : s==='clockingScanFailed' ? message='Codice QR non valido. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=false, pin='', cancel=true
+                         : s==='clockingScanCheck' ? message='Verifica del codice QR in corso...', qr=false, pinPad=false, pin='', cancel=false
+                         : s==='clockingScanCheckFailed' ? message='Codice QR errato. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=false, pin='', cancel=true
+                         : s==='clockingScanCheckTimeout' ? message='Verifica del codice QR scaduta. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=false, pin='', cancel=true
+                         : s==='clockingScanCheckOk' ? message='Bene, hai timbrato. CLICCAMI per chiudermi.', qr=false, qrCode='', pinPad=false, pin='', cancel=false
+                         : s==='shared' ? message='1. Scansiona il codire QR sulla postazione condivisa.', qr=true, qrCode='', pinPad=false, pin='', cancel=true
+                         : s==='sharedDeviceScanFailed' ? message='Codice QR non valido. CLICCAMI per riprovare.', qr=false, qrCode='', pinPad=false, pin='', cancel=true
+                         : s==='sharedDeviceScanOk' ? message='2. Ora digita il tuo PIN.', qr=false, qrCode='', pinPad=true, pin='', cancel=true
+                         : s==='sharedCheck' ? message='Verifica delle credenziali in corso...', qr=false, pinPad=false, cancel=false
+                         : s==='sharedCheckFailed' ? message='Credenziali errate. CLICCAMI per riprovare da capo.', qr=false, qrCode='', pinPad=false, pin='', cancel=true
+                         : s==='sharedCheckTimeout' ? message='Verifica delle credenziali scaduta. CLICCAMI per riprovare da capo.', qr=false, qrCode='', pinPad=false, pin='', cancel=true
+                         : s==='sharedCheckOk' ? message='Bene, puoi cliccare ACCEDI sulla postazione condivisa. CLICCAMI per chiudermi.', qr=false, qrCode='', pinPad=false, pin='', cancel=false
                          : null);
                      $watch('pin',p=>p.length===5?state=personalPinCheck:null);
                      $watch('state',s=>
