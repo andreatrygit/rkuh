@@ -39,20 +39,20 @@
                          if(s==='sharedCheckTimeout') { message='Verifica delle credenziali scaduta. CLICCAMI per riprovare da capo.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='sharedCheckOk') { message='Bene, puoi cliccare ACCEDI sulla postazione condivisa. CLICCAMI per chiudermi.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=false;}
                         });
-                     $watch('pin',p=>p.length===5?state=personalPinCheck:null);
+                     $watch('pin',p=>p.length===5?state='personalPinCheck':null);
                      $watch('state',s=>{
                      if (s==='personalPinCheck'){
                             ky.post(('api/rest-api/login/personal/'+pin), {
                             retry:0,
                             timeout:4000}).json()
-                            .then(res=>res.info ? state=personalPinCheckOk : null)
-                            .catch(e=>e.name==='TimeoutError' ? state=personalPinChecktimeout : state=personalPinCheckFailed)
+                            .then(res=>res.info ? state='personalPinCheckOk' : null)
+                            .catch(e=>e.name==='TimeoutError' ? state='personalPinChecktimeout' : state='personalPinCheckFailed')
                      }
                     })"
              
              @pin-pad-pressed="pin.length < 5 ? pin+=$event.detail : null"
              @qr-value=""
-             @message-click="state.includes('personal')?state=personal:state.includes('clocking')?state=clocking:state.includes('shared')?state=shared:null"
+             @message-click="state.includes('personal') ? state='personal' : state.includes('clocking')?state='clocking':state.includes('shared')?state='shared':null"
              @clocking="state='clocking'"
              @shared="state='shared'"
              @personal="state='personal'"
