@@ -95,7 +95,7 @@
          @logged-in="isApp=true; title='Rkuh'" 
          @log-out.window="isApp=false;title=''"
          @set-title="title=$event.detail"
-         class="absolute w-screen">
+         class="absolute w-screen overscroll-none">
         <header class="w-full fixed ml-0 mt-0 flex items-center bg-base-200 transition-all duration-500 overflow-hidden"
                 x-bind:class="isApp ? 'h-[10vh]' : 'h-[0vh]'">
                 <div class="h-full w-1/4 p-1 pl-2 flex justify-start items-center">
