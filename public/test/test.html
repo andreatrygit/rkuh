@@ -22,31 +22,34 @@
                          if(s==='start') { message=''; qr=false; qrCode=''; pinPad=false; pin=''; cancel=false;}
                          if(s==='personal') { message='Digita il tuo PIN.'; qr=false; qrCode=''; pinPad=true; pin=''; cancel=true;}
                          if(s==='personalPinCheck') { message='Verifica del PIN in corso...'; qr=false; qrCode=''; pinPad=false; cancel=false;}
-                         if(s==='personalPinCheckFailed') { message='PIN errato. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=true; pin=''; cancel=true;}
-                         if(s==='personalPinCheckOk') { $dispatch('logged-in');}
-                         if(s==='personalPinChecktimeout') { message='Verifica del PIN scaduta. CLICCAMI per riprpvare.'; qr=false; qrCode=''; pinPad=true; pin=''; cancel=true;}
+                         if(s==='personalPinCheckFailed') { message='PIN errato. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='personalPinCheckOk') { console.log('logged-in'); $dispatch('logged-in')}
+                         if(s==='personalPinChecktimeout') { message='Verifica del PIN scaduta. CLICCAMI per riprpvare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='personalPinCheckHttpError') { message='Qualcosa è andato storto... CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='clocking') { message='Scansiona il codice QR sul timbrino.'; qr=true; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='clockingScanFailed') { message='Codice QR non valido. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='clockingScanCheck') { message='Verifica del codice QR in corso...'; qr=false; pinPad=false; pin=''; cancel=false;}
                          if(s==='clockingScanCheckFailed') { message='Codice QR errato. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='clockingScanCheckTimeout') { message='Verifica del codice QR scaduta. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='clockingScanCheckHttpError') { message='Qualcosa è andato storto... CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='clockingScanCheckOk') { message='Bene, hai timbrato. CLICCAMI per chiudermi.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=false;}
                          if(s==='shared') { message='1. Scansiona il codire QR sulla postazione condivisa.'; qr=true; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='sharedDeviceScanFailed') { message='Codice QR non valido. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
-                         if(s==='sharedDeviceScanOk') { message='2. Ora digita il tuo PIN.'; qr=false; qrCode=''; pinPad=true; pin=''; cancel=true;}
+                         if(s==='sharedDeviceScanOk') { message='2. Ora digita il tuo PIN.'; qr=false; pinPad=true; pin=''; cancel=true;}
                          if(s==='sharedCheck') { message='Verifica delle credenziali in corso...'; qr=false; pinPad=false; cancel=false;}
                          if(s==='sharedCheckFailed') { message='Credenziali errate. CLICCAMI per riprovare da capo.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='sharedCheckTimeout') { message='Verifica delle credenziali scaduta. CLICCAMI per riprovare da capo.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='sharedCheckHttpError') { message='Qualcosa è andato storto... CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='sharedCheckOk') { message='Bene, puoi cliccare ACCEDI sulla postazione condivisa. CLICCAMI per chiudermi.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=false;}
                         });
                      $watch('pin',p=>p.length===5?state='personalPinCheck':null);
                      $watch('state',s=>{
                      if (s==='personalPinCheck'){
-                            import ky;
+                            import ky from 'ky';
                             ky.post(('api/rest-api/login/personal/'+pin), {
                             retry:0,
                             timeout:4000}).json()
-                            .then(res=>res.info ? state='personalPinCheckOk' : null)
+                            .then(res=>res.info ? state='personalPinCheckOk' : res.error ? state = personalPinCheckFailed : null)
                             .catch(e=>e.name==='TimeoutError' ? state='personalPinChecktimeout' : state='personalPinCheckFailed')
                      }
                     })"
