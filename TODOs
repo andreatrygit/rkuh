@@ -30,3 +30,5 @@ dependency versions in imports with CDN
 settare cookie su login
 memorizzare il theme nel db
 testare http error e timeout in landing
+prevent zoom
+prevent overscrool in index
