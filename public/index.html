@@ -5,129 +5,96 @@
     <meta name="description" content="Rkuh Home" />
     <meta charset="utf-8">
     <title>Home</title>
-    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Andrea Scotti">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="stylesheet" type="text/css" href="./global.css">
-    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" type="text/css" href="../global.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ky@0.28.3/distribution/index.min.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
-    <script type="module">
-        import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
-    </script>
-    <script>
-        function storageAvailable() {
-            var storage;
-            try {
-                storage = window['localStorage'];
-                var x = '__storage_test__';
-                storage.setItem(x, x);
-                storage.removeItem(x);
-                return true;
-            }
-            catch(e) {
-                return e instanceof DOMException && (
-                    // everything except Firefox
-                    e.code === 22 ||
-                    // Firefox
-                    e.code === 1014 ||
-                    // test name field too, because code might not be present
-                    // everything except Firefox
-                    e.name === 'QuotaExceededError' ||
-                    // Firefox
-                    e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-                    // acknowledge QuotaExceededError only if there's something already stored
-                    (storage && storage.length !== 0);
-            }
-        }
-    </script>
 </head>
 
-<body x-data="{bodyTheme:'dark'}"
-      x-bind:data-theme="bodyTheme"
-      @set-body-theme="bodyTheme=$event.detail"
-      class="overscroll-none">
-    <div class="fixed w-screen h-screen overscroll-none z-20 bg-base-100"
-         x-data="{open:false,defaultTheme:'dark',current:'dark'}"
-         x-init="$watch('current',value=>$dispatch('set-body-theme',value))"
-         x-show.transition.in.opacity.duration.500ms.out.opacity.duration.500ms="open"
-         @logged-in.window="storageAvailable()?current=(localStorage.getItem('rkuh-theme')||defaultTheme):null"
-         @log-out.window="open=false;current=defaultTheme"
-         @set-theme.window="current=$event.detail;storageAvailable()?(localStorage.setItem('rkuh-theme',current)):null"
-         @reset-theme="$dispatch('set-theme',defaultTheme)"
-         @open-themer.window="open=true;$dispatch('current-theme-is',current)"
-         @close-themer="open=false">
-        <div class="w-full h-full overflow-auto">
-            <div class="w-full flex flex-col flex-nowrap items-center py-2"
-                x-data="{themes:['aqua','black','bumblebee','cupcake','cyberpunk','dark','dracula','fantasy','forest','garden','halloween','light','luxury','pastel','retro','synthwave','valentine']}">
-                <template x-for="theme in themes" :key="theme">
-                    <button class="btn btn-ghost text-base-content hover:btn-accent" 
-                            x-text="theme"
-                            @click="$dispatch('set-theme',theme)"></button>
-                </template>
+<body class="relative top-0 left-0">
+    
+    <div class="absolute top-0 left-0 w-screen min-h-screen flex flex-col justify-center items-center bg-black">
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col flex-nowrap justify-center items-center space-y-2 p-2 transition-all duration-500"
+             x-data="{state:'start', message:'', qr:false, qrCode:'', pinPad:false, pin:'', cancel:false}"
+             x-init="$watch('state', s =>{
+                         if(s==='start') { message=''; qr=false; qrCode=''; pinPad=false; pin=''; cancel=false;}
+                         if(s==='personal') { message='Digita il tuo PIN.'; qr=false; qrCode=''; pinPad=true; pin=''; cancel=true;}
+                         if(s==='personalPinCheck') { message='Verifica del PIN in corso...'; qr=false; qrCode=''; pinPad=false; cancel=false;}
+                         if(s==='personalPinCheckFailed') { message='PIN errato. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='personalPinCheckOk') { console.log('logged-in'); $dispatch('logged-in')}
+                         if(s==='personalPinChecktimeout') { message='Verifica del PIN scaduta. CLICCAMI per riprpvare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='personalPinCheckHttpError') { message='Qualcosa è andato storto... CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='clocking') { message='Scansiona il codice QR sul timbrino.'; qr=true; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='clockingScanFailed') { message='Codice QR non valido. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='clockingScanCheck') { message='Verifica del codice QR in corso...'; qr=false; pinPad=false; pin=''; cancel=false;}
+                         if(s==='clockingScanCheckFailed') { message='Codice QR errato. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='clockingScanCheckTimeout') { message='Verifica del codice QR scaduta. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='clockingScanCheckHttpError') { message='Qualcosa è andato storto... CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='clockingScanCheckOk') { message='Bene, hai timbrato. CLICCAMI per chiudermi.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=false;}
+                         if(s==='shared') { message='1. Scansiona il codire QR sulla postazione condivisa.'; qr=true; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='sharedDeviceScanFailed') { message='Codice QR non valido. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='sharedDeviceScanOk') { message='2. Ora digita il tuo PIN.'; qr=false; pinPad=true; pin=''; cancel=true;}
+                         if(s==='sharedCheck') { message='Verifica delle credenziali in corso...'; qr=false; pinPad=false; cancel=false;}
+                         if(s==='sharedCheckFailed') { message='Credenziali errate. CLICCAMI per riprovare da capo.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='sharedCheckTimeout') { message='Verifica delle credenziali scaduta. CLICCAMI per riprovare da capo.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='sharedCheckHttpError') { message='Qualcosa è andato storto... CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='sharedCheckOk') { message='Bene, puoi cliccare ACCEDI sulla postazione condivisa. CLICCAMI per chiudermi.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=false;}
+                        });
+                     $watch('pin',p=>p.length===5?state='personalPinCheck':null);
+                     $watch('state',s=>{
+                     if (s==='personalPinCheck'){
+                            
+                            ky.post(('api/rest-api/login/personal/'+pin), {
+                            retry:0,
+                            timeout:4000}).json()
+                            .then(res=>res.info ? state='personalPinCheckOk' : res.error ? state = personalPinCheckFailed : null)
+                            .catch(e=>e.name==='TimeoutError' ? state='personalPinChecktimeout' : state='personalPinCheckFailed')
+                     }
+                    })"
+             
+             @pin-pad-pressed="pin.length < 5 ? pin+=$event.detail : null"
+             @qr-value=""
+             @message-click="state.includes('personal') ? state='personal' : state.includes('clocking')?state='clocking':state.includes('shared')?state='shared':null"
+             @clocking="state='clocking'"
+             @shared="state='shared'"
+             @personal="state='personal'"
+             @home-page=""
+             @cancel="state='start'">
+             
+            <div class="btn btn-outline btn-wide btn-lg leading-tight"
+                 x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
+                 x-show.transition.in.opacity.duration.500ms="message"
+                 x-text="message"
+                 @click="$dispatch('message-click')">
             </div>
-            <div class="fixed bottom-2 right-2 lg:right-8 flex flex-col items-end flex-nowrap space-y-2">
-                <button class="btn btn-accent" @click="$dispatch('reset-theme')">Resetta</button>
-                <button class="btn btn-secondary"
-                        x-data="{pastTheme:''}"
-                        @current-theme-is.window="pastTheme=$event.detail"
-                        @click="$dispatch('set-theme',pastTheme)">Annulla</button>
-                <button class="btn btn-primary" @click="$dispatch('close-themer')">Chiudi</button>
+            <div class="w-60 h-60 bg-gray-200 rounded-xl mb-10"
+                 x-show.transition.in.opacity.duration.500ms="qr">
             </div>
+            <div class="btn btn-wide btn-lg text-4xl"
+                 x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
+                 x-show.transition.in.opacity.duration.500ms="pinPad"
+                 x-text="'&bull; '.repeat(pin.length)">
+            </div>
+            <div class="flex flex-row flex-wrap justify-center items-center content-start w-72"
+                 x-show.transition.in.opacity.duration.500ms="pinPad">
+                <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','1')">1</div>
+                <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','2')">2</div>
+                <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','3')">3</div>
+                <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','4')">4</div>
+                <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','5')">5</div>
+                <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','6')">6</div>
+                <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','7')">7</div>
+                <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','8')">8</div>
+                <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','9')">9</div>
+                <div class="btn btn-outline btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','0')">0</div>
+            </div>
+            <div class="btn btn-wide btn-lg btn-accent" @click="$dispatch('clocking')" x-show.transition.in.opacity.duration.500ms="state==='start'">TIMBRA</div>
+            <div class="btn btn-wide btn-lg btn-secondary leading-tight" @click="$dispatch('shared')" x-show.transition.in.opacity.duration.500ms="state==='start'">ENTRA SU POSTAZIONE CONDIVISA</div>
+            <div class="btn btn-wide btn-lg btn-primary" @click="$dispatch('personal')" x-show.transition.in.opacity.duration.500ms="state==='start'">ENTRA QUI</div>
+            <div class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('home-page')" x-show.transition.in.opacity.duration.500ms="state==='start'">VISITA HOME PAGE</div>
+            <div class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('cancel')" x-show.transition.in.opacity.duration.500ms="cancel">ANNULLA</div>
         </div>
     </div>
-    <div class="fixed w-screen h-screen overscroll-none z-10 bg-base-100"
-         x-data="{open:false, content:false}"
-         x-show.transition.in.opacity.duration.500ms.out.opacity.duration.500ms="open"
-         @role-chosen.window="content=true"
-         @choose-role="content=false;open=false"
-         @log-out.window="open=false;content=false"
-         @open-menu.window="open=true"
-         @close-menu="open=false">
-        <div class="w-full h-full overflow-auto">
-            <div class="fixed bottom-2 right-2 flex flex-col items-end flex-nowrap space-y-2">
-                <button class="btn btn-accent" @click="$dispatch('choose-role')">Cambia Ruolo</button>
-                <button class="btn btn-secondary" @click="$dispatch('log-out')">Esci dall&#39&nbspApp</button>
-                <button class="btn btn-primary" @click="$dispatch('close-menu')">Chiudi</button>
-            </div>
-        </div>
-    </div>
-    <div x-data="{isApp:false, title:''}" 
-         @logged-in="isApp=true; title='Rkuh'" 
-         @log-out.window="isApp=false;title=''"
-         @set-title="title=$event.detail"
-         class="absolute w-screen overscroll-none">
-        <header class="w-full fixed ml-0 mt-0 flex items-center bg-base-200 transition-all duration-500 overflow-hidden"
-                x-bind:class="isApp ? 'h-[10vh]' : 'h-[0vh]'">
-                <div class="h-full w-1/4 p-1 pl-2 flex justify-start items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3/5 text-base-content" @click="$dispatch('open-themer')" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                    </svg>
-                </div>
-                <div x-text="title" class="w-1/2 text-4xl font-semibold text-center text-base-content"></div>
-                <div class="h-full w-1/4 p-2 flex justify-end items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-full ml-1 text-base-content" @click="$dispatch('open-menu')" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </div>
-        </header>
-        <div class="bg-base-100 flex flex-col justify-center transition-all duration-500 overscroll-none" 
-             x-bind:class="isApp ? 'min-h-[90vh] mt-[10vh]' : 'min-h-[100vh] mt-[0vh]'">
-            <div x-data="{frames:[
-                                    {src:'/api/site-frames/landing',classes:''}
-                                  ]
-                            }"
-                 @logged-in.window="frames=[]"
-                 @log-out.window="frames=[{src:'/api/site-frames/landing',classes:''}]" 
-                 class="w-full flex flex-row flex-wrap content-center justify-center items-start">
-                <template x-for="frame in frames" :key="frame.src">
-                    <turbo-frame x-bind:class="'w-full sm:w-1/2 lg:w-1/3 p-2 opacity-100 transition-opacity duration-500 frame-fade-in' + ' ' + frame.classes" 
-                                 x-bind:id="frame.src" 
-                                 x-bind:src="frame.src"></turbo-frame>
-                </template>
-            </div>
-        <div>
-    <div>
 </body>
-
-</html>
