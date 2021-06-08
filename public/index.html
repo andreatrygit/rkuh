@@ -45,7 +45,8 @@
 
 <body x-data="{bodyTheme:'dark'}"
       x-bind:data-theme="bodyTheme"
-      @set-body-theme="bodyTheme=$event.detail">
+      @set-body-theme="bodyTheme=$event.detail"
+      class="overscroll-none">
     <div class="fixed w-screen h-screen overscroll-none z-20 bg-base-100"
          x-data="{open:false,defaultTheme:'dark',current:'dark'}"
          x-init="$watch('current',value=>$dispatch('set-body-theme',value))"
