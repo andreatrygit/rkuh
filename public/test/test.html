@@ -53,7 +53,7 @@
                             retry:0,
                             timeout:4000}).json()
                             .then(res=>res.info ? state='personalPinCheckOk' : res.error ? state = personalPinCheckFailed : null)
-                            .catch(e=>console.log(e),e.name==='TimeoutError' ? state='personalPinChecktimeout' : state='personalPinCheckHttpError')
+                            .catch(e=>console.log(e))
                      }
                     })"
              
