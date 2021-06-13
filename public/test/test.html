@@ -49,7 +49,7 @@
                      $watch('state',s=>{
                      if (s==='personalPinCheck'){
                             
-                            ky.post(('api/rest-api/login/personal/'+pin), {
+                            ky.post(('https://rkuh.vercel.app/api/rest-api/login/personal/'+pin), {
                             retry:0,
                             timeout:4000}).json()
                             .then(res=>res.info ? state='personalPinCheckOk' : res.error ? state = personalPinCheckFailed : null)
