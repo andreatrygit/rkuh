@@ -27,7 +27,7 @@
                          if(s==='personalPinCheck') { message='Verifica del PIN in corso...'; qr=false; qrCode=''; pinPad=false; cancel=false;}
                          if(s==='personalPinCheckFailed') { message='PIN errato. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='personalPinCheckOk') { console.log('logged-in'); $dispatch('logged-in')}
-                         if(s==='personalPinChecktimeout') { message='Verifica del PIN scaduta. CLICCAMI per riprpvare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                         if(s==='personalPinChecktimeout') { message='Verifica del PIN scaduta. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='personalPinCheckHttpError') { message='Qualcosa è andato storto... CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='clocking') { message='Scansiona il codice QR sul timbrino.'; qr=true; qrCode=''; pinPad=false; pin=''; cancel=true;}
                          if(s==='clockingScanFailed') { message='Codice QR non valido. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
