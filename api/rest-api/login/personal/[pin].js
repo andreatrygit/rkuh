@@ -6,7 +6,7 @@ module.exports = (req, res) => {
   }
   else
   {
-    setTimeout(()=>res.status(200).json({}),4000)
-    
+    res.setHeader('Set-Cookie',["rkuh-session=''"]);
+    res.status(200).json({"error":"wrong PIN"});
   }
 }
