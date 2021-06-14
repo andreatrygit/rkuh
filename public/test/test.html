@@ -66,7 +66,7 @@
              @home-page=""
              @cancel="state='start'">
              
-            <div class="btn btn-outline btn-wide btn-lg leading-tight"
+            <div class="btn btn-outline btn-wide btn-lg leading-tight h-auto"
                  x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
                  x-show.transition.in.opacity.duration.500ms="message"
                  x-text="message"
