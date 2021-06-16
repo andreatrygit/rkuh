@@ -13,7 +13,7 @@ module.exports = {
   theme: {
     screens:{
       'sm': '640px',
-      'sm-land': {'raw': '(orientation: landscape and min-width:640px and max-width:767px)'},
+      'sm-land': {'raw': '(orientation: landscape) and (min-width:640px) and (max-width:767px)'},
       'md': '768px',
       'lg': '1024px',
       'xl': '1280px',
