@@ -1,10 +1,12 @@
-const ejs = require('ejs');
-const templateString =
-`<turbo-frame id="/api/site-frames/landing">`+
-    `<button @click="$dispatch('logged-in')" class="w-full btn btn-primary btn-lg">Entra nell&#39&nbspApp<button>`+
-`</turbo-frame>`;
+const fs = require('fs')
 
-const resBody = ejs.render(templateString);
+let resBody="";
+
+try {
+  resBody = fs.readFileSync('../../src/templates-html/personal-device-landing.html', 'utf8')
+} catch (err) {
+  console.error(err)
+}
 
 module.exports = (req, res) => {
   res.status(200).send(resBody);
