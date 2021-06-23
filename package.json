@@ -10,6 +10,6 @@
     "validator": "^13.5.2"
   },
   "scripts": {
-    "build": "npx tailwindcss build source-styles.css -o ./public/global.css"
+    "build": "npx tailwindcss build ./src/styles.css -o ./public/global.css"
   }
 }
