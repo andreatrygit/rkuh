@@ -1,3 +1,4 @@
+<turbo-frame id="/api/site-frames/landing">
 <div class="w-full flex flex-col flex-nowrap justify-center items-center space-y-2 p-2 transition-all duration-500"
         x-data="{state:'start', message:'', qr:false, qrCode:'', pinPad:false, pin:'', cancel:false}"
         x-init="$watch('state', s =>{
@@ -78,3 +79,4 @@
     <div class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('home-page')" x-show.transition.in.opacity.duration.500ms="state==='start'">VISITA HOME PAGE</div>
     <div class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('cancel')" x-show.transition.in.opacity.duration.500ms="cancel">ANNULLA</div>
 </div>
+</turbo-frame>
