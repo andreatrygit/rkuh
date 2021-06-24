@@ -1,12 +1,6 @@
-const fs = require('fs')
+const { readFileSync } = require('fs')
 
-let resBody="";
-
-try {
-  resBody = fs.readFileSync('../../../src/templates-html/personal-device-landing.html', 'utf8')
-} catch (err) {
-  console.error(err)
-}
+const resBody = readFileSync("src/templates-html/personal-device-landing.html", 'utf8')
 
 module.exports = (req, res) => {
   res.status(200).send(resBody);
