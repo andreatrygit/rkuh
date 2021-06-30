@@ -125,7 +125,7 @@
                  @log-out.window="frames=[{src:'/api/site-frames/landing',classes:''}]" 
                  class="w-full flex flex-row flex-wrap content-center justify-center items-start">
                 <template x-for="frame in frames" :key="frame.src">
-                    <turbo-frame x-bind:class="'w-full sm:w-1/2 lg:w-1/3 p-2 opacity-100 transition-opacity duration-500 frame-fade-in' + ' ' + frame.classes" 
+                    <turbo-frame x-bind:class="'absolute w-full sm:w-1/2 lg:w-1/3 p-2 opacity-100 transition-opacity duration-500 frame-fade-in' + ' ' + frame.classes" 
                                  x-bind:id="frame.src" 
                                  x-bind:src="frame.src"></turbo-frame>
                 </template>
