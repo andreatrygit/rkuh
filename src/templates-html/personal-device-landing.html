@@ -1,6 +1,6 @@
 <turbo-frame id="/api/site-frames/landing">
 <div class="w-full flex flex-col flex-nowrap justify-center items-center space-y-2 p-2 transition-all duration-500"
-        x-data="{state:'start', message:'', qr:false, qrCode:'', pinPad:false, pin:'', cancel:false}"
+        x-data="{state:'start', message:'', qr:false, qrCode:'', qrCodeReaderStarted:false, pinPad:false, pin:'', cancel:false}"
         x-init="$watch('state', s =>{
                     if(s==='start') { message=''; qr=false; qrCode=''; pinPad=false; pin=''; cancel=false;}
                     if(s==='personal') { message='Digita il tuo PIN.'; qr=false; qrCode=''; pinPad=true; pin=''; cancel=true;}
@@ -45,7 +45,8 @@
         @shared="state='shared'"
         @personal="state='personal'"
         @home-page=""
-        @cancel="state='start'">
+        @cancel="state='start'"
+        @qr-code-reader-started="qrCodeReaderStarted=true">
         
     <div class="btn btn-outline btn-wide btn-lg leading-tight h-auto"
             x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
