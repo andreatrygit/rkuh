@@ -56,8 +56,8 @@
     <video playsinline class="w-60 h-60 bg-gray-200 rounded-xl mb-10"
             x-show.transition.in.opacity.duration.500ms="qr"
             x-data="{started:false}"
-            @qr-code-scanner-start=""
-            @qr-code-scanner-stop="">
+            @qr-code-scanner-start.window=""
+            @qr-code-scanner-stop.window="">
     </video>
     <div class="btn btn-wide btn-lg text-4xl"
             x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
