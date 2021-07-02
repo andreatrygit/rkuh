@@ -56,8 +56,21 @@
     </div>
     <video playsinline class="w-60 h-60 bg-gray-200 rounded-xl mb-10"
             x-show.transition.in.opacity.duration.500ms="qr"
-            @qr-code-scanner-start.window=""
-            @qr-code-scanner-stop.window="">
+            @qr-code-scanner-start.window="if (!qrCodeReaderStarted) {
+                                                                        navigator.mediaDevices.getUserMedia({audio:false, video: { facingMode: { exact: 'environment' } } })
+                                                                        .then(function(mediaStream) {
+                                                                                                        $el.srcObject = mediaStream;
+                                                                                                        $el.onloadedmetadata = function(e) {
+                                                                                                                                        $el.play();
+                                                                                                                                        $dispatch('qr-code-reader-started');
+                                                                                                                                        };
+                                                                                                    })
+                                                                        .catch(function(err) { console.log(err.name + ': ' + err.message); });
+                                           }
+                                           else {
+                                                $el.play();
+                                           }"
+            @qr-code-scanner-stop.window="qrCodeReaderStarted ? $el.stop() : null">
     </video>
     <div class="btn btn-wide btn-lg text-4xl"
             x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
