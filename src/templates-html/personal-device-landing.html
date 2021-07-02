@@ -60,6 +60,7 @@
                                                                         navigator.mediaDevices.getUserMedia({ video : true})
                                                                         .then(function(mediaStream) {
                                                                                                         $el.srcObject = mediaStream;
+                                                                                                        window.localStream = mediaStream;
                                                                                                         $el.onloadedmetadata = function(e) {
                                                                                                                                         $el.play();
                                                                                                                                         $dispatch('qr-code-reader-started');
@@ -70,7 +71,7 @@
                                            else {
                                                 $el.play();
                                            }"
-            @qr-code-scanner-stop.window="qrCodeReaderStarted ? $el.srcObject.getTracks().forEach((track) => track.stop()) : null">
+            @qr-code-scanner-stop.window="qrCodeReaderStarted ? localStream.getTracks().forEach((track) => track.stop()) : null">
     </video>
     <div class="btn btn-wide btn-lg text-4xl"
             x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
