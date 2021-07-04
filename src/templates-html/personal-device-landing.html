@@ -56,7 +56,7 @@
     <video autoplay="true" playsinline="true" class="w-60 h-60 bg-gray-200 rounded-xl mb-10"
             x-show.transition.in.opacity.duration.500ms="qr"
             @qr-code-scanner-start.window = "navigator.mediaDevices.getUserMedia({ video : true})
-                                             .then(mediaStream => $el.srcObject = mediaStream; window.localStream=mediaStream)
+                                             .then(mediaStream => window.localStream=mediaStream)
                                              .catch(err => console.log(err.name + ': ' + err.message))"
             @qr-code-scanner-stop.window="$el.srcObject.getTracks().forEach((track) => track.stop()); $el.srcObject=null">
     </video>
