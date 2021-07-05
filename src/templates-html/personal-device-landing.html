@@ -16,7 +16,7 @@
                     if(s==='clockingScanCheckTimeout') { message='Verifica del codice QR scaduta. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                     if(s==='clockingScanCheckHttpError') { message='Qualcosa è andato storto... CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                     if(s==='clockingScanCheckOk') { message='Bene, hai timbrato. CLICCAMI per chiudermi.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=false;}
-                    if(s==='shared') { message='1. Scansiona il codire QR sulla postazione condivisa.'; qr=true; qrCode=''; pinPad=false; pin=''; cancel=true;}
+                    if(s==='shared') { message='1. Scansiona il codice QR sulla postazione condivisa.'; qr=true; qrCode=''; pinPad=false; pin=''; cancel=true;}
                     if(s==='sharedDeviceScanFailed') { message='Codice QR non valido. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                     if(s==='sharedDeviceScanOk') { message='2. Ora digita il tuo PIN.'; qr=false; pinPad=true; pin=''; cancel=true;}
                     if(s==='sharedCheck') { message='Verifica delle credenziali in corso...'; qr=false; pinPad=false; cancel=false;}
