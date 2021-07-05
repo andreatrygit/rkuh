@@ -47,12 +47,12 @@
     </script>
 </head>
 
-<body x-data="{bodyTheme:'dark'}"
+<body x-data="{bodyTheme:'cupcake'}"
       x-bind:data-theme="bodyTheme"
       @set-body-theme="bodyTheme=$event.detail"
       class="overscroll-none">
     <div class="fixed w-screen h-screen overscroll-none z-20 bg-base-100"
-         x-data="{open:false,defaultTheme:'dark',current:'dark'}"
+         x-data="{open:false,defaultTheme:'cupcake',current:'cupcake'}"
          x-init="$watch('current',value=>$dispatch('set-body-theme',value))"
          x-show.transition.in.opacity.duration.500ms.out.opacity.duration.500ms="open"
          @logged-in.window="storageAvailable()?current=(localStorage.getItem('rkuh-theme')||defaultTheme):null"
