@@ -53,7 +53,7 @@
             x-text="message"
             @click="$dispatch('message-click')">
     </div>
-    <video id="qr-code-scanner-video" autoplay="true" playsinline="true" class="w-60 h-60 object-cover object-center rounded-3xl mb-10"
+    <video id="qr-code-scanner-video" autoplay="true" playsinline="true" class="w-60 h-60 object-cover object-center rounded-3xl p-4 border border-gray-500 mb-10"
             x-show.transition.in.opacity.duration.500ms="qr"
             @qr-code-scanner-start.window = "navigator.mediaDevices.getUserMedia({ video : { facingMode: { exact: 'environment' } } })
                                              .then(mediaStream => document.getElementById('qr-code-scanner-video').srcObject = mediaStream)
