@@ -61,6 +61,8 @@
                                              .catch(err => console.log(err.name + ': ' + err.message))"
             @qr-code-scanner-stop.window="document.getElementById('qr-code-scanner-video').srcObject.getTracks().forEach((track) => track.stop()); document.getElementById('qr-code-scanner-video').srcObject=null">
     </video>
+    <canvas id="qr-code-scanner-canvas" class="hidden w-60 h-60">
+    </canvas>
     <div class="btn btn-wide btn-lg text-4xl"
             x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
             x-show.transition.in.opacity.duration.500ms="pinPad"
