@@ -69,7 +69,7 @@
                                                 canvasElement.width = videoElement.videoWidth;
                                                 canvasElement.height = videoElement.videoHeight;
                                                 canvas.drawImage(videoElement,0,0,canvasElement.width,canvasElement.height);
-                                                this.shouldKeepGoing ? window.requestAnimationFrame(this.paintAndProcess) : null;
+                                                this.shouldKeepGoing ? window.requestAnimationFrame(paintAndProcess) : null;
                                                 console.log('1 frame done!')
                                                 }
                     }"
