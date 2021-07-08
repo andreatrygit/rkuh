@@ -61,9 +61,14 @@
                                              .catch(err => console.log(err.name + ': ' + err.message))"
             @qr-code-scanner-stop.window="document.getElementById('qr-code-scanner-video').srcObject.getTracks().forEach((track) => track.stop()); document.getElementById('qr-code-scanner-video').srcObject=null">
     </video>
-    <canvas id="qr-code-scanner-canvas" class="w-60 h-60"
+    <canvas id="qr-code-scanner-canvas"
             x-data="{shouldKeepGoing:true, paintAndProcess(){
-                                                document.getElementById('qr-code-scanner-canvas').getContext('2d').drawImage(document.getElementById('qr-code-scanner-video'),0,0);
+                                                var canvasElement = document.getElementById('qr-code-scanner-canvas');
+                                                var canvas = canvasElement.getContext('2d');
+                                                var videoElement = document.getElementById('qr-code-scanner-video');
+                                                canvasElement.width = videoElement.videoWidth;
+                                                canvasElement.height = videoElement.videoHeight;
+                                                canvas.drawImage(videoElement,0,0,canvasElement.width,canvasElement.height);
                                                 this.shouldKeepGoing ? window.requestAnimationFrame(this.paintAndProcess) : null;
                                                 }
                     }"
