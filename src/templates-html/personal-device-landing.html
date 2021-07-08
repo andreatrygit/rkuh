@@ -70,6 +70,7 @@
                                                 canvasElement.height = videoElement.videoHeight;
                                                 canvas.drawImage(videoElement,0,0,canvasElement.width,canvasElement.height);
                                                 this.shouldKeepGoing ? window.requestAnimationFrame(this.paintAndProcess) : null;
+                                                console.log('1 frame done!')
                                                 }
                     }"
             @qr-code-scanner-start.window = "window.requestAnimationFrame(paintAndProcess)"
