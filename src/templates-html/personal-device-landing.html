@@ -62,6 +62,7 @@
             @qr-code-scanner-stop.window="document.getElementById('qr-code-scanner-video').srcObject.getTracks().forEach((track) => track.stop()); document.getElementById('qr-code-scanner-video').srcObject=null">
     </video>
     <canvas id="qr-code-scanner-canvas"
+            class="hidden"
             x-data="{intervalVar:null, paintAndProcess(){
                                         var canvasElement = document.getElementById('qr-code-scanner-canvas');
                                         var canvas = canvasElement.getContext('2d');
