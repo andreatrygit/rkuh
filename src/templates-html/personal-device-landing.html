@@ -70,8 +70,8 @@
                                                 canvasElement.height = videoElement.videoHeight;
                                                 canvas.drawImage(videoElement,0,0,canvasElement.width,canvasElement.height);
                                                 console.log('1 frame done!')
-                                                if(shouldKeepGoing){toggle=!toggle}
-                                                else{toggle=false}
+                                                if(this.shouldKeepGoing){this.toggle=!this.toggle}
+                                                else{this.toggle=false}
                                                 }
                     }"
             x-init="$watch('toggle',t=>paintAndProcess())"
