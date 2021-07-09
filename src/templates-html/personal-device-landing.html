@@ -62,21 +62,18 @@
             @qr-code-scanner-stop.window="document.getElementById('qr-code-scanner-video').srcObject.getTracks().forEach((track) => track.stop()); document.getElementById('qr-code-scanner-video').srcObject=null">
     </video>
     <canvas id="qr-code-scanner-canvas"
-            x-data="{shouldKeepGoing:false, toggle:false, paintAndProcess(){
-                                                var canvasElement = document.getElementById('qr-code-scanner-canvas');
-                                                var canvas = canvasElement.getContext('2d');
-                                                var videoElement = document.getElementById('qr-code-scanner-video');
-                                                canvasElement.width = videoElement.videoWidth;
-                                                canvasElement.height = videoElement.videoHeight;
-                                                canvas.drawImage(videoElement,0,0,canvasElement.width,canvasElement.height);
-                                                console.log('1 frame done!')
-                                                if(this.shouldKeepGoing){this.toggle=!this.toggle}
-                                                else{this.toggle=false}
-                                                }
-                    }"
-            x-init="$watch('toggle',t=>paintAndProcess())"
-            @qr-code-scanner-start.window = "shouldKeepGoing=true; toggle=true;"
-            @qr-code-scanner-stop.window = "shouldKeepGoing=false;toggle=false;">
+            x-data="{intervalVar:null, paintAndProcess(){
+                                        var canvasElement = document.getElementById('qr-code-scanner-canvas');
+                                        var canvas = canvasElement.getContext('2d');
+                                        var videoElement = document.getElementById('qr-code-scanner-video');
+                                        canvasElement.width = videoElement.videoWidth;
+                                        canvasElement.height = videoElement.videoHeight;
+                                        canvas.drawImage(videoElement,0,0,canvasElement.width,canvasElement.height);
+                                        console.log('1 frame done!')
+                                        }
+                     }"
+            @qr-code-scanner-start.window = "intervalVar = setInterval(paintAndProcess,100)"
+            @qr-code-scanner-stop.window = "clearInterval(intervalVar)">
     </canvas>
     <div class="btn btn-wide btn-lg text-4xl"
             x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
