@@ -69,11 +69,15 @@
                                         canvasElement.width = videoElement.videoWidth;
                                         canvasElement.height = videoElement.videoHeight;
                                         canvas.drawImage(videoElement,0,0,canvasElement.width,canvasElement.height);
-                                        var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
-                                        var code = jsQR(imageData.data, imageData.width, imageData.height, {
-                                        inversionAttempts: 'dontInvert',
-                                        });
-                                        console.log(code ? code.data : '1 frame done!')
+                                        var imageData = null;
+                                        var code = null;
+                                        if (canvasElement.width > 0 && canvasElement.height > 0) {
+                                            imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+                                            code = jsQR(imageData.data, imageData.width, imageData.height, {
+                                            inversionAttempts: 'dontInvert',
+                                            });
+                                            code ? $dispatch('new-qr-code', code.data) : null;
+                                        }
                                         }
                      }"
             @qr-code-scanner-start.window = "intervalVar = setInterval(paintAndProcess,100)"
