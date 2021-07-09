@@ -62,19 +62,21 @@
             @qr-code-scanner-stop.window="document.getElementById('qr-code-scanner-video').srcObject.getTracks().forEach((track) => track.stop()); document.getElementById('qr-code-scanner-video').srcObject=null">
     </video>
     <canvas id="qr-code-scanner-canvas"
-            x-data="{shouldKeepGoing:true, paintAndProcess(){
+            x-data="{shouldKeepGoing:false, toggle:false, paintAndProcess(){
                                                 var canvasElement = document.getElementById('qr-code-scanner-canvas');
                                                 var canvas = canvasElement.getContext('2d');
                                                 var videoElement = document.getElementById('qr-code-scanner-video');
                                                 canvasElement.width = videoElement.videoWidth;
                                                 canvasElement.height = videoElement.videoHeight;
                                                 canvas.drawImage(videoElement,0,0,canvasElement.width,canvasElement.height);
-                                                window.requestAnimationFrame(this.paintAndProcess);
                                                 console.log('1 frame done!')
+                                                if(shouldKeepGoing){toggle=!toggle}
+                                                else{toggle=false}
                                                 }
                     }"
-            @qr-code-scanner-start.window = "window.requestAnimationFrame(paintAndProcess)"
-            @qr-code-scanner-stop.window = "shouldKeepGoing=false">
+            x-init="$watch('toggle',t=>paintAndProcess())"
+            @qr-code-scanner-start.window = "shouldKeepGoing=true; toggle=true;"
+            @qr-code-scanner-stop.window = "shouldKeepGoing=false;toggle=false;">
     </canvas>
     <div class="btn btn-wide btn-lg text-4xl"
             x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
