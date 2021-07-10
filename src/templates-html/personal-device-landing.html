@@ -64,7 +64,7 @@
     </video>
     <canvas id="qr-code-scanner-canvas"
             class="hidden"
-            x-data="{foundQrCode:null, intervalVar:null, paintAndProcess(){
+            x-data="{foundQrCode:3, intervalVar:null, paintAndProcess(){
                                         var canvasElement = document.getElementById('qr-code-scanner-canvas');
                                         var canvas = canvasElement.getContext('2d');
                                         var videoElement = document.getElementById('qr-code-scanner-video');
@@ -79,6 +79,7 @@
                                             inversionAttempts: 'dontInvert',
                                             });
                                             code ? (code.data ? this.foundQrCode = code.data : null) :null;
+                                            console.log(this.foundQrCode)
                                             console.log(code ? code.data : '1 frame')
                                         }
                                         }
