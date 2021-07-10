@@ -78,7 +78,7 @@
                                             code = jsQR(imageData.data, imageData.width, imageData.height, {
                                             inversionAttempts: 'dontInvert',
                                             });
-                                            code ? $dispatch('new-qr-code', code.data) : null;
+                                            console.log(code ? code.data : '1 frame done!');
                                         }
                                         }
                      }"
