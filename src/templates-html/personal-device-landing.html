@@ -82,6 +82,7 @@
                                         }
                                         }
                      }"
+            x-init="$watch('foundQrCode', v=>$dispatch('new-qr-code',v))"
             @qr-code-scanner-start.window = "intervalVar = setInterval(paintAndProcess,100)"
             @qr-code-scanner-stop.window = "clearInterval(intervalVar)">
     </canvas>
