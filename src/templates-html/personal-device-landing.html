@@ -78,10 +78,10 @@
                                             code = jsQR(imageData.data, imageData.width, imageData.height, {
                                             inversionAttempts: 'dontInvert',
                                             });
-                                            code ? (code.data ? this.foundQrCode = code.data : null) :null;
-                                            console.log(this.foundQrCode)
-                                            console.log(code ? code.data : '1 frame')
                                         }
+                                        code ? (code.data ? this.foundQrCode = code.data : null) :null;
+                                        console.log(this.foundQrCode)
+                                        console.log(code ? code.data : '1 frame')
                                         }
                      }"
             x-init="$watch('foundQrCode', v=>$dispatch('new-qr-code',v))"
