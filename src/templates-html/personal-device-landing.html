@@ -49,14 +49,14 @@
         
     <div class="btn btn-wide btn-lg leading-tight h-auto"
             x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
-            x-show.transition.in.opacity.duration.500ms="message"
+            x-show="message" x-transition.opacity
             x-text="message"
             @click="$dispatch('message-click')">
     </div>
     <div class="btn btn-wide btn-lg btn-primary" x-data="{value:''}" x-text="value" @new-qr-code.window="value=$event.detail"></div>
     <video id="qr-code-scanner-video" autoplay="true" playsinline="true" class="w-60 h-60 object-cover object-center rounded-3xl p-1 border-4 border-gray-500 mb-10"
             x-bind:class="{'border-secondary':state.includes('shared'), 'border-accent':state.includes('clocking')}"
-            x-show.transition.in.opacity.duration.500ms="qr"
+            x-show="qr" x-transition.opacity
             @qr-code-scanner-start.window = "navigator.mediaDevices.getUserMedia({ video : true })
                                              .then(mediaStream => document.getElementById('qr-code-scanner-video').srcObject = mediaStream)
                                              .catch(err => console.log(err.name + ': ' + err.message))"
@@ -90,11 +90,10 @@
     </canvas>
     <div class="btn btn-wide btn-lg text-4xl"
             x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
-            x-show.transition.in.opacity.duration.500ms="pinPad"
+            x-show="pinPad" x-transition.opacity
             x-text="'&bull; '.repeat(pin.length)">
     </div>
-    <div class="flex flex-row flex-wrap justify-center items-center content-start w-72"
-            x-show.transition.in.opacity.duration.500ms="pinPad">
+    <div class="flex flex-row flex-wrap justify-center items-center content-start w-72" x-show="pinPad" x-transition.opacity>
         <div class="btn btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','1')">1</div>
         <div class="btn btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','2')">2</div>
         <div class="btn btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','3')">3</div>
@@ -106,10 +105,10 @@
         <div class="btn btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','9')">9</div>
         <div class="btn btn-primary w-20 h-20 m-1 font-semibold text-4xl" x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}" @click="$dispatch('pin-pad-pressed','0')">0</div>
     </div>
-    <div class="btn btn-wide btn-lg btn-accent" @click="$dispatch('clocking')" x-show.transition.in.opacity.duration.500ms="state==='start'">TIMBRA</div>
-    <div class="btn btn-wide btn-lg btn-secondary leading-tight" @click="$dispatch('shared')" x-show.transition.in.opacity.duration.500ms="state==='start'">ENTRA SU POSTAZIONE CONDIVISA</div>
-    <div class="btn btn-wide btn-lg btn-primary" @click="$dispatch('personal')" x-show.transition.in.opacity.duration.500ms="state==='start'">ENTRA QUI</div>
-    <div class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('home-page')" x-show.transition.in.opacity.duration.500ms="state==='start'">VISITA HOME PAGE</div>
-    <div class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('cancel')" x-show.transition.in.opacity.duration.500ms="cancel">ANNULLA</div>
+    <div class="btn btn-wide btn-lg btn-accent" @click="$dispatch('clocking')" x-show="state==='start'" x-transition.opacity>TIMBRA</div>
+    <div class="btn btn-wide btn-lg btn-secondary leading-tight" @click="$dispatch('shared')" x-show="state==='start'" x-transition.opacity>ENTRA SU POSTAZIONE CONDIVISA</div>
+    <div class="btn btn-wide btn-lg btn-primary" @click="$dispatch('personal')" x-show="state==='start'" x-transition.opacity>ENTRA QUI</div>
+    <div class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('home-page')" x-show="state==='start'" x-transition.opacity>VISITA HOME PAGE</div>
+    <div class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('cancel')" x-show="cancel" x-transition.opacity>ANNULLA</div>
 </div>
 </turbo-frame>
