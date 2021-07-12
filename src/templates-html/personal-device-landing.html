@@ -81,7 +81,7 @@
                                         }
                                         
                                         console.log(code ? code.data : '1 frame');
-                                        code?.data ? canvasElement.dispatchEvent(new Event('new-qr-code',code.data)) : null;
+                                        code?.data ? window.dispatchEvent(new CustomEvent('new-qr-code',code.data)) : null;
                                         }
                      }"
             
