@@ -53,7 +53,6 @@
             x-text="message"
             @click="$dispatch('message-click')">
     </div>
-    <div class="btn btn-wide btn-lg btn-primary" x-data="{value:''}" x-text="value" @new-qr-code.window="value=$event.detail"></div>
     <video id="qr-code-scanner-video" autoplay="true" playsinline="true" class="w-60 h-60 object-cover object-center rounded-3xl p-1 border-4 border-gray-500 mb-10"
             x-bind:class="{'border-secondary':state.includes('shared'), 'border-accent':state.includes('clocking')}"
             x-show="qr" x-transition:enter.opacity.duration.500ms
