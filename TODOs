@@ -40,3 +40,4 @@ controlla tutti gli url
 perché $el di alpine è un Dom node ma non un html element??
 pin specific version of alpine and not 3.x.x in prod
 test double QR code
+pouya on button pad
