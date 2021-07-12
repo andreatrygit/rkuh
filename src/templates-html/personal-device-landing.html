@@ -64,7 +64,7 @@
     </video>
     <canvas id="qr-code-scanner-canvas"
             class="hidden"
-            x-data="{foundQrCode:3, intervalVar:null, paintAndProcess(){
+            x-data="{intervalVar:null, paintAndProcess(){
                                         var canvasElement = document.getElementById('qr-code-scanner-canvas');
                                         var canvas = canvasElement.getContext('2d');
                                         var videoElement = document.getElementById('qr-code-scanner-video');
@@ -79,13 +79,13 @@
                                             inversionAttempts: 'dontInvert',
                                             });
                                         }
-                                        code ? (code.data ? this.foundQrCode = code.data : null) :null;
-                                        console.log(this.foundQrCode)
-                                        console.log(code ? code.data : '1 frame')
+                                        
+                                        console.log(code ? code.data : '1 frame');
+                                        code?.data ? canvasElement.dispatchEvent(new Event('new-qr-code',code.data));
                                         }
                      }"
-            x-init="$watch('foundQrCode', v=>$dispatch('new-qr-code',v))"
-            @qr-code-scanner-start.window = "intervalVar = setInterval(paintAndProcess,100)"
+            
+            @qr-code-scanner-start.window = "intervalVar = setInterval(paintAndProcess,500)"
             @qr-code-scanner-stop.window = "clearInterval(intervalVar)">
     </canvas>
     <div class="btn btn-wide btn-lg text-4xl"
