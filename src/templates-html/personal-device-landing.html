@@ -49,7 +49,7 @@
                 })"
         
         @pin-pad-pressed="pin.length < 5 ? pin+=$event.detail : null"
-        @new-qr-code="qrCode = $event.detail"
+        @new-qr-code.window="qrCode = $event.detail"
         @message-click="state.includes('personal') ? state='personal' : state.includes('clocking')?state='clocking':state.includes('shared')?state='shared':null"
         @clocking="state='clocking'"
         @shared="state='shared'"
