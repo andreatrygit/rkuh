@@ -36,10 +36,20 @@
                     .catch(e=>e.name==='TimeoutError' ? state='personalPinChecktimeout' : state='personalPinCheckHttpError')
                 }
                 });
-                $watch('qr',v => v ? $dispatch('qr-code-scanner-start') : $dispatch('qr-code-scanner-stop'))"
+                $watch('qr',v => v ? $dispatch('qr-code-scanner-start') : $dispatch('qr-code-scanner-stop'));
+                $watch('qrCode', v => {
+                        if (v) {
+                                if (state==='clocking') {
+                                        v.startsWith('rkuh#clocking#') ? state = 'clockingScanCheck' : state = 'clockingScanCheckFailed'
+                                }
+                                if (state==='shared') {
+                                        v.startsWith('rkuh#shared#') ? state = 'sharedDeviceScanOk' : state = 'sharedDeviceScanFailed'
+                                }
+                        }
+                })"
         
         @pin-pad-pressed="pin.length < 5 ? pin+=$event.detail : null"
-        @qr-value=""
+        @new-qr-code="qrCode = $event.detail"
         @message-click="state.includes('personal') ? state='personal' : state.includes('clocking')?state='clocking':state.includes('shared')?state='shared':null"
         @clocking="state='clocking'"
         @shared="state='shared'"
