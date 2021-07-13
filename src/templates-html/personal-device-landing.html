@@ -26,7 +26,7 @@
                     if(s==='sharedCheckOk') { message='Bene, puoi cliccare ACCEDI sulla postazione condivisa. CLICCAMI per chiudermi.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=false;}
                 });
                 $watch('pin',p=>{
-                        if (p.lenght===5){
+                        if (p.length===5){
                                 if (state==='personal'){
                                         state = 'personalPinCheck'
                                 }
