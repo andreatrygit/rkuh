@@ -46,7 +46,7 @@
                 }
                 if (s==='sharedCheck'){
                     
-                        ky.post(('./api/rest-api/login/shared/' + qrCode + '##' + pin), {
+                        ky.post(('./api/rest-api/login/shared/' + pin), {
                         retry:0,
                         timeout:4000}).json()
                         .then(res=>res.info ? state='sharedCheckOk' : res.error ? state = 'sharedCheckFailed' : null)
