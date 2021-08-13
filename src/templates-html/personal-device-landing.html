@@ -38,7 +38,7 @@
                 $watch('state',s=>{
                 if (s==='personalPinCheck'){
                     
-                    ky.post(('./api/rest-api/login/personal/'+pin), {
+                    ky.post(('./api/rest-api/personal-device-landing/personal?pin='+pin), {
                     retry:0,
                     timeout:4000}).json()
                     .then(res=>res.info ? state='personalPinCheckOk' : res.error ? state = 'personalPinCheckFailed' : null)
@@ -46,7 +46,7 @@
                 }
                 if (s==='sharedCheck'){
                     
-                        ky.post(('./api/rest-api/login/shared/' + qrCode + '##' + pin), {
+                        ky.post(('./api/rest-api/personal-device-landing/shared?qrcode=' + qrCode + '&pin=' + pin), {
                         retry:0,
                         timeout:4000}).json()
                         .then(res=>res.info ? state='sharedCheckOk' : res.error ? state = 'sharedCheckFailed' : null)
