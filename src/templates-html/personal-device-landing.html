@@ -58,10 +58,10 @@
                 $watch('qrCode', v => {
                         if (v) {
                                 if (state==='clocking') {
-                                        v.startsWith('rkuh#clocking#') ? state = 'clockingScanCheck' : state = 'clockingScanCheckFailed'
+                                        v.startsWith('rkuh-clocking-') ? state = 'clockingScanCheck' : state = 'clockingScanCheckFailed'
                                 }
                                 if (state==='shared') {
-                                        v.startsWith('rkuh#shared#') ? state = 'sharedDeviceScanOk' : state = 'sharedDeviceScanFailed'
+                                        v.startsWith('rkuh-shared-') ? state = 'sharedDeviceScanOk' : state = 'sharedDeviceScanFailed'
                                 }
                         }
                 })"
