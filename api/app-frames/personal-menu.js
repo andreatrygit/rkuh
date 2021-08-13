@@ -1,5 +1,3 @@
-const ejs = require('ejs');
-
 const menus = {
     baseOperator:{
         Ruoli:{
@@ -16,8 +14,6 @@ const templateString =
     `<div>`+
 `</turbo-frame>`;
 
-const resBody = ejs.render(templateString);
-
 module.exports = (req, res) => {
-  res.status(200).send(resBody);
+  res.status(200).send(templateString);
 }
