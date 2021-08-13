@@ -1,5 +1,3 @@
-const ejs = require('ejs');
-
 const baseString =
 `<!DOCTYPE html>`+
 `<html lang="en">`+
@@ -35,7 +33,6 @@ const failureString =
 module.exports = (req, res) => {
   const outputString = baseString + (['personal','shared','timeclock'].includes(req.query.token) ? successString : failureString);
   const deviceToken = 'rkuh-device=' + (['personal','shared','timeclock'].includes(req.query.token) ? req.query.token : '""');
-  const resBody = ejs.render(outputString);
   res.setHeader('Set-Cookie',[deviceToken]);
-  res.status(200).send(resBody);
+  res.status(200).send(outputString);
 }
