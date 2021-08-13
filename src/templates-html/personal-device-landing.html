@@ -36,6 +36,25 @@
                         }
                 });
                 $watch('state',s=>{
+
+                if (s==='clockingScanCheck'){
+                
+                        ky.post(('./api/rest-api/personal-device-landing/clocking?qrcode='+qrCode), {
+                        retry:0,
+                        timeout:4000}).json()
+                        .then(res=>res.info ? state='clockingScanCheckOk' : res.error ? state = 'clockingScanCheckFailed' : null)
+                        .catch(e=>e.name==='TimeoutError' ? state='clockingScanCheckTimeout' : state='clockingScanCheckHttpError')
+                        }
+
+                if (s==='sharedCheck'){
+                        
+                        ky.post(('./api/rest-api/personal-device-landing/shared?qrcode=' + qrCode + '&pin=' + pin), {
+                        retry:0,
+                        timeout:4000}).json()
+                        .then(res=>res.info ? state='sharedCheckOk' : res.error ? state = 'sharedCheckFailed' : null)
+                        .catch(e=>e.name==='TimeoutError' ? state='sharedCheckTimeout' : state='sharedCheckHttpError')
+                        }
+
                 if (s==='personalPinCheck'){
                     
                     ky.post(('./api/rest-api/personal-device-landing/personal?pin='+pin), {
@@ -44,14 +63,6 @@
                     .then(res=>res.info ? state='personalPinCheckOk' : res.error ? state = 'personalPinCheckFailed' : null)
                     .catch(e=>e.name==='TimeoutError' ? state='personalPinCheckTimeout' : state='personalPinCheckHttpError')
                 }
-                if (s==='sharedCheck'){
-                    
-                        ky.post(('./api/rest-api/personal-device-landing/shared?qrcode=' + qrCode + '&pin=' + pin), {
-                        retry:0,
-                        timeout:4000}).json()
-                        .then(res=>res.info ? state='sharedCheckOk' : res.error ? state = 'sharedCheckFailed' : null)
-                        .catch(e=>e.name==='TimeoutError' ? state='sharedCheckTimeout' : state='sharedCheckHttpError')
-                    }
 
                 });
                 $watch('qr',v => v ? $dispatch('qr-code-scanner-start') : $dispatch('qr-code-scanner-stop'));
