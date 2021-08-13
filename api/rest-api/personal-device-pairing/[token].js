@@ -4,9 +4,9 @@ const baseString =
 `<!DOCTYPE html>`+
 `<html lang="en">`+
 `<head>`+
-    `<meta name="description" content="Rkuh Personal Device Pairing Successful" />`+
+    `<meta name="description" content="Rkuh Device Pairing" />`+
     `<meta charset="utf-8">`+
-    `<title>Rkuh Personal Device Pairing Successful</title>`+
+    `<title>Rkuh Device Pairing</title>`+
     `<meta name="viewport" content="width=device-width, initial-scale=1">`+
     `<meta name="author" content="Andrea Scotti">`+
     `<link rel="stylesheet" type="text/css" href="../../../../global.css">`+
