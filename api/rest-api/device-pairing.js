@@ -32,7 +32,7 @@ const failureString =
 
 module.exports = (req, res) => {
   const outputString = baseString + (['personal','shared','timeclock'].includes(req.query.token) ? successString : failureString);
-  const deviceToken = 'rkuh-device=' + (['personal','shared','timeclock'].includes(req.query.token) ? req.query.token : '""');
+  const deviceToken = 'rkuh_device=' + (['personal','shared','timeclock'].includes(req.query.token) ? req.query.token : '""');
   res.setHeader('Set-Cookie',[deviceToken]);
   res.status(200).send(outputString);
 }
