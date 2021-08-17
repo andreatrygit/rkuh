@@ -32,7 +32,8 @@ const failureString =
 
 module.exports = (req, res) => {
   const outputString = baseString + (['personal','shared','timeclock'].includes(req.query.token) ? successString : failureString);
-  const deviceToken = 'rkuh_device=' + (['personal','shared','timeclock'].includes(req.query.token) ? req.query.token : '""');
+  var deviceToken = 'rkuh_device=' + (['personal','shared','timeclock'].includes(req.query.token) ? req.query.token : '""');
+  deviceToken += ';Max-Age=' + (60*60*24*30).toString();
   res.setHeader('Set-Cookie',[deviceToken]);
   res.status(200).send(outputString);
 }
