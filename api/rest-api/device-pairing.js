@@ -31,7 +31,7 @@ const failureString =
 
 
 module.exports = (req, res) => {
-  console.log('ciao');
+  console.log(req.query);
   const outputString = baseString + (['personal','shared','timeclock'].includes(req.query.token) ? successString : failureString);
   var deviceToken = 'rkuh_device=' + (['personal','shared','timeclock'].includes(req.query.token) ? req.query.token : '""');
   deviceToken += ';Max-Age=' + (60*60*24*30).toString();
