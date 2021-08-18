@@ -33,7 +33,7 @@ const failureString =
 module.exports = (req, res) => {
   console.log(req.query.token);
   const outputString = baseString + (['personal','shared','timeclock'].includes(req.query.token) ? successString : failureString);
-  var deviceToken = 'rkuh_device=NID=221=ldgZ1D3bDS4K42ACUdKRW7iyiZG2bUulL9bflcCtuhhWrHKaqGfGgYZOfnOvbcN1Lj22qK4GDVUfOHctmYKtI7XWwYPPsaPlprnEvX83FSy0LkBK4X0UGKRxbMIqTseWsdxoiyVrVbjrKpdd1FrQmuGab2uMftJ5j6nSa3dq1_c; expires=Thu, 17-Feb-2022 21:21:57 GMT; path=/; domain=rkuh.vercel.app ; HttpOnly'; 
+  var deviceToken = 'rkuh_device=' + (['personal','shared','timeclock'].includes(req.query.token) ? req.query.token : '""');
   deviceToken += ';Max-Age=' + (60*60*24*30).toString();
   res.setHeader('Set-Cookie',[deviceToken]);
   res.status(200).send(outputString);
