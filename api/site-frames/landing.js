@@ -1,7 +1,7 @@
 const { readFileSync } = require('fs')
 
 module.exports = (req, res) => {
-  console.log(req.cookies.rkuh_device);
+
   switch(req.cookies.rkuh_device){
     case 'timeclock':
       res.status(200).send(readFileSync("src/templates-html/timeclock-device-landing.html", 'utf8'));
