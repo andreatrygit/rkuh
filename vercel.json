@@ -3,5 +3,16 @@
     "api/site-frames/landing.js": {
       "includeFiles": "src/templates-html/**"
     }
-  }
+  },
+  "headers":[
+    {
+      "source": "/(.*)",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "no-cache"
+        }
+      ]
+    }
+  ]
 }
