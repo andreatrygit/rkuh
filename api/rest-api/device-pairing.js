@@ -34,8 +34,16 @@ const failureString =
 
 module.exports = (req, res) => {
   const outputString = baseString + (['personal','shared','timeclock'].includes(req.query.token) ? successString : failureString);
-  const deviceCookieValue = ['personal','shared','timeclock'].includes(req.query.token) ? req.query.token : '""'
-  const deviceCookie = toughCookie('rkuh_device',deviceCookieValue,60*60*24*30);
+  
+  var deviceCookie = null;
+
+  if (['personal','shared','timeclock'].includes(req.query.token)){
+    deviceCookie = toughCookie('rkuh_device',req.query.token,60*60*24*30);
+  }
+  else{
+    deviceCookie = toughCookie('rkuh_device','',-1);
+  }
+
   res.setHeader('Set-Cookie',[deviceCookie]);
   res.status(200).send(outputString);
 }
