@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/site-frames/landing.js": {
-      "includeFiles": "src/templates-html/**"
+      "includeFiles": "src/lambdas/templates-html/**"
     }
   }
 }
