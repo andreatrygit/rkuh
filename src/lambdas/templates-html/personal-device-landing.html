@@ -1,4 +1,4 @@
-<turbo-frame id="/api/site-frames/landing">
+<turbo-frame id="/api/site-frames/landing?_vercel_no_cache=1">
 <div class="w-full flex flex-col flex-nowrap justify-center items-center space-y-2 p-2 transition-all duration-500"
         x-data="{state:'start', message:'', qr:false, qrCode:'', pinPad:false, pin:'', cancel:false}"
         x-init="$watch('state', s =>{
@@ -39,7 +39,7 @@
 
                 if (s==='clockingScanCheck'){
                 
-                        ky.post(('./api/rest-api/personal-device-landing/clocking?qrcode='+qrCode), {
+                        ky.post(('./api/rest-api/personal-device-landing/clocking?qrcode='+ qrCode + '&_vercel_no_cache=1'), {
                         retry:0,
                         timeout:4000}).json()
                         .then(res=>res.info ? state='clockingScanCheckOk' : res.error ? state = 'clockingScanCheckFailed' : null)
@@ -48,7 +48,7 @@
 
                 if (s==='sharedCheck'){
                         
-                        ky.post(('./api/rest-api/personal-device-landing/shared?qrcode=' + qrCode + '&pin=' + pin), {
+                        ky.post(('./api/rest-api/personal-device-landing/shared?qrcode=' + qrCode + '&pin=' + pin + '&_vercel_no_cache=1'), {
                         retry:0,
                         timeout:4000}).json()
                         .then(res=>res.info ? state='sharedCheckOk' : res.error ? state = 'sharedCheckFailed' : null)
@@ -57,7 +57,7 @@
 
                 if (s==='personalPinCheck'){
                     
-                    ky.post(('./api/rest-api/personal-device-landing/personal?pin='+pin), {
+                    ky.post(('./api/rest-api/personal-device-landing/personal?pin=' + pin + '&_vercel_no_cache=1'), {
                     retry:0,
                     timeout:4000}).json()
                     .then(res=>res.info ? state='personalPinCheckOk' : res.error ? state = 'personalPinCheckFailed' : null)
