@@ -1,4 +1,4 @@
-import {toughCookie} from '../../../src/lambdas/utils.js';
+import {toughCookie} from '../../src/lambdas/utils.js';
 
 const baseString =
 `<!DOCTYPE html>`+
