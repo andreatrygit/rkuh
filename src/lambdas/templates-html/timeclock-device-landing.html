@@ -1,7 +1,7 @@
 <turbo-frame id="/api/site-frames/landing?_vercel_no_cache=1">
     <div class="w-full flex flex-col flex-nowrap justify-center items-center space-y-2 p-2"
           x-data="{intervalVar:null, time:'00:43',qrCodeValue:'xxx',companyAndWorkplaceName:'ASSC', timeclockName:'ingresso principale', dayOfWeek:'venerdì', date:'21 agosto 2021'}"
-          x-init="intervalVar=setInterval(console.log('hey'),1000)">
+          x-init="intervalVar=setInterval(x=>console.log('hey'),1000)">
         <div x-text="time" class="text-8xl text-color-black"></div>
         <img src="https://ichef.bbci.co.uk/news/224/mcs/media/images/67836000/png/_67836552_qr.png" class="w-60 h-60">
         <div x-text="companyAndWorkplaceName" class="uppercase text-lg"></div>
