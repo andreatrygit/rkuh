@@ -23,7 +23,8 @@
         globalThis.jsQR = jsqr;
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js">
+    <script type="module">
+        import luxon from 'https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js';
         globalThis.DateTime = luxon.DateTime;
     </script>
 
