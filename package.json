@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@tailwindcss/aspect-ratio": "^0.2.0",
     "autoprefixer": "^10.2.5",
     "daisyui": "^0.14.6",
     "postcss": "^8.2.8",
