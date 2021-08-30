@@ -1,12 +1,13 @@
 <turbo-frame id="/api/site-frames/landing?_vercel_no_cache=1">
     <div class="w-full flex flex-col flex-nowrap justify-center items-center space-y-2 p-2"
-          x-data="{luxonIntervalVar:null, luxonValue:null, qrCodeIntervalVar:null, qrCodeValue:null, time:null, companyAndWorkplaceName:'ASSC', timeclockName:'ingresso principale', dayOfWeek:null, date:null}"
+          x-data="{luxonIntervalVar:null, luxonValue:null, qrCodeGen:null, qrCodeIntervalVar:null, qrCodeValue:null, time:null, companyAndWorkplaceName:'ASSC', timeclockName:'ingresso principale', dayOfWeek:null, date:null}"
           x-init="$watch('luxonValue',(v)=>{time=v.toLocaleString(luxon.DateTime.TIME_SIMPLE); dayOfWeek=v.toLocaleString({weekday:'long'}); date=v.toLocaleString(luxon.DateTime.DATE_FULL);});
-                  $watch('qrCodeValue',(v)=>qrCodeGen.toCanvas(document.getElementById('timeclock-qr-code-generator'),v));
                   luxonIntervalVar=setInterval(()=>luxonValue=luxon.DateTime.now(),1000);
+                  qrCodeGen = new davidshimjsQrcodejs.QRCode(document.getElementById('timeclock-qr-code-generator'), {text: '', width: 128, height: 128});
+                  $watch('qrCodeValue',(v)=>qrCodeGen.makeCode(v);
                   qrCodeIntervalVar=setInterval(()=>{qrCodeValue=Date.now().toLocaleString()},5000)">
         <div x-text="time" class="text-8xl text-color-black"></div>
-        <canvas id="timeclock-qr-code-generator" class="w-60 h-60"></canvas>
+        <div id="timeclock-qr-code-generator" class="w-60 h-60"></div>
         <div x-text="companyAndWorkplaceName" class="uppercase text-lg"></div>
         <div x-text="timeclockName" class="uppercase text-extrabold text-2xl"></div>
         <div x-text="dayOfWeek" class="capitalize text-semibold text-gray-500 text-md"></div>
