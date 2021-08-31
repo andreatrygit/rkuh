@@ -4,6 +4,7 @@
           x-init="$watch('luxonValue',(v)=>{time=v.toLocaleString(luxon.DateTime.TIME_SIMPLE); dayOfWeek=v.toLocaleString({weekday:'long'}); date=v.toLocaleString(luxon.DateTime.DATE_FULL);});
                   luxonIntervalVar=setInterval(()=>luxonValue=luxon.DateTime.now(),1000);
                   qrCodeGen = new QRCode(document.getElementById('timeclock-qr-code-generator'), {text: '', width: 240, height: 240});
+                  qrCodeGen.makecode(qrCodeValue);
                   $watch('qrCodeValue',(v)=>qrCodeGen.makeCode(v));
                   qrCodeIntervalVar=setInterval(()=>{qrCodeValue=Date.now().toLocaleString()},5000)">
         <div x-text="time" class="text-8xl text-color-black"></div>
