@@ -3,7 +3,7 @@
           x-data="{luxonIntervalVar:null, luxonValue:null, qrCodeGen:null, qrCodeIntervalVar:null, qrCodeValue:'rkuh-clocking-12345', time:null, companyAndWorkplaceName:'ASSC', timeclockName:'ingresso principale', dayOfWeek:null, date:null}"
           x-init="$watch('luxonValue',(v)=>{time=v.toLocaleString(luxon.DateTime.TIME_SIMPLE); dayOfWeek=v.toLocaleString({weekday:'long'}); date=v.toLocaleString(luxon.DateTime.DATE_FULL);});
                   luxonIntervalVar=setInterval(()=>luxonValue=luxon.DateTime.now(),1000);
-                  qrCodeGen = new QRCode(document.getElementById('timeclock-qr-code-generator'), {text: '', width: 128, height: 128});
+                  qrCodeGen = new QRCode(document.getElementById('timeclock-qr-code-generator'), {text: '', width: 240, height: 240});
                   $watch('qrCodeValue',(v)=>qrCodeGen.makeCode(v));
                   qrCodeIntervalVar=setInterval(()=>{qrCodeValue=Date.now().toLocaleString()},5000)">
         <div x-text="time" class="text-8xl text-color-black"></div>
