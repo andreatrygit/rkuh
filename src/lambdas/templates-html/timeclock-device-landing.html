@@ -1,5 +1,5 @@
 <turbo-frame id="/api/site-frames/landing?_vercel_no_cache=1">
-    <div class="w-full flex flex-col flex-nowrap justify-center items-center space-y-2 p-2"
+    <div class="w-full flex flex-col flex-nowrap justify-center items-center p-2"
           x-data="{luxonIntervalVar:null, luxonValue:null, qrCodeGen:null, qrCodeIntervalVar:null, qrCodeValue:'rkuh-clocking-12345', time:null, companyAndWorkplaceName:'ASSC', timeclockName:'ingresso principale', dayOfWeek:null, date:null}"
           x-init="$watch('luxonValue',(v)=>{time=v.toLocaleString(luxon.DateTime.TIME_SIMPLE); dayOfWeek=v.toLocaleString({weekday:'long'}); date=v.toLocaleString(luxon.DateTime.DATE_FULL);});
                   luxonIntervalVar=setInterval(()=>luxonValue=luxon.DateTime.now(),1000);
