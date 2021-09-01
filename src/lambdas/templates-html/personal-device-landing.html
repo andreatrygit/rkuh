@@ -39,29 +39,23 @@
 
                 if (s==='clockingScanCheck'){
                 
-                        ky.post(('./api/rest-api/personal-device-landing/clocking?qrcode='+ qrCode + '&_vercel_no_cache=1'), {
-                        retry:0,
-                        timeout:4000}).json()
-                        .then(res=>res.info ? state='clockingScanCheckOk' : res.error ? state = 'clockingScanCheckFailed' : null)
-                        .catch(e=>e.name==='TimeoutError' ? state='clockingScanCheckTimeout' : state='clockingScanCheckHttpError')
+                        kyPost(('./api/rest-api/personal-device-landing/clocking?qrcode='+ qrCode + '&_vercel_no_cache=1'), 
+                        res=>res.info ? state='clockingScanCheckOk' : res.error ? state = 'clockingScanCheckFailed' : null,
+                        e=>e.name==='TimeoutError' ? state='clockingScanCheckTimeout' : state='clockingScanCheckHttpError')
                         }
 
                 if (s==='sharedCheck'){
                         
-                        ky.post(('./api/rest-api/personal-device-landing/shared?qrcode=' + qrCode + '&pin=' + pin + '&_vercel_no_cache=1'), {
-                        retry:0,
-                        timeout:4000}).json()
-                        .then(res=>res.info ? state='sharedCheckOk' : res.error ? state = 'sharedCheckFailed' : null)
-                        .catch(e=>e.name==='TimeoutError' ? state='sharedCheckTimeout' : state='sharedCheckHttpError')
+                        kyPost(('./api/rest-api/personal-device-landing/shared?qrcode=' + qrCode + '&pin=' + pin + '&_vercel_no_cache=1'),
+                        res=>res.info ? state='sharedCheckOk' : res.error ? state = 'sharedCheckFailed' : null,
+                        e=>e.name==='TimeoutError' ? state='sharedCheckTimeout' : state='sharedCheckHttpError')
                         }
 
                 if (s==='personalPinCheck'){
                     
-                    ky.post(('./api/rest-api/personal-device-landing/personal?pin=' + pin + '&_vercel_no_cache=1'), {
-                    retry:0,
-                    timeout:4000}).json()
-                    .then(res=>res.info ? state='personalPinCheckOk' : res.error ? state = 'personalPinCheckFailed' : null)
-                    .catch(e=>e.name==='TimeoutError' ? state='personalPinCheckTimeout' : state='personalPinCheckHttpError')
+                    kyPost(('./api/rest-api/personal-device-landing/personal?pin=' + pin + '&_vercel_no_cache=1'),
+                    res=>res.info ? state='personalPinCheckOk' : res.error ? state = 'personalPinCheckFailed' : null,
+                    e=>e.name==='TimeoutError' ? state='personalPinCheckTimeout' : state='personalPinCheckHttpError')
                 }
 
                 });
