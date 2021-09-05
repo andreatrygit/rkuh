@@ -2,7 +2,6 @@
   "dependencies": {
     "autoprefixer": "^10.2.5",
     "daisyui": "^0.14.6",
-    "nanoid": "^3.1.25",
     "postcss": "^8.2.8",
     "tailwindcss": "^2.1.1",
     "validator": "^13.5.2"
