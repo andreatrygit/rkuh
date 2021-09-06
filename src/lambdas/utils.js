@@ -4,7 +4,7 @@ export function toughCookie(key,value,maxAge=180){
 
 
 export function makeTokenPair(){
-    const { crypto } = require('crypto');
+    const  crypto  = require('crypto');
     const tokenValueBytes = crypto.randomBytes(16);
 
     const antiForgeryBytes = Buffer.from(process.env.TOKEN_ANTI_FORGERY_KEY_BASE64,'base64');
