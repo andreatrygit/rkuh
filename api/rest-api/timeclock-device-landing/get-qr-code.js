@@ -1,7 +1,7 @@
 import {makeTokenPair} from '../../../src/lambdas/utils.js';
 
 module.exports = (req,res) => {
-    if (req.cookies['__Host-rkuh-device']==='timeclock') {
+    if (req.cookies['__Host-rkuh_device']==='timeclock') {
         const tokenPair = makeTokenPair();
         console.log(tokenPair)
         res.status(200).json({data: tokenPair[0]});
