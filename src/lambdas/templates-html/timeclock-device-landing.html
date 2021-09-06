@@ -6,7 +6,9 @@
                   qrCodeGen = new QRCode(document.getElementById('timeclock-qr-code-generator'), {text: '', width: 240, height: 240});
                   qrCodeGen.makeCode(qrCodeValue);
                   $watch('qrCodeValue',(v)=>qrCodeGen.makeCode(v));
-                  qrCodeIntervalVar=setInterval(()=>{qrCodeValue=Date.now().toLocaleString()},5000)">
+                  qrCodeIntervalVar=setInterval(()=>{
+                      kyPost('./api/rest-api/timeclock-device-landing/get-qr-code',res=>{res.data ? qrCodeValue = res.data : null},e=>{})
+                  },5000)">
         <div x-text="time" class="text-8xl text-color-black mb-4"></div>
         <div id="timeclock-qr-code-generator" class="w-60 h-60 object-contain object-center mb-4"></div>
         <div x-text="companyAndWorkplaceName" class="uppercase text-lg text-gray-500"></div>
