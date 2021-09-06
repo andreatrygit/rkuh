@@ -20,7 +20,7 @@ export function makeTokenPair(){
 }
 
 export function redeemToken(token){
-    const { crypto } = require('crypto');
+    const crypto = require('crypto');
     const keyBytes = Buffer.from(process.env.TOKEN_AES256_KEY_BASE64,'base64');
     const ivBytes = Buffer.from(process.env.TOKEN_AES256_INIT_VECT_BASE64,'base64');
     const decipher = crypto.createDecipheriv("aes256",keyBytes, ivBytes);
