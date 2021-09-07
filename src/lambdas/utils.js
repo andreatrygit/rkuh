@@ -16,7 +16,7 @@ export function makeTokenPair(){
 
     const cipher = crypto.createCipheriv("aes256",keyBytes, ivBytes);
     cipher.update(valuetoEncrypt);
-    return (cipher.final('base64'),tokenValueBytes.toString('base64'));
+    return [cipher.final('base64'),tokenValueBytes.toString('base64')];
 }
 
 export function redeemToken(token){
@@ -35,9 +35,9 @@ export function redeemToken(token){
     const antiForgeryBytes = Buffer.from(process.env.TOKEN_ANTI_FORGERY_KEY_BASE64,'base64');
 
     if (antiforgeryCandidateBytes.equals(antiForgeryBytes)){
-        return(tokenValueBytes.toString("base64"),true);
+        return [tokenValueBytes.toString("base64"),true];
     }
     else{
-        return (null, false);
+        return [null, false];
     }
 }
