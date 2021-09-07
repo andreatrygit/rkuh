@@ -1,0 +1,14 @@
+<turbo-frame id="/api/site-frames/landing?_vercel_no_cache=1">
+    <div class="w-full flex flex-col flex-nowrap justify-center items-center p-2"
+          x-data="{qrCodeGen:null, qrCodeIntervalVar:null, qrCodeValue:'rkuh-shared-12345', companyAndWorkplaceName:'ASSC'}"
+          x-init="qrCodeGen = new QRCode(document.getElementById('shared-device-qr-code-generator'), {text: '', width: 240, height: 240});
+                  qrCodeGen.makeCode(qrCodeValue);
+                  $watch('qrCodeValue',(v)=>qrCodeGen.makeCode(v));
+                  qrCodeIntervalVar=setInterval(()=>{
+                      kyPost('./api/rest-api/shared-device-landing/get-qr-code',res=>{res.data ? qrCodeValue = res.data : null},e=>{})
+                  },60000)">
+        <div x-text="companyAndWorkplaceName" class="uppercase text-lg text-gray-500"></div>
+        <div id="shared-device-qr-code-generator" class="w-60 h-60 object-contain object-center mb-4"></div>
+        <div class="btn btn-wide btn-lg">ACCEDI</div>
+    </div>
+</turbo-frame>
