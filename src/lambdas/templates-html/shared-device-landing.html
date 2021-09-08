@@ -7,7 +7,8 @@
                   qrCodeIntervalVar=setInterval(()=>{
                       kyPost('./api/rest-api/shared-device-landing/get-qr-code',res=>{res.data ? qrCodeValue = res.data : null},e=>{})
                   },60000)">
-        <div x-text="companyAndWorkplaceName" class="uppercase text-lg text-gray-500"></div>
+        <div x-text="companyAndWorkplaceName" class="uppercase text-3xl text-gray-500"></div>
+        <div class="uppercase text-3xl text-gray-500 break-normal">POSTAZIONE CONDIVISA</div>
         <div id="shared-device-qr-code-generator" class="w-60 h-60 object-contain object-center mb-4"></div>
         <div class="btn btn-wide btn-lg">ACCEDI</div>
     </div>
