@@ -10,7 +10,11 @@ module.exports = (req, res) => {
       res.status(200).send(readFileSync("src/lambdas/templates-html/shared-device-landing.html", 'utf8'));
       break;
     case 'personal':
-      res.status(200).send(readFileSync("src/lambdas/templates-html/personal-device-landing.html", 'utf8'));
+      if (req.query['force_site']==='1') {
+        res.status(200).send(readFileSync("src/lambdas/templates-html/visitor-device-landing.html", 'utf8'));  
+      } else {
+        res.status(200).send(readFileSync("src/lambdas/templates-html/personal-device-landing.html", 'utf8'));
+      }
       break;  
     default:
       res.status(200).send(readFileSync("src/lambdas/templates-html/visitor-device-landing.html", 'utf8'));
