@@ -136,9 +136,10 @@
                     <turbo-frame x-bind:class="'w-full sm:w-1/2 lg:w-1/3 p-2 opacity-100 transition-opacity duration-500 frame-fade-in' + ' ' + frame.classes" 
                                  x-bind:id="frame.src" 
                                  x-bind:src="frame.src"
+                                 x-data="{src:frame.src}"
                                  x-init="()=>{
-                                     if($el.src.includes('landing')){
-                                        if($el.src.includes('force_site=1')){
+                                     if(src.includes('landing')){
+                                        if(src.includes('force_site=1')){
                                             $dispatch('back-to-app-button',true)
                                         }
                                         else{
