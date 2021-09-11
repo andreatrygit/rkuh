@@ -90,6 +90,7 @@
         </div>
     </div>
     <div class="fixed w-screen h-screen overscroll-none z-10 bg-base-100"
+         style="display: none;"
          x-data="{open:false, content:false}"
          x-show="open" x-transition.opacity
          @role-chosen.window="content=true"
