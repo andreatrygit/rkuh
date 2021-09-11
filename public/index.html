@@ -55,7 +55,7 @@
     </script>
 </head>
 
-<body x-data="{bodyTheme:'cupcake', showBackToAppButton:flase}"
+<body x-data="{bodyTheme:'cupcake', showBackToAppButton:false}"
       x-bind:data-theme="bodyTheme"
       @set-body-theme="bodyTheme=$event.detail"
       @back-to-app-button="showBackToAppButton=$event.detail"
