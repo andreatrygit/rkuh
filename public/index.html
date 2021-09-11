@@ -55,12 +55,12 @@
     </script>
 </head>
 
-<body x-data="{bodyTheme:'cupcake', showBackToAppButton:false}"
+<body x-data="{bodyTheme:'cupcake'}"
       x-bind:data-theme="bodyTheme"
       @set-body-theme="bodyTheme=$event.detail"
-      @back-to-app-button="showBackToAppButton=$event.detail"
       class="overscroll-none">
-    <div class="fixed w-screen h-screen overscroll-none z-20 bg-base-100"
+    <div class="fixed w-screen h-screen overscroll-none z-20 bg-base-100" 
+         style="display: none;"
          x-data="{open:false,defaultTheme:'cupcake',current:'cupcake'}"
          x-init="$watch('current',value=>$dispatch('set-body-theme',value))"
          x-show="open" x-transition.opacity
@@ -154,8 +154,10 @@
         <div>
     <div>
     <div class="fixed bottom-4 right-4 md:bottom-8 md:right-8 lg:bottom-16 lg:right-16 btn btn-primary md:btn-wide md:btn-lg"
+         x-data="{showBackToAppButton:false}"
          x-show="showBackToAppButton"
          x-transition.opacity
+         @back-to-app-button.window="showBackToAppButton=$event.detail"
          @click ="$dispatch('replace-frames-with-these',[{src:'/api/site-frames/landing?_vercel_no_cache=1',classes:''}])">TORNA ALLA APP</div>
 </body>
 
