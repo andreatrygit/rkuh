@@ -55,9 +55,10 @@
     </script>
 </head>
 
-<body x-data="{bodyTheme:'cupcake'}"
+<body x-data="{bodyTheme:'cupcake', showBackToAppButton:flase}"
       x-bind:data-theme="bodyTheme"
       @set-body-theme="bodyTheme=$event.detail"
+      @back-to-app-button="showBackToAppButton=$event.detail"
       class="overscroll-none">
     <div class="fixed w-screen h-screen overscroll-none z-20 bg-base-100"
          x-data="{open:false,defaultTheme:'cupcake',current:'cupcake'}"
@@ -153,9 +154,8 @@
         <div>
     <div>
     <div class="fixed bottom-4 right-4 md:bottom-8 md:right-8 lg:bottom-16 lg:right-16 btn btn-primary md:btn-wide md:btn-lg"
-         x-data="{show:false}"
-         x-show="show"
-         @back-to-app-button="show=$event.detail">TORNA ALLA APP</div>
+         x-show="showBackToAppButton"
+         @click ="$dispatch('replace-frames-with-these',[{src:'/api/site-frames/landing?_vercel_no_cache=1',classes:''}])">TORNA ALLA APP</div>
 </body>
 
 </html>
