@@ -1,6 +1,6 @@
 <turbo-frame id="/api/site-frames/landing?_vercel_no_cache=1">
 <div class="w-full flex flex-col flex-nowrap justify-center items-center space-y-2 p-2 transition-all duration-500"
-        x-data="{state:'start', message:'', qr:false, qrCode:'', pinPad:false, pin:'', cancel:false}"
+        x-data="{pinTimeoutVar: null, state:'start', message:'', qr:false, qrCode:'', pinPad:false, pin:'', cancel:false}"
         x-init="$watch('state', s =>{
                     if(s==='start') { message=''; qr=false; qrCode=''; pinPad=false; pin=''; cancel=false;}
                     if(s==='personal') { message='Digita il tuo PIN.'; qr=false; qrCode=''; pinPad=true; pin=''; cancel=true;}
@@ -27,12 +27,17 @@
                 });
                 $watch('pin',p=>{
                         if (p.length===5){
+                                pinTimeoutVar ? clearTimeout(pinTimeoutVar) : null;
                                 if (state==='personal'){
                                         state = 'personalPinCheck'
                                 }
                                 if (state==='sharedDeviceScanOk'){
                                         state = 'sharedCheck'
                                 }
+                        }
+                        if (p.length >= 1 && p.length <= 4){
+                                pinTimeoutVar ? clearTimeout(pinTimeoutVar) : null;
+                                pinTimeoutVar = setTimeout(()=> {pin=''},3000);
                         }
                 });
                 $watch('state',s=>{
@@ -78,7 +83,7 @@
         @shared="state='shared'"
         @personal="state='personal'"
         @home-page=""
-        @cancel="state='start'">
+        @cancel="pinTimeoutVar ? clearTimeout(pinTimeoutVar) : null; state='start'">
         
     <div class="btn btn-wide btn-lg leading-tight h-auto"
             x-bind:class="{'btn-primary':state.includes('personal'), 'btn-secondary':state.includes('shared'), 'btn-accent':state.includes('clocking')}"
