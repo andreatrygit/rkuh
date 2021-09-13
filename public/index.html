@@ -59,8 +59,19 @@
       x-bind:data-theme="bodyTheme"
       @set-body-theme="bodyTheme=$event.detail"
       @logged-in="loggedIn = true"
-      @log-out="loggedIn = false"
-      x-init="$watch('idleTimeoutToggle',(v)=>{idleTimeoutVar ? clearTimeout(idleTimeoutVar) : null; idleTimeoutVar = setTimeout(()=>$dispatch('log-out'),3*60*1000)})"
+      @log-out="loggedIn = false; idleTimeoutVar ? clearTimeout(idleTimeoutVar) : null; kyPost('./api/rest-api/personal-device-landing/log-out',(r)=>{},(e)=>{})"
+      x-init="$watch('idleTimeoutToggle',(v)=>{
+                                                if(loggedIn){
+                                                idleTimeoutVar ? clearTimeout(idleTimeoutVar) : null; idleTimeoutVar = setTimeout(()=>$dispatch('log-out'),5*1000)
+                                                }
+                                              }
+                    )"
+      @mousedown="idleTimeoutToggle=!idleTimeoutToggle"
+      @keydown="idleTimeoutToggle=!idleTimeoutToggle"
+      @mousemove.throttle="idleTimeoutToggle=!idleTimeoutToggle"
+      @touchmove.passive.throttle="idleTimeoutToggle=!idleTimeoutToggle"
+      @wheel.passive.throttle="idleTimeoutToggle=!idleTimeoutToggle"
+      @touchstart.passive="idleTimeoutToggle=!idleTimeoutToggle"
       class="overscroll-none">
     <div class="fixed w-screen h-screen overscroll-none z-20 bg-base-100" 
          style="display: none;"
