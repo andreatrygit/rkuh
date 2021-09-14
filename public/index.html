@@ -58,7 +58,7 @@
 <body x-data="{bodyTheme:'cupcake', loggedIn:false, idleTimeoutToggle:false, idleTimeoutVar:null}"
       x-bind:data-theme="bodyTheme"
       @set-body-theme="bodyTheme=$event.detail"
-      @logged-in="loggedIn = true"
+      @logged-in="loggedIn = true; idleTimeoutVar = setTimeout(()=>$dispatch('log-out'),5*1000)"
       @log-out="loggedIn = false; idleTimeoutVar ? clearTimeout(idleTimeoutVar) : null; kyPost('./api/rest-api/personal-device-landing/log-out',(r)=>{},(e)=>{})"
       x-init="$watch('idleTimeoutToggle',(v)=>{
                                                 if(loggedIn){
