@@ -125,7 +125,7 @@
          @log-out.window="isApp=false;title=''"
          @set-title="title=$event.detail"
          class="absolute w-screen overscroll-none">
-        <header class="w-full fixed ml-0 mt-0 flex items-center bg-base-200 transition-all duration-500 overflow-hidden"
+        <header class="w-full fixed ml-0 mt-0 flex items-center bg-base-200 transition-all duration-500 overflow-hidden h-[0vh]"
                 x-bind:class="isApp ? 'h-[8vh] sm-land:h-[12vh]' : 'h-[0vh]'">
                 <div class="h-full w-1/4 p-1 pl-2 flex justify-start items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-[1.750rem] text-base-content" @click="$dispatch('open-themer')" fill="none" viewBox="0 0 24 24" stroke="currentColor">
