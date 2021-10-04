@@ -6,7 +6,7 @@
                     if(s==='personal') { message='Digita il tuo PIN.'; qr=false; qrCode=''; pinPad=true; pin=''; cancel=true;}
                     if(s==='personalPinCheck') { message='Verifica del PIN in corso...'; qr=false; qrCode=''; pinPad=false; cancel=false;}
                     if(s==='personalPinCheckFailed') { message='PIN errato. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
-                    if(s==='personalPinCheckOk') { console.log('logged-in'); $dispatch('logged-in')}
+                    if(s==='personalPinCheckOk') {$dispatch('logged-in')}
                     if(s==='personalPinCheckTimeout') { message='Verifica del PIN scaduta. CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                     if(s==='personalPinCheckHttpError') { message='Qualcosa è andato storto... CLICCAMI per riprovare.'; qr=false; qrCode=''; pinPad=false; pin=''; cancel=true;}
                     if(s==='clocking') { message='Scansiona il codice QR sul timbrino.'; qr=true; qrCode=''; pinPad=false; pin=''; cancel=true;}
