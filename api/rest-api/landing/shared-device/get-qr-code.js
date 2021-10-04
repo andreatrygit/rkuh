@@ -1,4 +1,4 @@
-import {makeTokenPair} from '../../../src/lambdas/utils.js';
+import {makeTokenPair} from '../../../../src/lambdas/utils.js';
 
 module.exports = (req,res) => {
     if (req.cookies['__Host-rkuh_device']==='shared') {

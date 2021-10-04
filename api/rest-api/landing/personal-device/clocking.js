@@ -1,4 +1,4 @@
-import {toughCookie} from '../../../src/lambdas/utils.js';
+import {toughCookie} from '../../../../src/lambdas/utils.js';
 
 module.exports = (req, res) => {
     if (req.query.qrcode==="rkuh-clocking-12345")
