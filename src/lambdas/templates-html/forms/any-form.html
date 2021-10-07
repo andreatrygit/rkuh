@@ -1,8 +1,20 @@
-<div class="w-full flex flex-col flex-nowrap justify-start items-center"
-     x-data="{postUrl:'', submitEnabled:false,
-              fields:{
-                      checkbox:{mandatory:true, value:null, label:'checkbox label', placeholder:'checkbox placeholder'}
-                     }
-             }">
+<turbo-frame id="/api/app-frames/forms/anyform?_vercel_no_cache=1">
+        <div class="w-full flex flex-col flex-nowrap justify-start items-center"
+                x-data="{postUrl:'', submitEnabled:false,
+                        fields:{
+                                checkbox:{mandatory:true, value:null}
+                                }
+                        }"
+                @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue"
+                @x-effect="submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value)">
+                <label class="flex flex-row flex-nowrap justify-start items-center">
+                        <div>Etichetta</div>
+                        <input type="checkbox" class="checkbox checkbox-md"
+                        x-data="{name:'checkbox',value:false}"
+                        x-bind:value="value"
+                        x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
+                </label>
+                <div class="btn bnt-primary btn-wide btn-lg" x-bind:enabled="submitEnabled" @click="$dispatch('submit')">Invia</div>
 
-</div>
+        </div>
+</turbo-frame>
