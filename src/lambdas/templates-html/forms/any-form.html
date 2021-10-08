@@ -2,7 +2,7 @@
         <div class="w-full flex flex-col flex-nowrap justify-start items-center"
                 x-data="{postUrl:'', submitEnabled:false,
                         fields:{
-                                checkbox:{mandatory:true, value:null}
+                                checkbox:{mandatory:false, value:false}
                                 }
                         }"
                 @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue"
