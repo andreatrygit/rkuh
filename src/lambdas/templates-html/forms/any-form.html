@@ -6,7 +6,7 @@
                                 }
                         }"
                 @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue"
-                @x-effect="submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value)">
+                x-effect="submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value)">
                 <label class="label cursor-pointer flex flex-row flex-nowrap justify-start items-center">
                         <div>Etichetta</div>
                         <input type="checkbox" class="checkbox checkbox-md"
