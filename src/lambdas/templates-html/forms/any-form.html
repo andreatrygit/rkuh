@@ -14,6 +14,7 @@
                         x-bind:value="value"
                         x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
                 </label>
+                <input type="checkbox" class="checkbox checkbox-md">
                 <div class="btn bnt-primary btn-wide btn-lg" x-bind:disabled="!submitEnabled" @click="$dispatch('submit')">Invia</div>
 
         </div>
