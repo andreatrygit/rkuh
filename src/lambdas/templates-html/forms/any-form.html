@@ -7,59 +7,14 @@
                         }"
                 @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue"
                 x-effect="submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value)">
-               <!--  <label class="label cursor-pointer flex flex-row flex-nowrap justify-start items-center">
+                <label class="label cursor-pointer flex flex-row flex-nowrap justify-start items-center">
                         <div>Etichetta</div>
                         <input type="checkbox" class="checkbox checkbox-md"
                         x-data="{name:'checkbox',value:false}"
                         x-bind:value="value"
                         x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
-                </label> -->
-                <div class="form-control">
-                        <label class="cursor-pointer label">
-                          <span class="label-text">Remember me</span> 
-                          <input type="checkbox" checked="checked" class="checkbox">
-                        </label>
-                </div>
-                <div class="form-control">
-                        <label class="cursor-pointer label">
-                          <span class="label-text">Remember you</span> 
-                          <input type="checkbox" checked="checked" class="checkbox">
-                        </label>
-                </div>
-                <div class="p-6 card bordered">
-                        <div class="form-control">
-                          <label class="cursor-pointer label">
-                            <span class="label-text">Neutral</span> 
-                            <input type="radio" name="opt" checked="checked" class="radio" value="">
-                          </label>
-                        </div> 
-                        <div class="form-control">
-                          <label class="cursor-pointer label">
-                            <span class="label-text">Primary</span> 
-                            <input type="radio" name="opt" checked="checked" class="radio radio-primary" value="">
-                          </label>
-                        </div> 
-                        <div class="form-control">
-                          <label class="cursor-pointer label">
-                            <span class="label-text">Secondary</span> 
-                            <input type="radio" name="opt" checked="checked" class="radio radio-secondary" value="">
-                          </label>
-                        </div> 
-                        <div class="form-control">
-                          <label class="cursor-pointer label">
-                            <span class="label-text">Accent</span> 
-                            <input type="radio" name="opt" checked="checked" class="radio radio-accent" value="">
-                          </label>
-                        </div> 
-                        <div class="form-control">
-                          <label class="label">
-                            <span class="label-text">Disabled</span> 
-                            <input type="radio" name="opt" checked="checked" value="" disabled="disabled" class="radio">
-                          </label>
-                        </div>
-                      </div>
-                      
-                      
+                </label>
+                
                 <div class="btn btn-primary btn-wide btn-lg" x-bind:disabled="!submitEnabled" @click="$dispatch('submit')">Invia</div>
 
         </div>
