@@ -15,7 +15,7 @@
                         x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
                 </label>
                 
-                <div class="btn btn-primary btn-wide btn-lg" x-bind:disabled="!submitEnabled" @click="$dispatch('submit')">Invia</div>
+                <div class="btn btn-primary btn-wide btn-lg" x-bind:disabled="true" @click="$dispatch('submit')">Invia</div>
 
         </div>
 </turbo-frame>
