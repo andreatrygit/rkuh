@@ -1,5 +1,5 @@
 <turbo-frame id="/api/app-frames/forms/any-form?_vercel_no_cache=1">
-        <div class="w-full flex flex-col flex-nowrap justify-start items-center"
+        <div class="w-full flex flex-col flex-nowrap justify-start items-center space-y-4"
                 x-data="{postUrl:'', submitEnabled:false,
                         fields:{
                                 checkbox:{mandatory:false, value:false}
@@ -14,7 +14,7 @@
                       x-data="{name:'checkbox',value:false}"
                       x-bind:value="value"
                       x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
-                      <div class="text-xl text-base-content">Etichetta</div>
+                      <div class="text-2xl text-base-content">Etichetta</div>
                 </label>
                 
                 <div class="btn btn-primary btn-lg" x-bind:disabled="!true" @click="$dispatch('submit')">Invia</div>
