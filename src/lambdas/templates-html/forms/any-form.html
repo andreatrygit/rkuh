@@ -16,8 +16,12 @@
                       x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
                       <div class="text-2xl text-base-content">Etichetta</div>
                 </label>
-                
-                <div class="btn btn-primary btn-lg" x-bind:disabled="!true" @click="$dispatch('submit')">Invia</div>
 
+                <!--actions-->
+                <div class="w-full">
+                        <div class="btn btn-secondary btn-lg float-left" x-bind:disabled="!true" @click="$dispatch('')">Annulla</div>
+                        <div class="btn btn-primary btn-lg float-right" x-bind:disabled="!true" @click="$dispatch('submit')">Invia</div>
+                </div>
+                
         </div>
 </turbo-frame>
