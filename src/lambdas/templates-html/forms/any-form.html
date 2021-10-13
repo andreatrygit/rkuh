@@ -3,7 +3,8 @@
                 x-data="{postUrl:'', submitEnabled:false,
                         fields:{
                                 checkbox:{mandatory:false, value:false},
-                                toggle:{mandatory:false, value:false}
+                                toggle:{mandatory:false, value:false},
+                                text:{mandatory:false, value:''}
                                 }
                         }"
                 @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue"
@@ -25,6 +26,16 @@
                         x-bind:value="value"
                         x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
                         <div class="text-2xl text-base-content">Etichetta Toggle che se fosse veramente lunga non </div>
+                  </label>
+
+                <!-- text -->
+                <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start space-y-2">
+                        <div class="text-2xl text-base-content">Etichetta Text</div>
+                        <input type="text" class="input input-lg input-bordered" placeholder="scrivi del testo"
+                        x-data="{name:'text',value:''}"
+                        x-bind:value="value"
+                        x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
+                        <div class="text-red text-2xl text-base-content">Messaggio di errore</div>
                   </label>
 
                 <!--actions-->
