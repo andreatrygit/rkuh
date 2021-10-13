@@ -2,7 +2,8 @@
         <div class="w-full flex flex-col flex-nowrap justify-start items-center space-y-4 shadow-lg p-4 rounded-xl"
                 x-data="{postUrl:'', submitEnabled:false,
                         fields:{
-                                checkbox:{mandatory:false, value:false}
+                                checkbox:{mandatory:false, value:false},
+                                toggle:{mandatory:false, value:false}
                                 }
                         }"
                 @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue"
@@ -14,8 +15,17 @@
                       x-data="{name:'checkbox',value:false}"
                       x-bind:value="value"
                       x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
-                      <div class="text-2xl text-base-content">Etichetta</div>
+                      <div class="text-2xl text-base-content">Etichetta Checkbox</div>
                 </label>
+
+                 <!-- toggle -->
+                 <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-2">
+                        <input type="checkbox" class="toggle toggle-lg"
+                        x-data="{name:'toggle',value:false}"
+                        x-bind:value="value"
+                        x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
+                        <div class="text-2xl text-base-content">Etichetta Togggle</div>
+                  </label>
 
                 <!--actions-->
                 <div class="w-full">
