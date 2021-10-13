@@ -11,7 +11,7 @@
                 x-effect="submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value)">
                 
                 <!-- checkbox -->
-                <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-2">
+                <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-3">
                       <input type="checkbox" class="checkbox checkbox-lg"
                       x-data="{name:'checkbox',value:false}"
                       x-bind:value="value"
@@ -20,13 +20,13 @@
                 </label>
 
                  <!-- toggle -->
-                 <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-2">
+                 <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-3">
                         <input type="checkbox" class="toggle toggle-lg"
                         x-data="{name:'toggle',value:false}"
                         x-bind:value="value"
                         x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
                         <div class="text-2xl text-base-content">Etichetta Toggle che se fosse veramente lunga non </div>
-                  </label>
+                 </label>
 
                 <!-- text -->
                 <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start space-y-2">
@@ -36,7 +36,7 @@
                         x-bind:value="value"
                         x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
                         <div class="text-red text-2xl text-base-content">Messaggio di errore</div>
-                  </label>
+                 </label>
 
                 <!--actions-->
                 <div class="w-full">
