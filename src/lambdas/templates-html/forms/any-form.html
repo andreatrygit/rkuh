@@ -1,5 +1,5 @@
 <turbo-frame id="/api/app-frames/forms/any-form?_vercel_no_cache=1">
-        <div class="w-full flex flex-col flex-nowrap justify-start items-center space-y-4 shadow-lg p-4 rounded-xl"
+        <div class="flex flex-col flex-nowrap justify-start items-center space-y-4 shadow-lg p-4 rounded-xl"
                 x-data="{postUrl:'', submitEnabled:false,
                         fields:{
                                 checkbox:{mandatory:false, value:false},
@@ -30,12 +30,12 @@
 
                 <!-- text -->
                 <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start">
-                        <div class="ml-8 font-semibold text-xl text-base-content">Etichetta Text</div>
+                        <div class="ml-6 font-semibold text-xl text-base-content">Etichetta Text</div>
                         <input type="text" class="input input-lg input-bordered" placeholder="scrivi del testo"
                         x-data="{name:'text',value:''}"
                         x-bind:value="value"
                         x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
-                        <div class="ml-8 mt-1 badge badge-error">Messaggio di errore</div>
+                        <div class="ml-6 mt-1 badge badge-error">Messaggio di errore</div>
                  </label>
 
                 <!--actions-->
