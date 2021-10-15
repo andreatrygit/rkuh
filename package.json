@@ -1,10 +1,10 @@
 {
   "dependencies": {
-    "autoprefixer": "^10.2.5",
-    "daisyui": "^1.14.3",
-    "postcss": "^8.2.8",
-    "tailwindcss": "^2.1.1",
-    "validator": "^13.5.2"
+    "autoprefixer": "10.x",
+    "daisyui": "1.x",
+    "postcss": "8.x",
+    "tailwindcss": "2.x",
+    "validator": "13.x"
   },
   "scripts": {
     "build": "npx tailwindcss build ./src/frontend/styles.css -o ./public/global.css"
