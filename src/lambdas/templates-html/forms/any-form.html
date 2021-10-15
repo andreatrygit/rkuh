@@ -16,26 +16,26 @@
                       x-data="{name:'checkbox',value:false}"
                       x-bind:value="value"
                       x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
-                      <div class="text-2xl text-base-content">Etichetta Checkbox</div>
+                      <div class="text-2xl text-base-content break-words">Etichetta Checkbox</div>
                 </label>
 
                  <!-- toggle -->
                  <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-3">
-                        <input type="checkbox" class="toggle toggle-lg"
+                        <input type="checkbox" class="toggle toggle-lg flex-shrink-0"
                         x-data="{name:'toggle',value:false}"
                         x-bind:value="value"
                         x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
-                        <div class="text-2xl text-base-content">Etichetta Toggle che se fosse veramente lunga non </div>
+                        <div class="text-2xl text-base-content break-words">Etichetta Toggle che se fosse veramente lunga non </div>
                  </label>
 
                 <!-- text -->
-                <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start space-y-2">
-                        <div class="text-2xl text-base-content">Etichetta Text</div>
+                <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start space-y-1">
+                        <div class="ml-2 font-semibold text-xl text-base-content">Etichetta Text</div>
                         <input type="text" class="input input-lg input-bordered" placeholder="scrivi del testo"
                         x-data="{name:'text',value:''}"
                         x-bind:value="value"
                         x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
-                        <div class="text-red text-2xl text-base-content">Messaggio di errore</div>
+                        <div class="ml-2 badge badge-error">Messaggio di errore</div>
                  </label>
 
                 <!--actions-->
