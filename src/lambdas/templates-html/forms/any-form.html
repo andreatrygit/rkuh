@@ -30,12 +30,12 @@
 
                 <!-- text -->
                 <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start">
-                        <div class="ml-2 font-semibold text-xl text-base-content">Etichetta Text</div>
+                        <div class="ml-8 font-semibold text-xl text-base-content">Etichetta Text</div>
                         <input type="text" class="input input-lg input-bordered" placeholder="scrivi del testo"
                         x-data="{name:'text',value:''}"
                         x-bind:value="value"
                         x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
-                        <div class="ml-2 mt-1 alert alert-error">Messaggio di errore</div>
+                        <div class="ml-2 mt-1 badge badge-error">Messaggio di errore</div>
                  </label>
 
                 <!--actions-->
