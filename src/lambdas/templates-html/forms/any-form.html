@@ -10,14 +10,14 @@
                 @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue"
                 x-effect="submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value)">
 
-                <div class="w-full flex flex-row flex-nowrap justify-start items-center">
+                <div class="w-full flex flex-row flex-nowrap justify-start items-center space-x-2">
                         <div class="btn btn-accent rounded-full">TE</div>
                         <div>
-                                <div>Giulio Cesare</div>
-                                <div>Terapia:Somministrazioni</div>
+                                <div class="uppercase text-2xl">Giulio Cesare</div>
+                                <div class="font-semibold text-base-200 text-lg">Terapia:Somministrazioni</div>
                         </div>
                 </div>
-                <br class="w-full h-1 bg-gray-500 mb-2">
+                <br class="w-full h-1 bg-base-200 mb-2">
                 
                 <div class="w-full flex flex-col flex-nowrap justify-start items-center space-y-2 ">
                         <!-- checkbox -->
