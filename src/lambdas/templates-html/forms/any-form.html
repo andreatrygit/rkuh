@@ -1,6 +1,6 @@
 <turbo-frame id="/api/app-frames/forms/any-form?_vercel_no_cache=1">
         <div class="w-full flex flex-col flex-nowrap justify-start items-center space-y-4 shadow-lg p-4 rounded-xl"
-                x-data="{postUrl:'', submitEnabled:false,
+                x-data="{postUrl:'', submitEnabled:false, submitText:'Invia',
                         fields:{
                                 checkbox:{mandatory:false, value:false},
                                 toggle:{mandatory:false, value:false},
@@ -40,8 +40,8 @@
 
                 <!--actions-->
                 <div class="w-full">
-                        <div class="btn btn-secondary btn-lg float-left" x-bind:disabled="!true" @click="$dispatch('')">Annulla</div>
-                        <div class="btn btn-primary btn-lg float-right" x-bind:disabled="!true" @click="$dispatch('submit')">&nbsp;&nbsp;Invia&nbsp;&nbsp;</div>
+                        <div class="btn btn-secondary btn-lg float-left" x-bind:disabled="" @click="$dispatch('')">Annulla</div>
+                        <div class="btn btn-primary btn-lg float-right" x-bind:disabled="!submitEnabled" @click="$dispatch('submit')" x-text="submitText"></div>
                 </div>
 
         </div>
