@@ -1,46 +1,8 @@
 <turbo-frame id="/api/app-frames/forms/any-form?_vercel_no_cache=1">
         <div class="w-full flex flex-col flex-nowrap justify-start items-center space-y-4 shadow-lg p-4 rounded-xl"
-                x-data="{postUrl:'', submitEnabled:false, submitText:'Invia',
-                        fields:{
-                                checkbox:{mandatory:false, value:false},
-                                toggle:{mandatory:false, value:false},
-                                text:{mandatory:false, value:''}
-                                }
+                x-data="{postUrl:'', submitEnabled:false, submitText:'Invia'
                         }"
-                @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue"
-                x-effect="submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value)">
-                
-                <!-- checkbox -->
-                <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-3">
-                      <input type="checkbox" class="checkbox checkbox-lg"
-                      x-data="{name:'checkbox',value:false}"
-                      x-bind:value="value"
-                      x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
-                      <div class="text-2xl text-base-content break-words">Etichetta Checkbox</div>
-                </label>
-
-                 <!-- toggle -->
-                 <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-3">
-                        <input type="checkbox" class="toggle toggle-lg flex-shrink-0"
-                        x-data="{name:'toggle',value:false}"
-                        x-bind:value="value"
-                        x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
-                        <div class="text-2xl text-base-content break-words">Etichetta Toggle che se fosse veramente lunga non </div>
-                 </label>
-
-                <!-- text -->
-                <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start">
-                        <div class="ml-6 font-semibold text-xl text-base-content">Etichetta Text</div>
-                        <input type="text" class="input input-lg input-bordered" placeholder="scrivi del testo"
-                        x-data="{name:'text',value:''}"
-                        x-bind:value="value"
-                        x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
-                        <div class="ml-6 mt-1 badge badge-error">Messaggio di errore</div>
-                 </label>
-
-                <!--actions-->
-                <div class="w-full">
-                        <div class="btn btn-secondary btn-lg float-left" x-bind:disabled="" @click="$dispatch('')">Annulla</div>
+               
                         <div class="btn btn-primary btn-lg float-right" x-bind:disabled="!submitEnabled" @click="$dispatch('submit')" x-text="submitText"></div>
                 </div>
 
