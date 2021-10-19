@@ -21,6 +21,7 @@
                         <input type="checkbox" class="checkbox checkbox-lg"
                         x-data="{name:'checkbox',value:false}"
                         x-bind:value="value"
+                        x-effect="console.log(value)"
                         x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
                         <div class="text-xl text-base-content break-words">Etichetta Checkbox</div>
                         </label>
