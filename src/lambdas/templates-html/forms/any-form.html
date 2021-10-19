@@ -4,7 +4,7 @@
                         fields:{
                                 checkbox:{mandatory:false, value:false},
                                 toggle:{mandatory:false, value:false},
-                                text:{mandatory:false, value:''}
+                                text:{mandatory:true, value:''}
                                 }
                         }"
                 @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue"
