@@ -7,8 +7,8 @@
                                 text:{mandatory:true, value:''}
                                 }
                         }"
-                @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue, console.log($event.detail)"
-                x-effect="submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value)">
+                @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue, submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value), console.log($event.detail)"
+                @submit="submitting=true">
 
               
                 <div class="uppercase text-2xl text-center">Giulio Cesare</div>
@@ -19,19 +19,14 @@
                         <!-- checkbox -->
                         <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-3">
                         <input type="checkbox" class="checkbox checkbox-lg"
-                        x-data="{name:'checkbox',value:false}"
-                        x-bind:value="value"
-                        x-effect="console.log(value)"
-                        x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
+                        @input="$dispatch('field-new-value',{fieldName:'checkbox',fieldValue:$event.target.value})">
                         <div class="text-xl text-base-content break-words">Etichetta Checkbox</div>
                         </label>
 
                         <!-- toggle -->
                         <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-3">
                                 <input type="checkbox" class="toggle toggle-lg flex-shrink-0"
-                                x-data="{name:'toggle',value:false}"
-                                x-bind:value="value"
-                                x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
+                                @input="$dispatch('field-new-value',{fieldName:'toggle',fieldValue:$event.target.value})">
                                 <div class="text-xl text-base-content break-words">Etichetta Toggle</div>
                         </label>
 
@@ -39,16 +34,14 @@
                         <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start">
                                 <div class="ml-6 font-semibold text-xl text-base-content">Etichetta Text</div>
                                 <input type="text" class="text-2xl max-w-full input input-lg input-bordered" placeholder="scrivi del testo"
-                                x-data="{name:'text',value:''}"
-                                x-bind:value="value"
-                                x-effect="$dispatch('field-new-value',{fieldName:name,fieldValue:value})">
+                                @input="$dispatch('field-new-value',{fieldName:'text',fieldValue:$event.target.value})">
                                 <div class="text-xl ml-6 mt-1 badge badge-error">Messaggio di errore</div>
                         </label>
 
                         <!--actions-->
                         <div class="w-full">
                                 <div class="btn btn-secondary btn-lg float-left" x-bind:disabled="submitting" @click="$dispatch('')">Annulla</div>
-                                <div class="btn btn-primary btn-lg float-right" x-bind:disabled="!submitEnabled" @click="$dispatch('submit')">&nbsp;&nbsp;Invia&nbsp;&nbsp;</div>
+                                <div class="btn btn-primary btn-lg float-right" x-bind:class="{'animate-bounce':submitting}" x-bind:disabled="!submitEnabled" @click="$dispatch('submit')">&nbsp;&nbsp;Invia&nbsp;&nbsp;</div>
                         </div>
                 </div>
 
