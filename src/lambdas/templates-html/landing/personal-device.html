@@ -95,8 +95,8 @@
             x-bind:class="{'border-secondary':state.includes('shared'), 'border-accent':state.includes('clocking')}"
             x-show="qr" x-transition:enter.opacity.duration.500ms
             @qr-code-scanner-start.window = "navigator.mediaDevices.getUserMedia({ video : { facingMode: { exact: 'environment' } } })
-                                             .then(mediaStream => document.getElementById('qr-code-scanner-video').srcObject = mediaStream)
-                                             .catch(err => console.log(err.name + ': ' + err.message))"
+                                             .then(mediaStream => document.getElementById('qr-code-scanner-video').srcObject = mediaStream, $dispatch('qr-code-scanner-start-done'))
+                                             .catch(err => console.log(err.name + ': ' + err.message), $dispatch('qr-code-scanner-start-done'))"
             @qr-code-scanner-stop.window="document.getElementById('qr-code-scanner-video').srcObject.getTracks().forEach((track) => track.stop()); document.getElementById('qr-code-scanner-video').srcObject=null">
     </video>
     <canvas id="qr-code-scanner-canvas"
@@ -143,6 +143,6 @@
     <button class="btn btn-wide btn-lg btn-secondary leading-tight" @click="$dispatch('shared')" x-show="state==='start'" x-transition:enter.opacity.duration.500ms>ENTRA SU POSTAZIONE CONDIVISA</button>
     <button class="btn btn-wide btn-lg btn-primary" @click="$dispatch('personal')" x-show="state==='start'" x-transition:enter.opacity.duration.500ms>ENTRA QUI</button>
     <button class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('replace-frames-with-these',[{src:'/api/site-frames/landing?force_site=1&_vercel_no_cache=1',classes:''}])" x-show="state==='start'" x-transition:enter.opacity.duration.500ms>VISITA HOME PAGE</button>
-    <button class="btn btn-outline btn-wide btn-lg btn-ghost" @qr-code-scanner-start.window="$el.disabled=true" @click="$dispatch('cancel')" x-show="cancel" x-transition:enter.opacity.duration.500ms>ANNULLA</button>
+    <button class="btn btn-outline btn-wide btn-lg btn-ghost" @qr-code-scanner-start.window="$el.disabled=true" @qr-code-scanner-start-done.window="$el.disabled=false" @click="$dispatch('cancel')" x-show="cancel" x-transition:enter.opacity.duration.500ms>ANNULLA</button>
 </div>
 </turbo-frame>
