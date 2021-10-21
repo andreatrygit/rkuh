@@ -4,7 +4,8 @@
                         fields:{
                                 checkbox:{mandatory:false, value:false},
                                 toggle:{mandatory:false, value:false},
-                                text:{mandatory:true, value:''}
+                                text:{mandatory:true, value:''},
+                                date:{mandatory:true, value:''}
                                 }
                         }"
                 @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue, submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value), console.log($event.detail)"
@@ -32,11 +33,20 @@
 
                         <!-- text -->
                         <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start">
-                                <div class="ml-6 font-semibold text-xl text-base-content">Etichetta Text</div>
+                                <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta Text</div>
                                 <input type="text" class="text-2xl max-w-full input input-lg input-bordered" placeholder="scrivi del testo"
                                 @input="$dispatch('field-new-value',{fieldName:'text',fieldValue:$event.target.value})">
-                                <div class="text-xl ml-6 mt-1 badge badge-error">Messaggio di errore</div>
+                                <div class="text-xl ml-6 mt-1 badge badge-error break-words">Messaggio di errore</div>
                         </label>
+
+                         <!-- date -->
+                         <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start">
+                                <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta Date</div>
+                                <input type="date" class="text-2xl max-w-full input input-lg input-bordered" placeholder="Inserisci una data"
+                                @input="$dispatch('field-new-value',{fieldName:'date',fieldValue:$event.target.value})">
+                                <div class="text-xl ml-6 mt-1 badge badge-error break-words">Messaggio di errore</div>
+                        </label>
+
 
                         <!--actions-->
                         <div class="w-full">
