@@ -168,13 +168,13 @@
             </div>
         <div>
     <div>
-    <div class="fixed bottom-4 right-4 md:bottom-8 md:right-8 lg:bottom-16 lg:right-16 btn btn-primary md:btn-wide md:btn-lg"
+    <button class="fixed bottom-4 right-4 md:bottom-8 md:right-8 lg:bottom-16 lg:right-16 btn btn-primary md:btn-wide md:btn-lg"
          style="display: none;"
          x-data="{showBackToAppButton:false}"
          x-show="showBackToAppButton"
          x-transition.opacity
          @back-to-app-button.window="showBackToAppButton=$event.detail"
-         @click ="$dispatch('replace-frames-with-these',[{src:'/api/site-frames/landing?_vercel_no_cache=1',classes:''}])">TORNA ALLA APP</div>
+         @click ="$dispatch('replace-frames-with-these',[{src:'/api/site-frames/landing?_vercel_no_cache=1',classes:''}])">TORNA ALLA APP</button>
 </body>
 
 </html>

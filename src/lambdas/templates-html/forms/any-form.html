@@ -40,12 +40,12 @@
 
                         <!--actions-->
                         <div class="w-full">
-                                <div class="btn btn-secondary btn-lg float-left" x-bind:disabled="submitting" @click="$dispatch('')">Annulla</div>
-                                <div class="btn btn-primary btn-lg float-right" 
+                                <button class="btn btn-secondary btn-lg float-left" x-bind:disabled="submitting" @click="$dispatch('')">Annulla</button>
+                                <button class="btn btn-primary btn-lg float-right" 
                                      x-bind:disabled="!submitEnabled" 
                                      @click="$dispatch('submit')"
                                      x-bind:class="{'animate-pulse':submitting}"
-                                     x-text="submitting ? 'Sto inviando' : '&nbsp;&nbsp;Invia&nbsp;&nbsp;'"></div>
+                                     x-text="submitting ? 'Sto inviando' : '&nbsp;&nbsp;Invia&nbsp;&nbsp;'"></button>
                         </div>
                 </div>
 
