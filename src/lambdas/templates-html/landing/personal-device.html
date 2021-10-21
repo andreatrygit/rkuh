@@ -95,8 +95,8 @@
             x-bind:class="{'border-secondary':state.includes('shared'), 'border-accent':state.includes('clocking')}"
             x-show="qr" x-transition:enter.opacity.duration.500ms
             @qr-code-scanner-start.window = "navigator.mediaDevices.getUserMedia({ video : { facingMode: { exact: 'environment' } } })
-                                             .then(mediaStream => document.getElementById('qr-code-scanner-video').srcObject = mediaStream, $dispatch('qr-code-scanner-start-done'))
-                                             .catch(err => console.log(err.name + ': ' + err.message), $dispatch('qr-code-scanner-start-done'))"
+                                             .then(function(mediaStream) {document.getElementById('qr-code-scanner-video').srcObject = mediaStream; $dispatch('qr-code-scanner-start-done')})
+                                             .catch(function(err) {console.log(err.name + ': ' + err.message); $dispatch('qr-code-scanner-start-done')})"
             @qr-code-scanner-stop.window="document.getElementById('qr-code-scanner-video').srcObject.getTracks().forEach((track) => track.stop()); document.getElementById('qr-code-scanner-video').srcObject=null">
     </video>
     <canvas id="qr-code-scanner-canvas"
