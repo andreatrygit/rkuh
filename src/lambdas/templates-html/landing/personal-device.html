@@ -143,6 +143,6 @@
     <button class="btn btn-wide btn-lg btn-secondary leading-tight" @click="$dispatch('shared')" x-show="state==='start'" x-transition:enter.opacity.duration.500ms>ENTRA SU POSTAZIONE CONDIVISA</button>
     <button class="btn btn-wide btn-lg btn-primary" @click="$dispatch('personal')" x-show="state==='start'" x-transition:enter.opacity.duration.500ms>ENTRA QUI</button>
     <button class="btn btn-outline btn-wide btn-lg btn-ghost" @click="$dispatch('replace-frames-with-these',[{src:'/api/site-frames/landing?force_site=1&_vercel_no_cache=1',classes:''}])" x-show="state==='start'" x-transition:enter.opacity.duration.500ms>VISITA HOME PAGE</button>
-    <button class="btn btn-outline btn-wide btn-lg btn-ghost" @qr-code-scanner-start.window="console.log($el.disabled)" @click="$dispatch('cancel')" x-show="cancel" x-transition:enter.opacity.duration.500ms>ANNULLA</button>
+    <button class="btn btn-outline btn-wide btn-lg btn-ghost" @qr-code-scanner-start.window="$el.disabled=true" @click="$dispatch('cancel')" x-show="cancel" x-transition:enter.opacity.duration.500ms>ANNULLA</button>
 </div>
 </turbo-frame>
