@@ -44,7 +44,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta Text</div>
                                 <input type="text" class="text-2xl max-w-full input input-lg input-bordered" placeholder="scrivi del testo"
                                 @input="$dispatch('field-new-value',{fieldName:'text',fieldValue:$event.target.value})">
-                                <div class="text-xl ml-6 mt-1 bg-error text-neutral-content max-w-full break-words">Messaggio di effffffffffffffffffffffffffffffffffffffffffffff fsdfsdf sdfsdfsdfsd sdfsdfsdsd sdfsdfsd  rrore</div>
+                                <div class="text-xl ml-6 mt-1 badge badge-error break-words">Messaggio di effffffffffffffffffffffffffffffffffffffffffffff fsdfsdf sdfsdfsdfsd sdfsdfsdsd sdfsdfsd  rrore</div>
                         </label>
 
                          <!-- textarea -->
@@ -52,7 +52,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta Textarea</div>
                                 <textarea class="text-2xl max-w-full textarea textarea-bordered" placeholder="scrivi del testo"
                                 @input="$dispatch('field-new-value',{fieldName:'textarea',fieldValue:$event.target.value})"></textarea>
-                                <div class="text-xl ml-6 mt-1 bg-error text-neutral-content max-w-full break-words">Messaggio di errore</div>
+                                <div class="text-xl ml-6 mt-1 badge badge-error break-words">Messaggio di errore</div>
                         </label>
                         
                         <!-- dateTimeLocal -->
@@ -60,7 +60,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta DateTimeLocal</div>
                                 <input type="datetime-local" class="text-2xl max-w-full input input-lg input-bordered"
                                 @input="$dispatch('field-new-value',{fieldName:'dateTimeLocal',fieldValue:$event.target.value})">
-                                <div class="text-xl ml-6 mt-1 bg-error text-neutral-content max-w-full break-words">Messaggio di errore</div>
+                                <div class="text-xl ml-6 mt-1 badge badge-error break-words">Messaggio di errore</div>
                         </label>
 
                         <!-- date -->
@@ -68,7 +68,7 @@
                                <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta Date</div>
                                <input type="date" class="text-2xl max-w-full input input-lg input-bordered"
                                @input="$dispatch('field-new-value',{fieldName:'date',fieldValue:$event.target.value})">
-                               <div class="text-xl ml-6 mt-1 bg-error text-neutral-content max-w-full break-words">Messaggio di errore</div>
+                               <div class="text-xl ml-6 mt-1 badge badge-error break-words">Messaggio di errore</div>
                        </label>
 
                        <!-- month -->
@@ -76,7 +76,7 @@
                                <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta Month</div>
                                <input type="month" class="text-2xl max-w-full input input-lg input-bordered"
                                @input="$dispatch('field-new-value',{fieldName:'month',fieldValue:$event.target.value})">
-                               <div class="text-xl ml-6 mt-1 bg-error text-neutral-content max-w-full break-words">Messaggio di errore</div>
+                               <div class="text-xl ml-6 mt-1 badge badge-error break-words">Messaggio di errore</div>
                        </label>
 
                         <!-- time -->
@@ -84,7 +84,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta Tme</div>
                                 <input type="time" class="text-2xl max-w-full input input-lg input-bordered"
                                 @input="$dispatch('field-new-value',{fieldName:'time',fieldValue:$event.target.value})">
-                                <div class="text-xl ml-6 mt-1 bg-error text-neutral-content max-w-full break-words">Messaggio di errore</div>
+                                <div class="text-xl ml-6 mt-1 badge badge-error break-words">Messaggio di errore</div>
                         </label>
 
                         <!-- email -->
@@ -92,7 +92,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta Email</div>
                                 <input type="email" class="text-2xl max-w-full input input-lg input-bordered" placeholder="Inserisci una email"
                                 @input="$dispatch('field-new-value',{fieldName:'email',fieldValue:$event.target.value})">
-                                <div class="text-xl ml-6 mt-1 bg-error text-neutral-content max-w-full break-words">Messaggio di errore</div>
+                                <div class="text-xl ml-6 mt-1 badge badge-error break-words">Messaggio di errore</div>
                         </label>
 
                         <!-- tel -->
@@ -100,7 +100,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta Tel</div>
                                 <input type="tel" class="text-2xl max-w-full input input-lg input-bordered" placeholder="Inserisci un numero di telefono"
                                 @input="$dispatch('field-new-value',{fieldName:'tel',fieldValue:$event.target.value})">
-                                <div class="text-xl ml-6 mt-1 bg-error text-neutral-content max-w-full break-words">Messaggio di errore</div>
+                                <div class="text-xl ml-6 mt-1 badge badge-error break-words">Messaggio di errore</div>
                         </label>
 
                          <!-- password -->
@@ -108,7 +108,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta Password</div>
                                 <input type="password" class="text-2xl max-w-full input input-lg input-bordered" placeholder="Inserisci la password"
                                 @input="$dispatch('field-new-value',{fieldName:'password',fieldValue:$event.target.value})">
-                                <div class="text-xl ml-6 mt-1 bg-error text-neutral-content max-w-full break-words">Messaggio di errore</div>
+                                <div class="text-xl ml-6 mt-1 badge badge-error break-words">Messaggio di errore</div>
                         </label>
 
                         <!-- number -->
@@ -116,7 +116,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta Number</div>
                                 <input type="number" class="text-2xl max-w-full input input-lg input-bordered" placeholder="Inserisci un numero"
                                 @input="$dispatch('field-new-value',{fieldName:'number',fieldValue:$event.target.value})">
-                                <div class="text-xl ml-6 mt-1 bg-error text-neutral-content max-w-full break-words">Messaggio di errore</div>
+                                <div class="text-xl ml-6 mt-1 badge badge-error break-words">Messaggio di errore</div>
                         </label>
 
 
