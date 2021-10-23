@@ -26,14 +26,14 @@
                 
                 <div class="w-full flex flex-col flex-nowrap justify-start items-center">
                         <!-- checkbox -->
-                        <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-3 p-0">
+                        <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-3">
                         <input type="checkbox" class="checkbox checkbox-lg"
                         @input="$dispatch('field-new-value',{fieldName:'checkbox',fieldValue:$event.target.checked})">
                         <div class="text-xl text-base-content break-words">Etichetta Checkbox</div>
                         </label>
 
                         <!-- toggle -->
-                        <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-3 p-0">
+                        <label class="label cursor-pointer w-full flex flex-row flex-nowrap justify-start items-center space-x-3">
                                 <input type="checkbox" class="toggle toggle-lg flex-shrink-0"
                                 @input="$dispatch('field-new-value',{fieldName:'toggle',fieldValue:$event.target.checked})">
                                 <div class="text-xl text-base-content break-words">Etichetta Toggle</div>
