@@ -5,9 +5,15 @@
                                 checkbox:{mandatory:false, value:false},
                                 toggle:{mandatory:false, value:false},
                                 text:{mandatory:true, value:''},
-                                date:{mandatory:true, value:''},
+                                textarea:{mandatory:true, value:''},
                                 dateTimeLocal:{mandatory:true, value:''},
-                                email:{mandatory:true, value:''}
+                                date:{mandatory:true, value:''},
+                                month:{mandatory:true, value:''},
+                                time:{mandatory:true, value:''},
+                                email:{mandatory:true, value:''},
+                                tel:{mandatory:true, value:''},
+                                password:{mandatory:true, value:''},
+                                number:{mandatory:true, value:''}
                                 }
                         }"
                 @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue, submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value), console.log($event.detail)"
