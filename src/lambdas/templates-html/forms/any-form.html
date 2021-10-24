@@ -4,7 +4,7 @@
                         fields:{
                                 checkbox:{mandatory:false, value:false},
                                 toggle:{mandatory:false, value:false},
-                                text:{mandatory:true, value:'', validationError:'hey!'},
+                                text:{mandatory:true, value:'', validationError:'Messaggio di effffffffffffffffffffffffffffffffffffffffffffff fsdfsdf sdfsdfsdfsd sdfsdfsdsd sdfsdfsd  rrore'},
                                 textarea:{mandatory:true, value:''},
                                 dateTimeLocal:{mandatory:true, value:''},
                                 date:{mandatory:true, value:''},
@@ -44,7 +44,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-words">Etichetta Text</div>
                                 <input type="text" class="text-2xl max-w-full input input-lg input-bordered" placeholder="scrivi del testo"
                                 @input="$dispatch('field-new-value',{fieldName:'text',fieldValue:$event.target.value})">
-                                <div class="alert alert-error break-words text-xl ml-6 mr-6 mt-1">Messaggio di effffffffffffffffffffffffffffffffffffffffffffff fsdfsdf sdfsdfsdfsd sdfsdfsdsd sdfsdfsd  rrore</div>
+                                <div class="alert alert-error break-words text-xl ml-6 mr-6 mt-1" x-text="fields.text.validationError"></div>
                         </label>
 
                          <!-- textarea -->
