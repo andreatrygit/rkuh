@@ -43,7 +43,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Text</div>
                                 <input type="text" class="text-2xl max-w-full input input-lg input-bordered" placeholder="scrivi del testo"
                                 @input="$dispatch('field-new-value',{fieldName:'text',fieldValue:$event.target.value})">
-                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-if="fields.text.validationError" x-text="fields.text.validationError"></div>
+                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-show="fields.text.validationError" x-text="fields.text.validationError"></div>
                         </label>
 
                          <!-- textarea -->
@@ -51,7 +51,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Textarea</div>
                                 <textarea class="text-2xl max-w-full textarea textarea-bordered" placeholder="scrivi del testo"
                                 @input="$dispatch('field-new-value',{fieldName:'textarea',fieldValue:$event.target.value})"></textarea>
-                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-if="fields.textarea.validationError" x-text="fields.textarea.validationError"></div>
+                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-show="fields.textarea.validationError" x-text="fields.textarea.validationError"></div>
                         </label>
                         
                         <!-- dateTimeLocal -->
@@ -59,7 +59,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta DateTimeLocal</div>
                                 <input type="datetime-local" class="text-2xl max-w-full input input-lg input-bordered"
                                 @input="$dispatch('field-new-value',{fieldName:'dateTimeLocal',fieldValue:$event.target.value})">
-                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-if="fields.DateTimeLocal.validationError" x-text="fields.DateTimeLocal.validationError"></div>
+                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-show="fields.DateTimeLocal.validationError" x-text="fields.DateTimeLocal.validationError"></div>
                         </label>
 
                         <!-- date -->
@@ -67,7 +67,7 @@
                                <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Date</div>
                                <input type="date" class="text-2xl max-w-full input input-lg input-bordered"
                                @input="$dispatch('field-new-value',{fieldName:'date',fieldValue:$event.target.value})">
-                               <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-if="fields.date.validationError" x-text="fields.date.validationError"></div>
+                               <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-show="fields.date.validationError" x-text="fields.date.validationError"></div>
                        </label>
 
                        <!-- month -->
@@ -75,7 +75,7 @@
                                <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Month</div>
                                <input type="month" class="text-2xl max-w-full input input-lg input-bordered"
                                @input="$dispatch('field-new-value',{fieldName:'month',fieldValue:$event.target.value})">
-                               <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-if="fields.month.validationError" x-text="fields.month.validationError"></div>
+                               <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-show="fields.month.validationError" x-text="fields.month.validationError"></div>
                        </label>
 
                         <!-- time -->
@@ -83,7 +83,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Tme</div>
                                 <input type="time" class="text-2xl max-w-full input input-lg input-bordered"
                                 @input="$dispatch('field-new-value',{fieldName:'time',fieldValue:$event.target.value})">
-                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-if="fields.time.validationError" x-text="fields.time.validationError"></div>
+                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-show="fields.time.validationError" x-text="fields.time.validationError"></div>
                         </label>
 
                         <!-- email -->
@@ -91,7 +91,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Email</div>
                                 <input type="email" class="text-2xl max-w-full input input-lg input-bordered" placeholder="Inserisci una email"
                                 @input="$dispatch('field-new-value',{fieldName:'email',fieldValue:$event.target.value})">
-                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-if="fields.email.validationError" x-text="fields.email.validationError"></div>
+                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-show="fields.email.validationError" x-text="fields.email.validationError"></div>
                         </label>
 
                         <!-- tel -->
@@ -99,7 +99,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Tel</div>
                                 <input type="tel" class="text-2xl max-w-full input input-lg input-bordered" placeholder="Inserisci un numero di telefono"
                                 @input="$dispatch('field-new-value',{fieldName:'tel',fieldValue:$event.target.value})">
-                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-if="fields.tel.validationError" x-text="fields.tel.validationError"></div>
+                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-show="fields.tel.validationError" x-text="fields.tel.validationError"></div>
                         </label>
 
                         <!-- number -->
@@ -107,7 +107,7 @@
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Number</div>
                                 <input type="number" class="text-2xl max-w-full input input-lg input-bordered" placeholder="Inserisci un numero"
                                 @input="$dispatch('field-new-value',{fieldName:'number',fieldValue:$event.target.value})">
-                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-if="fields.number.validationError" x-text="fields.number.validationError"></div>
+                                <div class="text-xl mt-1 mb-1 alert alert-error break-all" x-show="fields.number.validationError" x-text="fields.number.validationError"></div>
                         </label>
 
 
