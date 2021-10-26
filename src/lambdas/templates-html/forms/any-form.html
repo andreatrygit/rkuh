@@ -12,7 +12,8 @@
                                 time:{mandatory:true, value:'', validationError:''},
                                 email:{mandatory:true, value:'', validationError:''},
                                 tel:{mandatory:true, value:'', validationError:''},
-                                number:{mandatory:true, value:'', validationError:''}
+                                number:{mandatory:true, value:'', validationError:''},
+                                select:{mandatory:true, value:'', validationError:''}
                                 }
                         }"
                 @field-new-value="fields[$event.detail.fieldName].validationError=$event.detail.fieldValue, submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value), console.log($event.detail)"
@@ -108,6 +109,19 @@
                                 <input type="number" class="text-2xl max-w-full input input-lg input-bordered" placeholder="Inserisci un numero"
                                 @input="$dispatch('field-new-value',{fieldName:'number',fieldValue:$event.target.value})">
                                 <div style="display: none;" class="text-xl mt-1 alert alert-error break-all" x-show="fields.number.validationError" x-transition:enter.opacity.duration.500ms x-text="fields.number.validationError"></div>
+                        </label>
+
+                         <!-- select -->
+                         <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-4">
+                                <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Select</div>
+                                <select class="text-2xl max-w-full select select-lg select-bordered"
+                                @input="$dispatch('field-new-value',{fieldName:'select',fieldValue:$event.target.value})">
+                                        <option value="hey">hey</option>
+                                        <option value="ho">ho</option>
+                                        <option value="1">fsdfmspmdfpsdmfp sspadmfpasdmfpsmdfmpsdpfmpsmdfmspdmfpasmdfmspdfmpsdmf</option>
+                                        <option value="2">sdfsdfsdf</option>
+                                </select>
+                                <div style="display: none;" class="text-xl mt-1 alert alert-error break-all" x-show="fields.select.validationError" x-transition:enter.opacity.duration.500ms x-text="fields.select.validationError"></div>
                         </label>
 
 
