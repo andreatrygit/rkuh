@@ -40,7 +40,7 @@
                         </label>
 
                         <!-- text -->
-                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-4">
+                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-2">
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Text</div>
                                 <input type="text" class="text-2xl max-w-full input input-lg input-bordered" placeholder="scrivi del testo"
                                 @input="$dispatch('field-new-value',{fieldName:'text',fieldValue:$event.target.value})">
@@ -48,7 +48,7 @@
                         </label>
 
                          <!-- textarea -->
-                         <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-4">
+                         <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-2">
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Textarea</div>
                                 <textarea class="text-2xl max-w-full textarea textarea-bordered" placeholder="scrivi del testo"
                                 @input="$dispatch('field-new-value',{fieldName:'textarea',fieldValue:$event.target.value})"></textarea>
@@ -56,7 +56,7 @@
                         </label>
                         
                         <!-- dateTimeLocal -->
-                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-4">
+                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-2">
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta DateTimeLocal</div>
                                 <input type="datetime-local" class="text-2xl max-w-full input input-lg input-bordered"
                                 @input="$dispatch('field-new-value',{fieldName:'dateTimeLocal',fieldValue:$event.target.value})">
@@ -64,7 +64,7 @@
                         </label>
 
                         <!-- date -->
-                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-4">
+                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-2">
                                <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Date</div>
                                <input type="date" class="text-2xl max-w-full input input-lg input-bordered"
                                @input="$dispatch('field-new-value',{fieldName:'date',fieldValue:$event.target.value})">
@@ -72,7 +72,7 @@
                        </label>
 
                        <!-- month -->
-                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-4">
+                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-2">
                                <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Month</div>
                                <input type="month" class="text-2xl max-w-full input input-lg input-bordered"
                                @input="$dispatch('field-new-value',{fieldName:'month',fieldValue:$event.target.value})">
@@ -80,15 +80,15 @@
                        </label>
 
                         <!-- time -->
-                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-4">
-                                <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Tme</div>
+                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-2">
+                                <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Time</div>
                                 <input type="time" class="text-2xl max-w-full input input-lg input-bordered"
                                 @input="$dispatch('field-new-value',{fieldName:'time',fieldValue:$event.target.value})">
                                 <div style="display: none;" class="text-xl mt-1 alert alert-error break-all" x-show="fields.time.validationError" x-transition:enter.opacity.duration.500ms x-text="fields.time.validationError"></div>
                         </label>
 
                         <!-- email -->
-                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-4">
+                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-2">
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Email</div>
                                 <input type="email" class="text-2xl max-w-full input input-lg input-bordered" placeholder="Inserisci una email"
                                 @input="$dispatch('field-new-value',{fieldName:'email',fieldValue:$event.target.value})">
@@ -96,7 +96,7 @@
                         </label>
 
                         <!-- tel -->
-                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-4">
+                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-2">
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Tel</div>
                                 <input type="tel" class="text-2xl max-w-full input input-lg input-bordered" placeholder="Inserisci un numero di telefono"
                                 @input="$dispatch('field-new-value',{fieldName:'tel',fieldValue:$event.target.value})">
@@ -104,7 +104,7 @@
                         </label>
 
                         <!-- number -->
-                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-4">
+                        <label class="label cursor-pointer w-full flex flex-col flex-nowrap justify-start items-start p-0 mt-2">
                                 <div class="ml-6 font-semibold text-xl text-base-content break-all">Etichetta Number</div>
                                 <input type="number" class="text-2xl max-w-full input input-lg input-bordered" placeholder="Inserisci un numero"
                                 @input="$dispatch('field-new-value',{fieldName:'number',fieldValue:$event.target.value})">
@@ -117,7 +117,7 @@
                                 <select class="text-2xl max-w-full select select-lg select-bordered"
                                 @input="$dispatch('field-new-value',{fieldName:'select',fieldValue:$event.target.value})">
                                         <option value="hey">hey</option>
-                                        <option value="ho">ho</option>
+                                        <option value="ho">ho</opti2n>
                                         <option value="1">fsdfmspmdfpsdmfp sspadmfpasdmfpsmdfmpsdpfmpsmdfmspdmfpasmdfmspdfmpsdmf</option>
                                         <option value="2">sdfsdfsdf</option>
                                 </select>
