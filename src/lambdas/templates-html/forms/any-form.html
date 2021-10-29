@@ -16,7 +16,7 @@
                                 select:{mandatory:true, value:'', validationError:''}
                                 }
                         }"
-                @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue, fields[$event.detail.fieldName].validationError ? fields[$event.detail.fieldName].validationError='' : null, submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value), console.log($event.detail)"
+                @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue, fields[$event.detail.fieldName].validationError ? fields[$event.detail.fieldName].validationError='' : null, submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value)"
                 @submit="submitting=true">
 
               
