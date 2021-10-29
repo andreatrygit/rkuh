@@ -4,7 +4,7 @@
                         fields:{
                                 checkbox:{mandatory:false, value:false},
                                 toggle:{mandatory:false, value:false},
-                                text:{mandatory:true, value:'', validationError:''},
+                                text:{mandatory:true, value:'', validationError:'hey'},
                                 textarea:{mandatory:true, value:'', validationError:''},
                                 dateTimeLocal:{mandatory:true, value:'', validationError:''},
                                 date:{mandatory:true, value:'', validationError:''},
@@ -16,7 +16,7 @@
                                 select:{mandatory:true, value:'', validationError:''}
                                 }
                         }"
-                @field-new-value="fields[$event.detail.fieldName].validationError=$event.detail.fieldValue, submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value), console.log($event.detail)"
+                @field-new-value="fields[$event.detail.fieldName].value=$event.detail.fieldValue, fields[$event.detail.fieldName].validationError ? fields[$event.detail.fieldName].validationError='' : null, submitEnabled=Object.keys(fields).every(key=>(!fields[key].mandatory)||fields[key].value), console.log($event.detail)"
                 @submit="submitting=true">
 
               
