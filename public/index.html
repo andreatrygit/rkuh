@@ -154,7 +154,7 @@
                                  x-data="{src:frame.src, srcCache:frame.src}"
                                  x-bind:id="src" 
                                  x-bind:src="src"
-                                 @reload-me="src='', src=srcCache"
+                                 @reload-me="src='', console.log(src), src=srcCache, console.log(src)"
                                  x-init="()=>{
                                      if(src.includes('landing')){
                                         if(src.includes('force_site=1')){
