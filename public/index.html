@@ -147,7 +147,8 @@
                             }"
                  @logged-in.window="frames=[{src:'/api/app-frames/forms/any-form?_vercel_no_cache=1',classes:''}]"
                  @log-out.window="frames=[{src:'/api/site-frames/landing?_vercel_no_cache=1',classes:''}]"
-                 @replace-frames-with-these.window="frames=$event.detail" 
+                 @replace-all-frames-with-these.window="frames=$event.detail" 
+                 @close-frame.window="frames.splice(frames.findIndex(e=>e.src===$event.detail.frameSrc),1)"
                  class="w-full flex flex-row flex-wrap content-center justify-center items-start">
                 <template x-for="frame in frames" :key="frame.src">
                     <turbo-frame x-bind:class="'w-full sm:w-1/2 lg:w-1/3 p-2 opacity-100 transition-opacity duration-500 frame-fade-in' + ' ' + frame.classes" 
@@ -175,7 +176,7 @@
          x-show="showBackToAppButton"
          x-transition.opacity
          @back-to-app-button.window="showBackToAppButton=$event.detail"
-         @click ="$dispatch('replace-frames-with-these',[{src:'/api/site-frames/landing?_vercel_no_cache=1',classes:''}])">TORNA ALLA APP</button>
+         @click ="$dispatch('replace-all-frames-with-these',[{src:'/api/site-frames/landing?_vercel_no_cache=1',classes:''}])">TORNA ALLA APP</button>
 </body>
 
 </html>
