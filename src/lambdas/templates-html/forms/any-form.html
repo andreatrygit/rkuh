@@ -138,7 +138,7 @@
 
                 <!--actions-->
                 <div class="w-full mt-4">
-                        <button class="btn btn-secondary btn-lg float-left" x-bind:disabled="submitting" @click="$dispatch('close-frame',{frameSrc:frameSrc})">Annulla</button>
+                        <button class="btn btn-secondary btn-lg" x-bind:disabled="submitting" @click="$dispatch('close-frame',{frameSrc:frameSrc})">Annulla</button>
                         <button class="btn btn-primary btn-lg float-right" 
                                 x-bind:disabled="(!submitEnabled)||error" 
                                 @click="$dispatch('submit'), error={title:'bad news',description:'something went wrong!'}"
