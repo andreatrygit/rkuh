@@ -50,4 +50,4 @@ il timeout globale di 3 min non sembra funzionare se c'è un focus
 barra orizzontale con grande frame in desktop
 studia classi su index ed eventualmente riscrivile
 operazioni atomiche sui frames
-encrypted connection to neo4j
+encrypted connection to neo4j with encryption option at driver instantiation with js
