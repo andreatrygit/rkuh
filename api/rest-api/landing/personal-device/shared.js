@@ -1,13 +1,12 @@
-import {toughCookie} from '../../../../src/lambdas/utils.js';
+import {appidList} from '../../../../src/lambdas/appid-list';
 
 module.exports = (req, res) => {
-    if (req.query.qrcode==="rkuh-shared-12345" && req.query.pin==='12345')
+    if (req.query.qrcode==="rkuh-shared-12345" && req.query.pin==='12345' && appidList.includes(req.query.appid))
     { 
-      res.status(200).json({"info":"logged-in: shared"});
+      res.status(200).json({"info":"logged-in: shared"}); //TODO anche sul db
     }
     else
     {
-      res.setHeader('Set-Cookie',[toughCookie('rkuh_session','',-1)]);
       res.status(200).json({"error":"wrong PIN or qrCode."});
     }
   }
