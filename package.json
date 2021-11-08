@@ -7,6 +7,10 @@
     "validator": "13.x"
   },
   "scripts": {
-    "build": "npx tailwindcss build ./src/frontend/styles.css -o ./public/global.css"
+    "build": "npx tailwindcss build ./src/frontend/styles.css -o ./public/global.css",
+    "test":"jest"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
   }
 }
