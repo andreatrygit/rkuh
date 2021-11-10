@@ -1,4 +1,4 @@
-const isBase64 = require('validator/lib/isBase64');
+import isBase64 from 'validator/lib/isEmail';
 
 function isPin(pin){
     return pin && typeof(pin)==='string' && /^[0-9]{5}$/.test(pin)
