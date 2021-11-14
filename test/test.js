@@ -1,10 +1,11 @@
 const {isPin, isPinAssertionsObject} = require('../src/lambdas/validation.js')
 const {isAppId, isAppIdAssertionsObject} = require('../src/lambdas/validation.js')
 const {isToken, isTokenAssertionsObject} = require('../src/lambdas/validation.js')
+const {testTokenEncDec} = require('../src/lambdas/utils.js')
 
 
 function testAssertionsObjects(){
-    console.log('--ASSERTIONS TEST')
+    console.log('\n--ASSERTIONS TEST')
     canditates = [
         [isPin,isPinAssertionsObject],
         [isAppId, isAppIdAssertionsObject],
@@ -25,10 +26,17 @@ function testAssertionsObjects(){
    
 }
 
+function testLowLevelIntegrations(){
+    console.log('\n--LOW LEVEL INTEGRATIONS TESTS');
+    testTokenEncDec();
+
+}
+
 module.exports.testAll = function(){
     try{
-        console.log('\n**************\n\nSTART OF TESTS\n\n**************\n')
+        console.log('\n**************\n\nSTART OF TESTS\n\n**************')
         testAssertionsObjects();
+        testLowLevelIntegrations();
         console.log('\n**************\n\nEND OF TESTS\n\n**************\n')
     }
     catch(e){

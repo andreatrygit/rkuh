@@ -42,3 +42,20 @@ export function redeemToken(token){
     }
 }
 
+module.exports.testTokenEncDec = function(){
+    console.log('\n\tTesting Token Encryption Decryption\n')
+    [encrypted,plain] = makeTokenPair(); //1st run
+    [decrypted, success] = redeemToken(encrypted);
+    if (success && plain === decrypted) {console.log('\t\tOK at token EncDec test: ' + plain + ' -> ' + encrypted + ' -> ' + decrypted)}
+    else {
+        console.log('\t\tFAILS at token EncDec test: ' + plain + ' -> ' + encrypted + ' -> ' + decrypted)
+        throw '\n!!! TESTS STOPPED !!!\n\n'
+    } 
+    [encrypted,plain] = makeTokenPair(); //2nd run 
+    [decrypted, success] = redeemToken(encrypted);
+    if (success && plain === decrypted) {console.log('\t\tOK at token EncDec test: ' + plain + ' -> ' + encrypted + ' -> ' + decrypted)}
+    else {
+        console.log('\t\tFAILS at token EncDec test: ' + plain + ' -> ' + encrypted + ' -> ' + decrypted)
+        throw '\n!!! TESTS STOPPED !!!\n\n'
+    } 
+}
