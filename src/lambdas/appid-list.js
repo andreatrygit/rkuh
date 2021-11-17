@@ -1,1 +1,1 @@
-export const appidList = [R06CEybGV0do97eFF5ico];
+module.exports.appidList = ['R06CEybGV0do97eFF5ico'];

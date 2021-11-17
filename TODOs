@@ -52,4 +52,10 @@ studia classi su index ed eventualmente riscrivile
 operazioni atomiche sui frames
 encrypted connection to neo4j with encryption option at driver instantiation with js
 const func export?
+
 switch to require
+test app with cookies
+complete automatic discovery
+test token encdec
+refactor app
+complete form errors

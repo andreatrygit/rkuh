@@ -1,9 +1,9 @@
-export function toughCookie(key,value,maxAge=180){
+module.exports.toughCookie = function(key,value,maxAge=180){
     return "__Host-" + key + "=" + (value ? value : '') + "; path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=" + maxAge.toString();
 }
 
 
-export function makeTokenPair(){
+module.exports.makeTokenPair = function(){
     const  crypto  = require('crypto');
     const tokenValueBytes = crypto.randomBytes(16);
 
@@ -19,7 +19,7 @@ export function makeTokenPair(){
     return [cipher.final('base64'),tokenValueBytes.toString('base64')];
 }
 
-export function redeemToken(token){
+module.exports.redeemToken = function(token){
     const crypto = require('crypto');
     const keyBytes = Buffer.from(process.env.TOKEN_AES256_KEY_32BYTES_BASE64,'base64');
     const ivBytes = Buffer.from(process.env.TOKEN_AES256_INIT_VECT_16BYTES_BASE64,'base64');
