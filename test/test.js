@@ -1,14 +1,12 @@
 const assert = require('assert/strict');
-const { Console } = require('console');
 const fs = require('fs');
-const {isPin, isPinAssertionsObject} = require('../src/lambdas/validation.js')
-const {isAppId, isAppIdAssertionsObject} = require('../src/lambdas/validation.js')
-const {isToken, isTokenAssertionsObject} = require('../src/lambdas/validation.js')
-
 
 function testAssertionsObjects(path='./src'){
     const dir = fs.opendirSync(path);
     let dirent;
+    let _module;
+    let funcName;
+    let assertionsObjectName;
     while (true) {
         dirent = dir.readSync();
         if (dirent) {
@@ -16,33 +14,58 @@ function testAssertionsObjects(path='./src'){
                 testAssertionsObjects(path+'/'+dirent.name)
             }
             if (dirent.isFile() && dirent.name.endsWith('.js')) {
-                console.log('requiring ' + dirent.name)
-                m = require('.' + path + '/' + dirent.name) //require stack is function local, not script based
-                console.log(Object.keys(m))
+                _module = require('.' + path + '/' + dirent.name) //require stack is function local, not script based
+                Object.keys(_module).forEach(key => {
+                    if (key.endsWith('AssertionsObject')) {
+                        assertionsObjectName = key 
+                        funcName = key.replace('AssertionsObject','');
+
+                        console.log('\n\tTesting Function -> ' + _module[assertionsObjectName].functionName + ' from ' + dirent.name + '\n')
+                        _module[assertionsObjectName].assertions.forEach(a => {
+                            console.log('\t\tTesting ' + a[2])
+                            assert.deepStrictEqual(_module[funcName](a[0]),a[1])
+                        })
+
+                    }
+                })
             }
         } 
         else {
             break;
         }
     }
-    // canditates = [
-    //     [isPin,isPinAssertionsObject],
-    //     [isAppId, isAppIdAssertionsObject],
-    //     [isToken, isTokenAssertionsObject]
-    // ]
-    
-    // canditates.forEach(c => {
-    //     console.log('\n\tTesting Function -> ' + c[1].functionName + '\n')
-    //     c[1].assertions.forEach(a => {
-    //         console.log('\t\tTesting ' + a[2])
-    //         assert.deepStrictEqual(c[0](a[0]),a[1])
-    //     })
-    // });
-   
 }
 
-function testLowLevelIntegrations(){
+function testIntegrations(path='./src'){
+    const dir = fs.opendirSync(path);
+    let dirent;
+    let _module;
+    let funcName;
+    while (true) {
+        dirent = dir.readSync();
+        if (dirent) {
+            if(dirent.isDirectory()){
+                testIntegrations(path+'/'+dirent.name)
+            }
+            if (dirent.isFile() && dirent.name.endsWith('.js')) {
+                _module = require('.' + path + '/' + dirent.name) //require stack is function local, not script based
+                Object.keys(_module).forEach(key => {
+                    if (key.startsWith('testIntegration')) {
+                        funcName = key;
+
+                        console.log('\n\tTesting Function -> ' + funcName + ' from ' + dirent.name + '\n');
+                       _module[funcName]();
+
+                    }
+                })
+            }
+        } 
+        else {
+            break;
+        }
+    }
 }
+
 
 module.exports.testAll = function(){
     try{
@@ -50,10 +73,10 @@ module.exports.testAll = function(){
         console.log('\n--ASSERTIONS TEST')
         testAssertionsObjects();
         console.log('\n--LOW LEVEL INTEGRATIONS TESTS');
-        testLowLevelIntegrations();
+        testIntegrations();
         console.log('\n**************\n\nEND OF TESTS\n\n**************\n')
     }
     catch(e){
-        console.log(e) //'\n!!! FAILURE: TESTS STOPPED !!! \n\n'
+        console.log('\n!!! FAILURE: TESTS STOPPED !!! \n\n##############################' + e)
     }
 }

@@ -59,3 +59,5 @@ complete automatic discovery
 test token encdec
 refactor app
 complete form errors
+
+!!! require mechanism spoils files with success from daisyui
