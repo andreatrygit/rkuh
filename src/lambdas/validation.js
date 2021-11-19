@@ -7,15 +7,15 @@ module.exports.isPin=function(pin){
 module.exports.isPinAssertionsObject = {
     functionName:"isPin",
     assertions: [
-        [null,false,'null'],
-        [undefined,false,'undefined'],
-        [12345,false,'number 12345'],
-        ["",false,'""'],
-        ['aaaaa',false,'aaaaa'],
-        ['123456',false,'123456'],
-        ['1234',false,'1234'],
-        ['00000',true,'00000'],
-        ['12121',true,'12121']
+        [null,false,'null is not a Pin'],
+        [undefined,false,'undefined is not a Pin'],
+        [12345,false,'number 12345 is not a Pin'],
+        ["",false,'"" is not a Pin'],
+        ['aaaaa',false,'aaaaa is not a Pin'],
+        ['123456',false,'123456 is not a Pin'],
+        ['1234',false,'1234 is not a Pin'],
+        ['00000',true,'00000 is a Pin'],
+        ['12121',true,'12121 is a Pin']
     ]
 }
 
@@ -26,15 +26,15 @@ module.exports.isAppId=function(appid){
 module.exports.isAppIdAssertionsObject = {
     functionName:"isAppId",
     assertions: [
-        [null,false,'null'],
-        [undefined,false,'undefined'],
-        [12345,false,'number 12345'],
-        ["",false,'""'],
-        ['aaaaaaaaaaaaaaaaaaaaaa',false,'aaaaaaaaaaaaaaaaaaaaaa'], //too long
-        ['aaaaaaaaaaaaaaaaaaaa',false,'aaaaaaaaaaaaaaaaaaaa'], //too short
-        ['*********************',false,'*********************'], //wrong chars
-        ['9Wu-dMpZnS2jzEqR_9I1w',true,'9Wu-dMpZnS2jzEqR_9I1w'],
-        ['kWwKxbI-a_8pXHuQUt9Gc',true,'kWwKxbI-a_8pXHuQUt9Gc']
+        [null,false,'null is not an appId'],
+        [undefined,false,'undefined is not an appId'],
+        [12345,false,'number 12345 is not an appId'],
+        ["",false,'"" is not an appId'],
+        ['aaaaaaaaaaaaaaaaaaaaaa',false,'aaaaaaaaaaaaaaaaaaaaaa is not an appId'], //too long
+        ['aaaaaaaaaaaaaaaaaaaa',false,'aaaaaaaaaaaaaaaaaaaa is not an appId'], //too short
+        ['*********************',false,'********************* is not an appId'], //wrong chars
+        ['9Wu-dMpZnS2jzEqR_9I1w',true,'9Wu-dMpZnS2jzEqR_9I1w is an appId'],
+        ['kWwKxbI-a_8pXHuQUt9Gc',true,'kWwKxbI-a_8pXHuQUt9Gc is an appId']
     ]
 }
 
@@ -45,14 +45,14 @@ module.exports.isToken=function(token){
 module.exports.isTokenAssertionsObject = {
     functionName:"isToken",
     assertions: [
-        [null,false,'null'],
-        [undefined,false,'undefined'],
-        [12345,false,'number 12345'],
-        ["",false,'""'],
-        ['aaaaaaaaaaaaaaaaaaaaaa',false,'aaaaaaaaaaaaaaaaaaaaaa'], //too short
-        ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',false,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'], //too long
-        ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@',false,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@'], //wrong chars
-        ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',true,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'],
-        ['YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYQ==',true,'YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYQ==']
+        [null,false,'null is not a token'],
+        [undefined,false,'undefined is not a token'],
+        [12345,false,'number 12345 is not a token'],
+        ["",false,'"" is not a token'],
+        ['aaaaaaaaaaaaaaaaaaaaaa',false,'aaaaaaaaaaaaaaaaaaaaaa is not a token'], //too short
+        ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',false,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa is not a token'], //too long
+        ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@',false,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@ is not a token'], //wrong chars
+        ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',true,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa is a token'],
+        ['YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYQ==',true,'YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYQ== is a token']
     ]
 }

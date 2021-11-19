@@ -1,4 +1,5 @@
 const assert = require('assert/strict');
+const  crypto  = require('crypto');
 
 module.exports.toughCookie = function(key,value,maxAge=180){
     return "__Host-" + key + "=" + (value ? value : '') + "; path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=" + maxAge.toString();
@@ -6,36 +7,32 @@ module.exports.toughCookie = function(key,value,maxAge=180){
 
 
 function makeTokenPair(){
-    const  crypto  = require('crypto');
-    const tokenValueBytes = crypto.randomBytes(16);
-
-    const antiForgeryBytes = Buffer.from(process.env.TOKEN_ANTI_FORGERY_KEY_16BYTES_BASE64,'base64');
-    
-    const valuetoEncrypt = Buffer.concat([tokenValueBytes,antiForgeryBytes]);
 
     const keyBytes = Buffer.from(process.env.TOKEN_AES256_KEY_32BYTES_BASE64,'base64');
     const ivBytes = Buffer.from(process.env.TOKEN_AES256_INIT_VECT_16BYTES_BASE64,'base64');
-
     const cipher = crypto.createCipheriv("aes256",keyBytes, ivBytes);
-    cipher.update(valuetoEncrypt);
-    return [cipher.final('base64'),tokenValueBytes.toString('base64')];
+
+    const tokenValueBytes = crypto.randomBytes(16);
+    const antiForgeryBytes = Buffer.from(process.env.TOKEN_ANTI_FORGERY_KEY_16BYTES_BASE64,'base64');
+    const valueToEncryptBytes = Buffer.concat([tokenValueBytes,antiForgeryBytes]);
+    
+    const encryptedBytes = Buffer.concat([cipher.update(valueToEncryptBytes),cipher.final()]);
+    return [encryptedBytes.toString('base64'),tokenValueBytes.toString('base64')];
 }
 
 module.exports.makeTokenPair = makeTokenPair;
 
 function redeemToken(token){
-    const crypto = require('crypto');
+
     const keyBytes = Buffer.from(process.env.TOKEN_AES256_KEY_32BYTES_BASE64,'base64');
     const ivBytes = Buffer.from(process.env.TOKEN_AES256_INIT_VECT_16BYTES_BASE64,'base64');
     const decipher = crypto.createDecipheriv("aes256",keyBytes, ivBytes);
     
-    const tokenBytes = Buffer.from(token,"base64");
-    const valueDecryptedBytes = decipher.update(tokenBytes);
-    decipher.final();
+    const encryptedBytes = Buffer.from(token,"base64");
+    const decryptedBytes = Buffer.concat([decipher.update(encryptedBytes),decipher.final()]);
 
-    const tokenValueBytes = valueDecryptedBytes.slice(0,16);
-    const antiforgeryCandidateBytes = valueDecryptedBytes.slice(16,32);
-
+    const tokenValueBytes = decryptedBytes.slice(0,16);
+    const antiforgeryCandidateBytes = decryptedBytes.slice(16,32);
     const antiForgeryBytes = Buffer.from(process.env.TOKEN_ANTI_FORGERY_KEY_16BYTES_BASE64,'base64');
 
     if (antiforgeryCandidateBytes.equals(antiForgeryBytes)){
@@ -50,14 +47,16 @@ module.exports.redeemToken=redeemToken;
 
 module.exports.testIntegrationTokenEncDec = function(){
     [encrypted,plain] = makeTokenPair();
+    console.log('\t\tTesting encryption: from ' + plain + ' to ' + encrypted);
+    assert.notDeepStrictEqual(plain,encrypted);
     [decrypted, success] = redeemToken(encrypted);
-    console.log('\t\tTesting token decryption is succesful');
+    console.log('\t\tTesting token decryption is succesful: ' + success);
     assert.deepStrictEqual(success,true);
-    console.log('\t\tTesting decrypted equals plain');
+    console.log('\t\tTesting decrypted equals plain: ' + decrypted + ' was ' + plain);
     assert.deepStrictEqual(decrypted,plain);
 
     [encrypted2,plain2] = makeTokenPair();
-    console.log('\t\tTesting two plaitexts are generated different: ' + plain + ' - ' + plain2);
+    console.log('\t\tTesting two randomic plaitexts are generated different: ' + plain + ' and ' + plain2);
     assert.notDeepStrictEqual(plain,plain2);
    
 }

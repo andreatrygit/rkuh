@@ -55,8 +55,6 @@ const func export?
 
 switch to require
 test app with cookies
-complete automatic discovery
-test token encdec
 refactor app
 complete form errors
 

@@ -72,7 +72,7 @@ module.exports.testAll = function(){
         console.log('\n**************\n\nSTART OF TESTS\n\n**************')
         console.log('\n--ASSERTIONS TEST')
         testAssertionsObjects();
-        console.log('\n--LOW LEVEL INTEGRATIONS TESTS');
+        console.log('\n--INTEGRATION TESTS');
         testIntegrations();
         console.log('\n**************\n\nEND OF TESTS\n\n**************\n')
     }
