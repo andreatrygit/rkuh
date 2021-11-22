@@ -55,8 +55,7 @@ const func export?
 
 switch to require
 test app with cookies
-use base64url, check if validators offers that check
 refactor app
 complete form errors
-
+check all appid and appid list spelling
 !!! require mechanism spoils files with success from daisyui

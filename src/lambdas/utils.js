@@ -1,6 +1,7 @@
 const assert = require('assert/strict');
 const  crypto  = require('crypto');
 
+
 module.exports.toughCookie = function(key,value,maxAge=180){
     return "__Host-" + key + "=" + (value ? value : '') + "; path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=" + maxAge.toString();
 }

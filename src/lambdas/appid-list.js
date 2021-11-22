@@ -1,1 +1,0 @@
-module.exports.appidList = ['R06CEybGV0do97eFF5ico'];
