@@ -28,9 +28,15 @@ function redeemToken(token){
     const keyBytes = Buffer.from(process.env.TOKEN_AES256_KEY_32BYTES_BASE64,'base64');
     const ivBytes = Buffer.from(process.env.TOKEN_AES256_INIT_VECT_16BYTES_BASE64,'base64');
     const decipher = crypto.createDecipheriv("aes256",keyBytes, ivBytes);
+
+    var decryptedBytes;
     
     const encryptedBytes = Buffer.from(token,"base64");
-    const decryptedBytes = Buffer.concat([decipher.update(encryptedBytes),decipher.final()]);
+    try {
+        decryptedBytes = Buffer.concat([decipher.update(encryptedBytes),decipher.final()]);
+    } catch (error) {
+        return [null,false]//in case decryption fails        
+    }
 
     const tokenValueBytes = decryptedBytes.slice(0,16);
     const antiforgeryCandidateBytes = decryptedBytes.slice(16,32);
