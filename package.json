@@ -2,6 +2,7 @@
   "dependencies": {
     "autoprefixer": "10.x",
     "daisyui": "1.x",
+    "neo4j-driver": "^4.4.1",
     "postcss": "8.x",
     "tailwindcss": "2.x",
     "validator": "13.x"

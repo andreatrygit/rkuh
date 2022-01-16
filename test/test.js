@@ -1,4 +1,5 @@
 const assert = require('assert/strict');
+const { log } = require('console');
 const fs = require('fs');
 
 function testAssertionsObjects(path='./src'){
@@ -66,6 +67,36 @@ function testIntegrations(path='./src'){
     }
 }
 
+async function testDb(){
+    const prompt = require('prompt-sync')({sigint: true});
+    const uri = prompt('\nConnection URI: ');
+    const user = prompt('Username: ');
+    const password = prompt('Password: ');
+
+    const neo4j = require('neo4j-driver')
+
+    const driver = neo4j.driver(uri, neo4j.auth.basic(user, password))
+    const session = driver.session()
+    const personName = 'Alice'
+
+    try {
+    const result = await session.run(
+        'CREATE (a:Person {name: $name}) RETURN a',
+        { name: personName }
+    )
+
+    const singleRecord = result.records[0]
+    const node = singleRecord.get(0)
+
+    console.log(node.properties.name)
+    } finally {
+    await session.close()
+    }
+
+    // on application exit:
+    await driver.close()
+        
+}
 
 module.exports.testAll = function(){
     try{
@@ -74,6 +105,8 @@ module.exports.testAll = function(){
         testAssertionsObjects();
         console.log('\n--INTEGRATION TESTS');
         testIntegrations();
+        console.log('\n--DB TESTS');
+        testDb();
         console.log('\n**************\n\nEND OF TESTS\n\n**************\n')
     }
     catch(e){
