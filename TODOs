@@ -76,4 +76,4 @@ api
         \app
     \data
 
-crea isREquest senza alcun cookie per il pairing
+metti il timeout del client a 200 secondi e la expiration dei cookies a 180 secondi, così per i frame, se arriva una richiesta valida il frame server può rispondere senza dubbi
