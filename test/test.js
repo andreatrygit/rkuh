@@ -75,9 +75,33 @@ async function testDb(){
 
     const neo4j = require('neo4j-driver')
 
-    const driver = neo4j.driver(uri, neo4j.auth.basic(user, password))
+    const driver = neo4j.driver(uri, neo4j.auth.basic(user, password),
+        {
+            maxConnectionLifetime: 15,
+            maxConnectionPoolSize: 1,
+            connectionAcquisitionTimeout: 10,
+            maxTransactionRetryTime: 0
+        }
+    );
+
     const session = driver.session()
-    const personName = 'Alice'
+
+    const writeTxPromise = session.writeTransaction(tx => tx.run('CREATE (a:Foo)'));
+
+    writeTxPromise.catch(error => {
+        if (error.code === neo4j.error.SERVICE_UNAVAILABLE) {
+            console.log('Unable to create node: ' + error.code);
+        }
+    });
+
+    writeTxPromise.then(result => {
+        session.close();
+      
+        if (result) {
+          console.log('Foo created');
+        }
+      });
+    /* const personName = 'Eve'
 
     try {
     const result = await session.run(
@@ -94,7 +118,7 @@ async function testDb(){
     }
 
     // on application exit:
-    await driver.close()
+    await driver.close() */
         
 }
 

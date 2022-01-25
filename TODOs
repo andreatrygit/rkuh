@@ -59,3 +59,21 @@ refactor app
 complete form errors
 check all appid and appid list spelling
 !!! require mechanism spoils files with success from daisyui
+
+driver creation error
+transaction error
+transaction data error: differentiate by case
+neo client timeout
+vercel timeout
+http error
+
+api
+    \frames
+        \site
+            \home
+            \login
+            \pairing
+        \app
+    \data
+
+crea isREquest senza alcun cookie per il pairing
