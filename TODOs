@@ -71,9 +71,85 @@ api
     \frames
         \site
             \home
-            \login
+            \landing
             \pairing
         \app
     \data
 
 metti il timeout del client a 200 secondi e la expiration dei cookies a 180 secondi, così per i frame, se arriva una richiesta valida il frame server può rispondere senza dubbi
+
+per cancellare cookies
+res.setHeader('Set-Cookie',[toughCookie(('rkuh_session-appid_'+req.query.appid),'',-1)]); //TODO cancella anche sul db
+
+ res.setHeader('Set-Cookie',[toughCookie(('rkuh_session-appid_'+req.query.appid),'@@@@@',3*60)]); //TODO anche sul db
+    res.status(200).json({"info":"logged-in: personal"});
+  }
+  else
+  {
+    res.status(200).json({"error":"wrong PIN"});
+
+
+    pairing HTML
+
+const baseString =
+`<!DOCTYPE html>`+
+`<html lang="en">`+
+`<head>`+
+    `<meta name="description" content="Rkuh Device Pairing" />`+
+    `<meta charset="utf-8">`+
+    `<title>Rkuh Device Pairing</title>`+
+    `<meta name="viewport" content="width=device-width, initial-scale=1">`+
+    `<meta name="author" content="Andrea Scotti">`+
+    `<link rel="stylesheet" type="text/css" href="../../../../global.css">`+
+`<head>`;
+
+const successString =
+`<body>`+
+    `<div class="w-screen h-screen p-4 flex flex-col flex-nowrap justify-center items-center space-y-5 md:space-y-10">`+
+        `<div class="text-6xl md:text-9xl animate-bounce">&#128516</div>`+
+        `<div class="text-4xl md:text-6xl text-center">Questo dispositivo è ora associato ad Rkuh!</div>`+
+        `<a href="../../../.." class="btn btn-primary btn-large">EFFETTUA L&#39&nbspACCESSO</a>`+
+    `</div>`+
+`</body>`;
+
+const failureString =
+`<body>`+
+    `<div class="w-screen h-screen p-4 flex flex-col flex-nowrap justify-center items-center space-y-5 md:space-y-10">`+
+        `<div class="text-6xl md:text-9xl animate-bounce">&#128562</div>`+
+        `<div class="text-4xl md:text-6xl text-center">Qualcosa non va...questo dispositivo NON è stato associato ad Rkuh!</div>`+
+        `<a href="../../../.." class="btn btn-primary btn-large">VAI ALLA HOME PAGE</a>`+
+    `</div>`+
+`</body>`;
+
+
+reading from FS also with replacing functionality
+
+const { readFileSync } = require('fs')
+
+module.exports = (req, res) => {
+
+  switch(req.cookies['__Host-rkuh_device']){
+    case 'timeclock':
+      res.status(200).send(readFileSync("src/lambdas/templates-html/landing/timeclock-device.html", 'utf8'));
+      break;
+    case 'shared':
+      res.status(200).send(readFileSync("src/lambdas/templates-html/landing/shared-device.html", 'utf8'));
+      break;
+    case 'personal':
+      if (req.query['force_site']==='1') {
+        const tempString = readFileSync("src/lambdas/templates-html/landing/visitor-device.html", 'utf8');
+        const finalString = tempString.replace('?_vercel_no_cache=1','?force_site=1&_vercel_no_cache=1'); //replacing
+        res.status(200).send(finalString);  
+      } else {
+        res.status(200).send(readFileSync("src/lambdas/templates-html/landing/personal-device.html", 'utf8'));
+      }
+      break;  
+    default:
+      res.status(200).send(readFileSync("src/lambdas/templates-html/landing/visitor-device.html", 'utf8'));
+      break;  
+  }
+  
+}
+
+res.setHeader('Set-Cookie',[toughCookie(('rkuh_session-appid_'+req.query.appid),'@@@@@',3*60)]); //TODO anche sul db
+    res.status(200).json({"info":"logged-in: personal"});
