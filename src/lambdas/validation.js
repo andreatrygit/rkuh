@@ -59,20 +59,25 @@ module.exports.isTokenAssertionsObject = {
     ]
 }
 
-module.exports.isRequest = function(req,isLogged=true){
+module.exports.isRequest = function(req, isRegisteredDevice=true, isLogged=true){
     const appid = req.query.appid;
     if (this.isAppId(appid)) {
         if (appIdList.includes(appid)) {
-            const token = req.cookies['__Host-rkuh_'+(isLogged?'session':'device')+'-appid_'+appid];
-            if (this.isToken(token)) {
-                [tokenValue, success] = redeemToken(token);
-                if (success) {
-                    return [tokenValue,true]
+            if (isRegisteredDevice){
+                const token = req.cookies['__Host-rkuh_'+(isLogged?'session':'device')+'-appid_'+appid];
+                if (this.isToken(token)) {
+                    [tokenValue, success] = redeemToken(token);
+                    if (success) {
+                        return [tokenValue,true]
+                    } else {
+                        return ['Token redemption failed',false]
+                    }
                 } else {
-                    return ['Token redemption failed',false]
+                    return ['Token supplied is not a token',false]
                 }
-            } else {
-                return ['Token supplied is not a token',false]
+            }
+            else{
+                return ['', true]
             }
         } else {
             return ['AppId supplied is not known.', false]
@@ -90,11 +95,11 @@ module.exports.isRequestAssertionsObject = {
         [{query:{appid:'HqGL5D1g_y7c6lHtGrhpy'}},['AppId supplied is not known.', false],'{query:{appid:"HqGL5D1g_y7c6lHtGrhpy"}} is not a request because appid is not known'],
         [{query:{appid:'R06CEybGV0do97eFF5ico'}, cookies:{}},['Token supplied is not a token',false],'{query:{appid:"R06CEybGV0do97eFF5ico"}, cookies:{}} is not a request because does not have a right token'],
         [{query:{appid:'R06CEybGV0do97eFF5ico'}, cookies:{'__Host-rkuh_session-appid_R06CEybGV0do97eFF5ico':'W3gRNIyevPiH7IOlKrYVBsFtwiG1iRNJrmSaMuvRIQE='}},['Token redemption failed',false],'{query:{appid:"R06CEybGV0do97eFF5ico"}, cookies:{"__Host-rkuh_session-appid_R06CEybGV0do97eFF5ico":"xUnHpOA6TTEYuLwdArZECZulubM="}} is not a request beacsue token doea not redeem'],
-        [{query:{appid:'R06CEybGV0do97eFF5ico'}, cookies:{'__Host-rkuh_session-appid_R06CEybGV0do97eFF5ico':'llsowqNmwwLg6EtN4tvV7G2q0KnYVs4u+kI/WM9dMSfUZoqYulYXE0aQ+T6HFr5s'}},['1uIOgDJuIz5iyh98UlgB/w==',true],'{query:{appid:"R06CEybGV0do97eFF5ico"}, cookies:{"__Host-rkuh_session-appid_R06CEybGV0do97eFF5ico":"llsowqNmwwLg6EtN4tvV7G2q0KnYVs4u+kI/WM9dMSfUZoqYulYXE0aQ+T6HFr5s" is a request']
+        [{query:{appid:'R06CEybGV0do97eFF5ico'}, cookies:{'__Host-rkuh_session-appid_R06CEybGV0do97eFF5ico':'llsowqNmwwLg6EtN4tvV7G2q0KnYVs4u+kI/WM9dMSfUZoqYulYXE0aQ+T6HFr5s'}},['1uIOgDJuIz5iyh98UlgB/w==',true],'{query:{appid:"R06CEybGV0do97eFF5ico"}, cookies:{"__Host-rkuh_session-appid_R06CEybGV0do97eFF5ico":"llsowqNmwwLg6EtN4tvV7G2q0KnYVs4u+kI/WM9dMSfUZoqYulYXE0aQ+T6HFr5s" is a request from a registered and logged device']
     ]
 }
 
-module.exports.isRequestNotLogged = (req) => this.isRequest(req,false);
+module.exports.isRequestNotLogged = (req) => this.isRequest(req,true,false);
 
 module.exports.isRequestNotLoggedAssertionsObject = {
     functionName:'isRequestNotLogged',
@@ -104,6 +109,18 @@ module.exports.isRequestNotLoggedAssertionsObject = {
         [{query:{appid:'HqGL5D1g_y7c6lHtGrhpy'}},['AppId supplied is not known.', false],'{query:{appid:"HqGL5D1g_y7c6lHtGrhpy"}} is not a request because appid is not known'],
         [{query:{appid:'R06CEybGV0do97eFF5ico'}, cookies:{}},['Token supplied is not a token',false],'{query:{appid:"R06CEybGV0do97eFF5ico"}, cookies:{}} is not a request beacause does not have a right token'],
         [{query:{appid:'R06CEybGV0do97eFF5ico'}, cookies:{'__Host-rkuh_device-appid_R06CEybGV0do97eFF5ico':'W3gRNIyevPiH7IOlKrYVBsFtwiG1iRNJrmSaMuvRIQE='}},['Token redemption failed',false],'{query:{appid:"R06CEybGV0do97eFF5ico"}, cookies:{"__Host-rkuh_session-appid_R06CEybGV0do97eFF5ico":"xUnHpOA6TTEYuLwdArZECZulubM="}} is not a request beacsue token does not redeem'],
-        [{query:{appid:'R06CEybGV0do97eFF5ico'}, cookies:{'__Host-rkuh_device-appid_R06CEybGV0do97eFF5ico':'llsowqNmwwLg6EtN4tvV7G2q0KnYVs4u+kI/WM9dMSfUZoqYulYXE0aQ+T6HFr5s'}},['1uIOgDJuIz5iyh98UlgB/w==',true],'{query:{appid:"R06CEybGV0do97eFF5ico"}, cookies:{"__Host-rkuh_device-appid_R06CEybGV0do97eFF5ico":"llsowqNmwwLg6EtN4tvV7G2q0KnYVs4u+kI/WM9dMSfUZoqYulYXE0aQ+T6HFr5s" is a request']
+        [{query:{appid:'R06CEybGV0do97eFF5ico'}, cookies:{'__Host-rkuh_device-appid_R06CEybGV0do97eFF5ico':'llsowqNmwwLg6EtN4tvV7G2q0KnYVs4u+kI/WM9dMSfUZoqYulYXE0aQ+T6HFr5s'}},['1uIOgDJuIz5iyh98UlgB/w==',true],'{query:{appid:"R06CEybGV0do97eFF5ico"}, cookies:{"__Host-rkuh_device-appid_R06CEybGV0do97eFF5ico":"llsowqNmwwLg6EtN4tvV7G2q0KnYVs4u+kI/WM9dMSfUZoqYulYXE0aQ+T6HFr5s" is a request from not logged device']
+    ]
+}
+
+module.exports.isRequestNotRegisteredDevice = (req) => this.isRequest(req,false,false);
+
+module.exports.isRequestNotRegisteredDeviceAssertionsObject = {
+    functionName:'isRequestNotRegisteredDevice',
+    assertions:[
+        [{query:{}},['AppId supplied is not an AppId', false],'{query:{}} is not a request'],
+        [{query:{appid:123}},['AppId supplied is not an AppId', false],'{query:{appid:123}} is not a request'],
+        [{query:{appid:'HqGL5D1g_y7c6lHtGrhpy'}},['AppId supplied is not known.', false],'{query:{appid:"HqGL5D1g_y7c6lHtGrhpy"}} is not a request because appid is not known'],
+        [{query:{appid:'R06CEybGV0do97eFF5ico'}},['',true],'{query:{appid:"R06CEybGV0do97eFF5ico"}} is a request from not registered device']
     ]
 }
