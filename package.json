@@ -9,6 +9,6 @@
   },
   "scripts": {
     "build": "npx tailwindcss build ./src/frontend/styles.css -o ./public/global.css",
-    "test": "TOKEN_AES256_KEY_32BYTES_BASE64=lbIoMCFaAC4aKLPc58TQiuVeqD8IpvPAsAkdB3VRfrg= TOKEN_AES256_INIT_VECT_16BYTES_BASE64=1ucDPNjj6ectBHy2zj+plw== TOKEN_ANTI_FORGERY_KEY_16BYTES_BASE64=hGY1dgihOpXuvvAy0hpBsA==  node -e 'require(\"./test/test.js\").testAll()'"
+    "test": "TOKEN_AES256_KEY_32BYTES_BASE64=lbIoMCFaAC4aKLPc58TQiuVeqD8IpvPAsAkdB3VRfrg= TOKEN_AES256_INIT_VECT_16BYTES_BASE64=1ucDPNjj6ectBHy2zj+plw== TOKEN_ANTI_FORGERY_KEY_16BYTES_BASE64=hGY1dgihOpXuvvAy0hpBsA==  R06CEybGV0do97eFF5ico=uri###user###pswd  node -e 'require(\"./test/test.js\").testAll()'"
   }
 }

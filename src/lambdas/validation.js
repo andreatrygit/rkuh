@@ -1,4 +1,3 @@
-const appIdList = ['R06CEybGV0do97eFF5ico']; //first is a fake for testing
 const validator = require('validator');
 const {redeemToken} = require('./utils.js')
 
@@ -62,7 +61,7 @@ module.exports.isTokenAssertionsObject = {
 module.exports.isRequest = function(req, isRegisteredDevice=true, isLogged=true){
     const appid = req.query.appid;
     if (this.isAppId(appid)) {
-        if (appIdList.includes(appid)) {
+        if (process.env[appid]) { //triplets in the form uri###user###pswd are injected as env var by vercel in production, and by test script for testing
             if (isRegisteredDevice){
                 const token = req.cookies['__Host-rkuh_'+(isLogged?'session':'device')+'-appid_'+appid];
                 if (this.isToken(token)) {
