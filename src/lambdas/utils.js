@@ -2,7 +2,7 @@ const assert = require('assert/strict');
 const  crypto  = require('crypto');
 
 
-module.exports.toughCookie = function(key,value,maxAge=190){ //db token expires in 200 secs, client cookie in 190 secs, client GUI timeout is 180 secs
+module.exports.toughCookie = function(key,value,maxAge=180){
     return "__Host-" + key + "=" + (value ? value : '') + "; path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=" + maxAge.toString();
 }
 
