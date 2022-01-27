@@ -58,7 +58,7 @@ module.exports.isTokenAssertionsObject = {
     ]
 }
 
-module.exports.isRequest = function(req, isRegisteredDevice=true, isLogged=true){
+module.exports.isRequestLogged = function(req, isRegisteredDevice=true, isLogged=true){
     const appid = req.query.appid;
     if (this.isAppId(appid)) {
         if (process.env[appid]) { //triplets in the form uri###user###pswd are injected as env var by vercel in production, and by test script for testing
@@ -86,8 +86,8 @@ module.exports.isRequest = function(req, isRegisteredDevice=true, isLogged=true)
     }
 }
 
-module.exports.isRequestAssertionsObject = {
-    functionName:'isRequest',
+module.exports.isRequestLoggedAssertionsObject = {
+    functionName:'isRequestLogged',
     assertions:[
         [{query:{}},['AppId supplied is not an AppId', false],'{query:{}} is not a request'],
         [{query:{appid:123}},['AppId supplied is not an AppId', false],'{query:{appid:123}} is not a request'],
@@ -98,7 +98,7 @@ module.exports.isRequestAssertionsObject = {
     ]
 }
 
-module.exports.isRequestNotLogged = (req) => this.isRequest(req,true,false);
+module.exports.isRequestNotLogged = (req) => this.isRequestLogged(req,true,false);
 
 module.exports.isRequestNotLoggedAssertionsObject = {
     functionName:'isRequestNotLogged',
@@ -112,7 +112,7 @@ module.exports.isRequestNotLoggedAssertionsObject = {
     ]
 }
 
-module.exports.isRequestNotRegisteredDevice = (req) => this.isRequest(req,false,false);
+module.exports.isRequestNotRegisteredDevice = (req) => this.isRequestLogged(req,false,false);
 
 module.exports.isRequestNotRegisteredDeviceAssertionsObject = {
     functionName:'isRequestNotRegisteredDevice',
