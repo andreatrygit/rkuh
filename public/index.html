@@ -59,7 +59,7 @@
       x-bind:data-theme="bodyTheme"
       @set-body-theme="bodyTheme=$event.detail"
       @logged-in="loggedIn = true; idleTimeoutVar = setTimeout(()=>$dispatch('log-out'),180*1000)"
-      @log-out="loggedIn = false; idleTimeoutVar ? clearTimeout(idleTimeoutVar) : null; kyPost('./api/rest-api/landing/personal-device/log-out',(r)=>{},(e)=>{})"
+      @log-out="location.reload()"
       x-init="$watch('idleTimeoutToggle',(v)=>{
                                                 if(loggedIn){
                                                 idleTimeoutVar ? clearTimeout(idleTimeoutVar) : null; idleTimeoutVar = setTimeout(()=>$dispatch('log-out'),180*1000)
@@ -79,7 +79,6 @@
          x-init="$watch('current',value=>$dispatch('set-body-theme',value))"
          x-show="open" x-transition.opacity
          @logged-in.window="storageAvailable()?current=(localStorage.getItem('rkuh-theme')||defaultTheme):null"
-         @log-out.window="open=false;current=defaultTheme"
          @set-theme.window="current=$event.detail;storageAvailable()?(localStorage.setItem('rkuh-theme',current)):null"
          @reset-theme="$dispatch('set-theme',defaultTheme)"
          @open-themer.window="open=true;$dispatch('current-theme-is',current)"
@@ -109,7 +108,6 @@
          x-show="open" x-transition.opacity
          @role-chosen.window="content=true"
          @choose-role="content=false;open=false"
-         @log-out.window="open=false;content=false"
          @open-menu.window="open=true"
          @close-menu="open=false">
         <div class="w-full h-full overflow-auto">
@@ -122,7 +120,6 @@
     </div>
     <div x-data="{isApp:false, title:''}" 
          @logged-in="isApp=true; title='Rkuh'" 
-         @log-out.window="isApp=false;title=''"
          @set-title="title=$event.detail"
          class="absolute w-screen overscroll-none">
         <header class="w-full fixed ml-0 mt-0 flex items-center bg-base-200 transition-all duration-500 overflow-hidden h-[0vh]"
@@ -146,7 +143,6 @@
                                   ]
                             }"
                  @logged-in.window="frames=[{src:'/api/app-frames/forms/any-form?_vercel_no_cache=1',classes:''}]"
-                 @log-out.window="frames=[{src:'/api/site-frames/landing?_vercel_no_cache=1',classes:''}]"
                  @replace-all-frames-with-these.window="frames=$event.detail" 
                  @close-frame.window="frames.findIndex(e=>e.src===$event.detail.frameSrc) > -1 ? frames.splice(frames.findIndex(e=>e.src===$event.detail.frameSrc),1) : null"
                  class="w-full flex flex-row flex-wrap content-center justify-center items-start">
