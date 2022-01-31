@@ -3,5 +3,8 @@
     "api/frames.js": {
       "includeFiles": "src/lambdas/templates-html/**"
     }
-  }
+  },
+  "rewrites": [
+    {"source":"/*" , "destination":"/"}
+  ]
 }
