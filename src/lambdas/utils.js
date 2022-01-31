@@ -2,10 +2,17 @@ const assert = require('assert/strict');
 const  crypto  = require('crypto');
 
 
-module.exports.toughCookie = function(key,value,maxAge=null){//cookies are session by default
-    return "__Host-" + key + "=" + (value ? value : '') + "; path=/; Secure; HttpOnly; SameSite=Strict" + (maxAge ? ("; Max-Age=" + maxAge.toString()) : '');
+module.exports.toughCookie = function(key,value,maxAge=null){//cookies are session by default DO NOT FORGET TO ADD APPID
+    return "__Host-" + key + "=" + value + "; path=/; Secure; HttpOnly; SameSite=Strict" + (maxAge ? ("; Max-Age=" + maxAge.toString()) : '');
 }
 
+module.exports.toughCookieAssertionsObject = {
+    functionName:"toughCookie",
+    assertions: [
+        [['foo','bar'],'__Host-foo=bar; path=/; Secure; HttpOnly; SameSite=Strict','__Host-foo=bar; path=/; Secure; HttpOnly; SameSite=Strict tough SESSION cookie creation'],
+        [['foo','bar',180],'__Host-foo=bar; path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=180','__Host-foo=bar; path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=180 tough PERSISTENT cookie creation'],
+    ]
+}
 
 function makeTokenPair(){
 
