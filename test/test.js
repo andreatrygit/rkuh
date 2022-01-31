@@ -24,7 +24,7 @@ function testAssertionsObjects(path='./src'){
                         console.log('\n\tTesting Function -> ' + _module[assertionsObjectName].functionName + ' from ' + dirent.name + '\n')
                         _module[assertionsObjectName].assertions.forEach(a => {
                             console.log('\t\tTesting ' + a[2])
-                            assert.deepStrictEqual(_module[funcName](a[0]),a[1])
+                            assert.deepStrictEqual(_module[funcName].apply(_module,a[0]),a[1])//passing the module itself as this because some functions make use of 'this'.
                         })
 
                     }
