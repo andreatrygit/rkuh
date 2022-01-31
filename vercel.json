@@ -1,9 +1,6 @@
 {
   "functions": {
-    "api/site-frames/landing.js": {
-      "includeFiles": "src/lambdas/templates-html/**"
-    },
-    "api/app-frames/forms/any-form.js": {
+    "api/frames.js": {
       "includeFiles": "src/lambdas/templates-html/**"
     }
   }
