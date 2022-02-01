@@ -61,7 +61,9 @@ check all appid and appid list spelling
 !!! require mechanism spoils files with success from daisyui
 
 ***
-finire index refactor
+refactor globale di kypost
+scrivi kyframe
+verifica bene i callback di kydata e kyframe in relazione agli errori di miro
 togli turbo
 decora transizioni e reload dei frames
 scrivi datajs e framejs con 2 mapper
