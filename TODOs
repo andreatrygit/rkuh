@@ -66,7 +66,11 @@ togli turbo
 decora transizioni e reload dei frames
 scrivi datajs e framejs con 2 mapper
 kypost con payload
-
+prendi appid col body
+kydata
+kyframe
+metti a entrambi &_vercel_no_cache=1
+metti a kydata &appid=....
 
 
 driver creation error
