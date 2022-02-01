@@ -55,12 +55,13 @@
     </script>
 </head>
 
-<body x-data="{bodyTheme:'cupcake', loggedIn:false, idleTimeoutToggle:false, idleTimeoutVar:null}"
+<body x-data="{bodyTheme:'cupcake', loggedIn:false, idleTimeoutToggle:false, idleTimeoutVar:null, appId:null}"
       x-bind:data-theme="bodyTheme"
       @set-body-theme="bodyTheme=$event.detail"
       @logged-in="loggedIn = true; idleTimeoutVar = setTimeout(()=>$dispatch('log-out'),180*1000)"
       @log-out="location.reload()"
-      x-init="$watch('idleTimeoutToggle',(v)=>{
+      x-init="appId = (new URL(location.href).searchParams.get('appid'));
+                $watch('idleTimeoutToggle',(v)=>{
                                                 if(loggedIn){
                                                 idleTimeoutVar ? clearTimeout(idleTimeoutVar) : null; idleTimeoutVar = setTimeout(()=>$dispatch('log-out'),180*1000)
                                                 }
@@ -138,11 +139,8 @@
         </header>
         <div class="bg-base-100 flex flex-col justify-center transition-all duration-500 overscroll-none" 
              x-bind:class="isApp ? 'min-h-[92vh] mt-[8vh] sm-land:min-h-[88vh] sm-land:mt-[12vh]' : 'min-h-[100vh] mt-[0vh]'">
-            <div x-data="{frames:[
-                                    {src:'/api/site-frames/landing?_vercel_no_cache=1',classes:''}
-                                  ]
-                            }"
-                 @logged-in.window="frames=[{src:'/api/app-frames/forms/any-form?_vercel_no_cache=1',classes:''}]"
+            <div x-data="{frames:[]}"
+                 @logged-in.window=""
                  @replace-all-frames-with-these.window="frames=$event.detail" 
                  @close-frame.window="frames.findIndex(e=>e.src===$event.detail.frameSrc) > -1 ? frames.splice(frames.findIndex(e=>e.src===$event.detail.frameSrc),1) : null"
                  class="w-full flex flex-row flex-wrap content-center justify-center items-start">
