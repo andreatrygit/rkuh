@@ -17,6 +17,7 @@
         import ky from 'https://cdn.jsdelivr.net/npm/ky@0.28.3/distribution/index.min.js';
         globalThis.kyData = function (funcName, payload={}, thenCb=(res)=>{}, catchCb=(err)=>{}, timeoutMillis=12000) {ky.post(dataEndPoint,{json: {funcName: funcName, ...payload}, retry:0 , timeout: timeoutMillis}).json().then(thenCb).catch(catchCb)};
         globalThis.kyFrame = function (frameName, payload={}, thenCb=(res)=>{}, catchCb=(err)=>{}, timeoutMillis=12000) {ky.post(framesEndPoint,{json: {frameName: frameName, ...payload}, retry:0 , timeout: timeoutMillis}).json().then(thenCb).catch(catchCb)};
+        globalThis.frameErrorHtml = '<div class="alert alert-error">Frame not available</div>';
     </script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
    
@@ -150,8 +151,8 @@
                     <div x-bind:class="'w-full sm:w-1/2 lg:w-1/3 p-2 opacity-100 transition-opacity duration-500 frame-fade-in' + ' ' + frame.classes" 
                          x-data="{html:''}"
                          x-html="html"
-                         x-init="html=kyFrame(frame.frameName)"    
-                         @reload-me="html=kyFrame(frame.frameName)"></div>
+                         x-init="kyFrame(frame.frameName,{},(res)=>{html=res},(err)=>{html=frameErrorHtml})"    
+                         @reload-me="kyFrame(frame.frameName,{},(res)=>{html=res},(err)=>{html=frameErrorHtml})"></div>
                 </template>
             </div>
         <div>

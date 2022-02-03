@@ -59,6 +59,7 @@ check all appid and appid list spelling
 
 ***
 metti html di default per gli errori di kyframe
+metti bottone a tutti i frame per chiuderli e toglilo a form
 verifica bene i callback di kydata e kyframe in relazione agli errori di miro
 decora transizioni e reload dei frames
 scrivi datajs e framejs con 2 mapper
