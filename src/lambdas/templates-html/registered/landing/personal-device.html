@@ -43,21 +43,21 @@
 
                 if (s==='clockingScanCheck'){
                 
-                        kyPost(('./api/rest-api/landing/personal-device/clocking?qrcode='+ qrCode + '&_vercel_no_cache=1'), 
-                        res=>res.info ? state='clockingScanCheckOk' : res.error ? state = 'clockingScanCheckFailed' : null,
-                        e=>e.name==='TimeoutError' ? state='clockingScanCheckTimeout' : state='clockingScanCheckHttpError')
+                        kyData('clocking',{qrCode:qrCode}, 
+                                res=>res.info ? state='clockingScanCheckOk' : res.error ? state = 'clockingScanCheckFailed' : null,
+                                e=>e.name==='TimeoutError' ? state='clockingScanCheckTimeout' : state='clockingScanCheckHttpError')
                         }
 
                 if (s==='sharedCheck'){
                         
-                        kyPost(('./api/rest-api/landing/personal-device/shared?qrcode=' + qrCode + '&pin=' + pin + '&_vercel_no_cache=1'),
+                        kyData('sharedDeviceLogin',{qrCode:qrCode, pin:pin},
                         res=>res.info ? state='sharedCheckOk' : res.error ? state = 'sharedCheckFailed' : null,
                         e=>e.name==='TimeoutError' ? state='sharedCheckTimeout' : state='sharedCheckHttpError')
                         }
 
                 if (s==='personalPinCheck'){
                     
-                    kyPost(('./api/rest-api/landing/personal-device/personal?pin=' + pin + '&_vercel_no_cache=1'),
+                    kyData('personalDeviceLogin',{pin:pin},
                     res=>res.info ? state='personalPinCheckOk' : res.error ? state = 'personalPinCheckFailed' : null,
                     e=>e.name==='TimeoutError' ? state='personalPinCheckTimeout' : state='personalPinCheckHttpError')
                 }

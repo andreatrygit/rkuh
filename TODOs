@@ -58,7 +58,6 @@ check all appid and appid list spelling
 !!! require mechanism spoils files with success from daisyui
 
 ***
-refactor globale di kypost
 metti html di default per gli errori di kyframe
 verifica bene i callback di kydata e kyframe in relazione agli errori di miro
 decora transizioni e reload dei frames
