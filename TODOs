@@ -1,7 +1,6 @@
 favicon.ico
 verificare che il purge sui js e' lestensione giusta
 prima il comando di build dei template
-turbo IE11??
 bloccare sotto IE 11 con alpine
 can i set cookie when sending a frame?
 add semantics to composer
@@ -16,8 +15,6 @@ mettere tutti gli effetti di logout
 themer buttons flicker
 menu content x-if oppure src ""
 menu slug vuoto o scorretto
-client req timeout
-turbo timeout
 tutti gli eventi .window
 device pairing  5. check force site 6. test all
 apple svgs
@@ -62,12 +59,11 @@ check all appid and appid list spelling
 
 ***
 refactor globale di kypost
-togli tutto turbo
+metti html di default per gli errori di kyframe
 verifica bene i callback di kydata e kyframe in relazione agli errori di miro
 decora transizioni e reload dei frames
 scrivi datajs e framejs con 2 mapper
 usa empty:
-test il replacement di " con '' sul key delle frames in ios ecc.
 
 driver creation error
 transaction error
