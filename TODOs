@@ -89,7 +89,7 @@ const failureString =
         `<a href="../../../.." class="btn btn-primary btn-large">VAI ALLA HOME PAGE</a>`+
     `</div>`+
 `</body>`;
- 
+
 
 reading from FS also with replacing functionality
 
