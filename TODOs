@@ -2,57 +2,29 @@ favicon.ico
 verificare che il purge sui js e' lestensione giusta
 prima il comando di build dei template
 bloccare sotto IE 11 con alpine
-can i set cookie when sending a frame?
-add semantics to composer
 gestione del hide dell'header/barra
 metto @logout su composer
-vercel timeout
 header in rem
-toasts
-frame semantics partendo da /? su landing
 launch toast if localstorage fails
 mettere tutti gli effetti di logout
-themer buttons flicker
-menu content x-if oppure src ""
 menu slug vuoto o scorretto
-tutti gli eventi .window
-device pairing  5. check force site 6. test all
 apple svgs
-se fallisce il pairing tolgo il cookie comunque
-tough cookies
 ; dopo html chars
-header in rem
 prevent zoom
 dependency versions in imports with CDN
-settare cookie su login
-memorizzare il theme nel db
-testare http error e timeout in landing
-prevent zoom
 prevent overscrool in index
 fix header icons on safari
 fix responsiveness on safari
-test pinjs
-cambia lo url di ky quando finisci il file test
 controlla tutti gli url
-perché $el di alpine è un Dom node ma non un html element??
 pin specific version of alpine and not 3.x.x in prod
-test double QR code
-pouya on button pad
-__Host- cookie prefix e rivedi tough cookies
 cookie gdpr
 cancel timeclock interval su timeclock landing func..howto? usa destroy() in  x-data: è undocumented
 cdn sri
 check dependency in skypack: are they fork??
 il timeout globale di 3 min non sembra funzionare se c'è un focus
-barra orizzontale con grande frame in desktop
-studia classi su index ed eventualmente riscrivile
-operazioni atomiche sui frames
 encrypted connection to neo4j with encryption option at driver instantiation with js
-const func export?
 
 switch to require
-test app with cookies
-refactor app
 complete form errors
 check all appid and appid list spelling
 !!! require mechanism spoils files with success from daisyui
@@ -73,16 +45,7 @@ neo client timeout
 vercel timeout
 http error
 
-api
-    \frames
-        \site
-            \home
-            \landing
-            \pairing
-        \app
-    \data
 
-metti il timeout del client a 200 secondi e la expiration dei cookies a 180 secondi, così per i frame, se arriva una richiesta valida il frame server può rispondere senza dubbi
 
 per cancellare cookies
 res.setHeader('Set-Cookie',[toughCookie(('rkuh_session-appid_'+req.query.appid),'',-1)]); //TODO cancella anche sul db
