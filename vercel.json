@@ -1,4 +1,5 @@
 {
+  "trailingSlash": false,
   "functions": {
     "api/frames.js": {
       "includeFiles": "src/lambdas/templates-html/**"
