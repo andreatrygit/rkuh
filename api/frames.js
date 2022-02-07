@@ -8,5 +8,10 @@ const mapper = {
 
 module.exports = (req, res) => {
     const {frameName,...payload} = req.body;
-    mapper[frameName](req,res,payload);
+    if (Object.keys(mapper).includes(frameName)) {
+        mapper[frameName](req,res,payload);
+    }
+    else{
+        res.status(404).send(readFileSync("src/lambdas/templates-html/not-registered/frame-not-found.html", 'utf8'));
+    }
 }
