@@ -12,6 +12,6 @@ module.exports = (req, res) => {
         mapper[frameName](req,res,payload);
     }
     else{
-        res.status(404).send(readFileSync("src/lambdas/templates-html/not-registered/frame-not-found.html", 'utf8'));
+        res.status(200).send(readFileSync("src/lambdas/templates-html/not-registered/frame-not-found.html", 'utf8')); //soft 4040
     }
 }
