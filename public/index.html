@@ -142,7 +142,7 @@
         <div class="bg-base-100 flex flex-col justify-center transition-all duration-500 overscroll-none" 
              x-bind:class="isApp ? 'min-h-[92vh] mt-[8vh] sm-land:min-h-[88vh] sm-land:mt-[12vh]' : 'min-h-[100vh] mt-[0vh]'">
             <div x-data="{frames:[]}"
-                 x-init="frames=[{frameName:location.pathName, payload:{}, classes:''}]"
+                 x-init="frames=[{frameName:location.pathname, payload:{}, classes:''}]"
                  @logged-in.window=""
                  @replace-all-frames-with-these.window="frames=$event.detail" 
                  @close-frame.window="frames.findIndex(e=>e.frameName===$event.detail.frameName&&e.payload===$event.detail.payload) > -1 ? frames.splice(frames.findIndex(e=>e.frameName===$event.detail.frameName&&e.payload===$event.detail.payload),1) : null"
