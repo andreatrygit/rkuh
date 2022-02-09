@@ -16,7 +16,7 @@
         const dataEndPoint = 'https://rkuh.vercel.app/api/data?_vercel_no_cache=1' + (appId ? ('&appid='+appId) : '');
         import ky from 'https://cdn.jsdelivr.net/npm/ky@0.28.3/distribution/index.min.js';
         globalThis.kyData = function (funcName, payload={}, thenCb=(res)=>{}, catchCb=(err)=>{}, timeoutMillis=12000) {ky.post(dataEndPoint,{json: {funcName: funcName, ...payload}, retry:0 , timeout: timeoutMillis}).json().then(thenCb).catch(catchCb)};
-        globalThis.kyFrame = function (frameName, payload={}, thenCb=(res)=>{}, catchCb=(err)=>{}, timeoutMillis=12000) {ky.post(framesEndPoint,{json: {frameName: frameName, ...payload}, retry:0 , timeout: timeoutMillis}).json().then(thenCb).catch(catchCb)};
+        globalThis.kyFrame = function (frameName, payload={}, thenCb=(res)=>{}, catchCb=(err)=>{}, timeoutMillis=12000) {console.log({frameName: frameName, ...payload})};
         globalThis.frameErrorHtml = '<div class="alert alert-error">Frame not available</div>';
     </script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
