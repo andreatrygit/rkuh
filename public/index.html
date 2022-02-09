@@ -152,7 +152,7 @@
                     <div x-bind:class="'w-full sm:w-1/2 lg:w-1/3 p-2 opacity-100 transition-opacity duration-500 frame-fade-in' + ' ' + frame.classes" 
                          x-data="{html:''}"
                          x-html="html"
-                         x-init="ky.post(framesEndPoint,{json: {frameName:'/'}, retry:0 , timeout: 12000}).json().then((res)=>html=res).catch((err)=>console.log(err))"    
+                         x-init="ky.post('https://rkuh.vercel.app/api/frames?_vercel_no_cache=1',{json: {frameName:'/'}, retry:0 , timeout: 12000}).json().then((res)=>html=res).catch((err)=>console.log(err))"    
                          @reload-me="kyFrame(frame.frameName,{},(res)=>{html=res},(err)=>{html=frameErrorHtml})"></div>
                 </template>
             </div>
