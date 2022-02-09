@@ -7,6 +7,7 @@ const mapper = {
 }
 
 module.exports = (req, res) => {
+    console.log(req.body);
     const {frameName,...payload} = req.body;
     if (Object.keys(mapper).includes(frameName)) {
         mapper[frameName](req,res,payload);
