@@ -16,7 +16,7 @@ function _200WithHtmlFile(res,filePath){
     resStatusWithHtmlFile(200,res,filePath);
 }
 
-function _404WithHtmlFile(res){
+function _404(res){
     resStatusWithHtmlFile(404,res,"src/lambdas/templates-html/not-registered/frame-not-found.html");
 }
 
@@ -33,6 +33,6 @@ module.exports = (req, res) => {
         mapper[frameName](req,res,payload);
     }
     else{
-        _404WithHtmlFile(res);
+        _404(res);
     }
 }
