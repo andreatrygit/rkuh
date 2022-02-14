@@ -17,7 +17,7 @@ function _200WithHtmlFile(res,filePath){
 }
 
 function _soft404(res){
-    resStatusWithHtmlFile(400,res,"src/lambdas/templates-html/not-registered/frame-not-found.html");
+    resStatusWithHtmlFile(200,res,"src/lambdas/templates-html/not-registered/frame-not-found.html");
 }
 
 const mapper = {
