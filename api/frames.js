@@ -32,6 +32,6 @@ module.exports = (req, res) => {
         mapper[frameName](req,res,payload);
     }
     else{
-        //_soft404(res);
+        _soft404(res);
     }
 }
