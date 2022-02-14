@@ -157,8 +157,8 @@
                     <div x-bind:class="'w-full sm:w-1/2 lg:w-1/3 p-2 opacity-100 transition-opacity duration-500 frame-fade-in' + ' ' + frame.classes" 
                          x-data="{html:''}"
                          x-html="html"
-                         x-init="kyFrame(frame.frameName,frame.payload,(res)=>html=res.htmlString,(err)=>html=err.htmlString)"
-                         @reload-me="kyFrame(frame.frameName,frame.payload,(res)=>html=res.htmlString,(err)=>html=err.htmlString)"></div>
+                         x-init="kyFrame(frame.frameName,frame.payload,(res)=>html=res.htmlString,(err)=>html=frameErrorHtml)"
+                         @reload-me="kyFrame(frame.frameName,frame.payload,(res)=>html=res.htmlString,(err)=>html=frameErrorHtml)"></div>
                 </template>
             </div>
         <div>
