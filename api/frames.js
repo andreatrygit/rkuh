@@ -16,8 +16,8 @@ function _200WithHtmlFile(res,filePath){
     resStatusWithHtmlFile(200,res,filePath);
 }
 
-function _404(res){
-    resStatusWithHtmlFile(404,res,"src/lambdas/templates-html/not-registered/frame-not-found.html");
+function _soft404(res){
+    resStatusWithHtmlFile(200,res,"src/lambdas/templates-html/not-registered/frame-not-found.html");
 }
 
 const mapper = {
@@ -32,6 +32,6 @@ module.exports = (req, res) => {
         mapper[frameName](req,res,payload);
     }
     else{
-        _404(res);
+        _soft404(res);
     }
 }
