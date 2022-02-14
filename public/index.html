@@ -2,14 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta name="description" content="Rkuh Home" />
+    
     <meta charset="utf-8">
-    <title>Home</title>
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi" />
-    <meta name="author" content="Andrea Scotti">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <meta name="description" content="Rkuh Home" />
+    <meta name="author" content="Andrea Scotti">
+    
+    <title>Home</title>
+
     <link rel="stylesheet" type="text/css" href="https://rkuh.vercel.app/global.css">
     <link rel="manifest" href="https://rkuh.vercel.app/manifest.json">
+
     <script type="module">
         const framesEndPoint = 'https://rkuh.vercel.app/api/frames?_vercel_no_cache=1';
         const appId = new URL(location.href).searchParams.get('appid');
@@ -20,6 +25,7 @@
         globalThis.frameErrorHtml = '<div class="alert alert-error">Frame not available</div>';
         globalThis.ky = ky;
     </script>
+    
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
    
     <script type="module">
