@@ -1,13 +1,8 @@
 favicon.ico
-verificare che il purge sui js e' lestensione giusta
 prima il comando di build dei template
 bloccare sotto IE 11 con alpine
-gestione del hide dell'header/barra
-metto @logout su composer
 header in rem
-launch toast if localstorage fails
 mettere tutti gli effetti di logout
-menu slug vuoto o scorretto
 apple svgs
 ; dopo html chars
 prevent zoom
@@ -32,10 +27,6 @@ check all appid and appid list spelling
 ***
 metti bottone a tutti i frame per chiuderli e toglilo a form
 verifica bene i callback di kydata e kyframe in relazione agli errori di miro
-decora transizioni e reload dei frames
-scrivi datajs e framejs con 2 mapper
-usa empty:
-tW 3
 AWS timeout: imposta
 
 driver creation error
