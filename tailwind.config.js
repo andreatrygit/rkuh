@@ -1,15 +1,6 @@
 module.exports = {
-  mode:'jit',
-  purge: {
-    enabled: true,
-    content: ['./api/**/*.js','./public/**/*.html','./src/lambdas/templates-html/**/*.html'],
-    options: {
-        safelist: [
-          /data-theme$/,
-        ]
-      },
-  },
-  darkMode: false, // or 'media' or 'class'
+  content: ['./api/**/*.js','./public/**/*.html','./src/lambdas/templates-html/**/*.html',],
+  safelist: [/data-theme$/,],
   theme: {
     screens:{
       'sm': '640px',
@@ -22,9 +13,6 @@ module.exports = {
     extend: {
       colors: require('daisyui/colors'),
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [
     require('daisyui')
