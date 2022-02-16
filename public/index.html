@@ -154,7 +154,7 @@
                  @close-frame.window="frames.findIndex(e=>e.frameName===$event.detail.frameName&&e.payload===$event.detail.payload) > -1 ? frames.splice(frames.findIndex(e=>e.frameName===$event.detail.frameName&&e.payload===$event.detail.payload),1) : null"
                  class="w-full flex flex-row flex-wrap content-center justify-center items-start">
                 <template x-for="frame in frames" :key="frame.frameName+JSON.stringify(frame.payload)">
-                    <div x-bind:class="'w-full sm:w-1/2 lg:w-1/3 p-2 opacity-100 transition-opacity duration-500 frame-fade-in' + ' ' + frame.classes" 
+                    <div x-bind:class="'w-full sm:w-1/2 lg:w-1/3 p-2 opacity-100 transition-opacity duration-500 empty:opacity-0' + ' ' + frame.classes" 
                          x-data="{html:''}"
                          x-html="html"
                          x-init="kyFrame(frame.frameName,frame.payload,(res)=>html=res.htmlString,(err)=>html=frameErrorHtml)"
