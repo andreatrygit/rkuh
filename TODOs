@@ -29,6 +29,8 @@ metti bottone a tutti i frame per chiuderli e toglilo a form
 verifica bene i callback di kydata e kyframe in relazione agli errori di miro
 AWS timeout: imposta
 
+DAISY V->2
+
 driver creation error
 transaction error
 transaction data error: differentiate by case
