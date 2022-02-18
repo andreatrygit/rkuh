@@ -77,9 +77,9 @@ async function testDb(){
 
     const driver = neo4j.driver(uri, neo4j.auth.basic(user, password),
         {
-            maxConnectionLifetime: 15,
+            maxConnectionLifetime: 5,
             maxConnectionPoolSize: 1,
-            connectionAcquisitionTimeout: 10,
+            connectionAcquisitionTimeout: 5,
             maxTransactionRetryTime: 0
         }
     );
