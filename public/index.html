@@ -20,8 +20,8 @@
         const appId = new URL(location.href).searchParams.get('appid');
         const dataEndPoint = 'https://rkuh.vercel.app/api/data?_vercel_no_cache=1' + (appId ? ('&appid='+appId) : '');
         import ky from 'https://cdn.jsdelivr.net/npm/ky@0.28.3/distribution/index.min.js';
-        globalThis.kyData = function (funcName, payload={}, thenCb=(res)=>{}, catchCb=(err)=>{}, timeoutMillis=5000) {ky.post(dataEndPoint,{json: {funcName: funcName, ...payload}, retry:0 , timeout: timeoutMillis}).json().then(thenCb).catch(catchCb)};
-        globalThis.kyFrame = function (frameName, payload={}, thenCb=(res)=>{}, catchCb=(err)=>{}, timeoutMillis=5000) {ky.post(framesEndPoint,{json: {frameName: frameName, ...payload}, retry:0 , timeout: timeoutMillis}).json().then(thenCb).catch(catchCb)};
+        globalThis.kyData = function (funcName, payload={}, thenCb=(res)=>{}, catchCb=(err)=>{}, timeoutMillis=7000) {ky.post(dataEndPoint,{json: {funcName: funcName, ...payload}, retry:0 , timeout: timeoutMillis}).json().then(thenCb).catch(catchCb)};
+        globalThis.kyFrame = function (frameName, payload={}, thenCb=(res)=>{}, catchCb=(err)=>{}, timeoutMillis=7000) {ky.post(framesEndPoint,{json: {frameName: frameName, ...payload}, retry:0 , timeout: timeoutMillis}).json().then(thenCb).catch(catchCb)};
         globalThis.frameErrorHtml = '<div class="alert alert-error">Frame not available</div>';
     </script>
 
