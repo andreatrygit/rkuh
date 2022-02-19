@@ -1,15 +1,15 @@
 const { readFileSync } = require('fs');
 
-function htmlStringToJSON(s){
+function htmlStringToResBody(s){
     return JSON.stringify({htmlString : s});
 }
 
-function filePathToJSON(filePath){
-    return htmlStringToJSON(readFileSync(filePath,'utf8'));
+function filePathToResBody(filePath){
+    return htmlStringToResBody(readFileSync(filePath,'utf8'));
 }
 
 function resStatusWithHtmlFile(status,res,filePath){
-    res.status(status).send(filePathToJSON(filePath));
+    res.status(status).send(filePathToResBody(filePath));
 }
 
 function _200WithHtmlFile(res,filePath){
