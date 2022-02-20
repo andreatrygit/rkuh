@@ -76,7 +76,7 @@ function executeTransaction(res,uri,user,password,txString,txData,thenCb){
     return;
   }
 
-  const writeTxPromise = session.writeTransaction(tx => tx.run(txString,txData));
+  const writeTxPromise = session.writeTransaction(tx => tx.run(txString,txData),{timeout: 5});
 
   writeTxPromise.catch(error => {
     transactionError(res,error.code);
