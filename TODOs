@@ -1,3 +1,5 @@
+const { Http2ServerRequest } = require('http2')
+
 favicon.ico
 prima il comando di build dei template
 bloccare sotto IE 11 con alpine
@@ -30,6 +32,8 @@ verifica bene i callback di kydata e kyframe in relazione agli errori di miro
 AWS timeout: imposta
 
 DAISY V->2
+
+METTI DEAFAULT CB SU KYFRAME E KY DATA PER GLI ERRORI CLASSICI DI Http, TRA CUI TIMEOUT
 
 driver creation error
 transaction error
