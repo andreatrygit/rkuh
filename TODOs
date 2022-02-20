@@ -27,13 +27,11 @@ check all appid and appid list spelling
 !!! require mechanism spoils files with success from daisyui
 
 ***
-metti bottone a tutti i frame per chiuderli e toglilo a form
 verifica bene i callback di kydata e kyframe in relazione agli errori di miro
-AWS timeout: imposta
+
 
 DAISY V->2
 
-METTI DEAFAULT CB SU KYFRAME E KY DATA PER GLI ERRORI CLASSICI DI Http, TRA CUI TIMEOUT
 
 IL CONNECTION URI DI NEO NON È FISSO
 
