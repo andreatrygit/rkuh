@@ -3,11 +3,7 @@ function dataToResBody(obj){
 }
 
 function errorToResBody(errorName,errorMessage,errorData=null){
-  let errorObj = {};
-  errorObj.name = errorName;
-  errorObj.message = errorMessage;
-  errorObj.data = errorData;
-  return JSON.stringify({error:errorObj});
+   return JSON.stringify({error: {name: errorName, message: errorMessage, data: errorData}});
 }
 
 function response(res,obj){
