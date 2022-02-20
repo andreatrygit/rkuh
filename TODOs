@@ -35,12 +35,7 @@ DAISY V->2
 
 METTI DEAFAULT CB SU KYFRAME E KY DATA PER GLI ERRORI CLASSICI DI Http, TRA CUI TIMEOUT
 
-driver creation error
-transaction error
-transaction data error: differentiate by case
-neo client timeout
-vercel timeout
-http error
+IL CONNECTION URI DI NEO NON È FISSO
 
 
 
