@@ -20,7 +20,7 @@ function _soft404(res){
     resStatusWithHtmlFile(200,res,"src/lambdas/templates-html/not-registered/frame-not-found.html");
 }
 
-const mapper = {
+const framesMapper = {
     '/':(req,res,payload)=>{
         _200WithHtmlFile(res,"src/lambdas/templates-html/not-registered/home.html");
     }
@@ -28,8 +28,8 @@ const mapper = {
 
 module.exports = (req, res) => {
     const {frameName,...payload} = req.body;
-    if (Object.keys(mapper).includes(frameName)) {
-        mapper[frameName](req,res,payload);
+    if (Object.keys(framesMapper).includes(frameName)) {
+        framesMapper[frameName](req,res,payload);
     }
     else{
         _soft404(res);
