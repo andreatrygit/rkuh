@@ -27,9 +27,19 @@ const framesMapper = {
 }
 
 module.exports = (req, res) => {
-    const {frameName,...payload} = req.body;
-    if (Object.keys(framesMapper).includes(frameName)) {
-        framesMapper[frameName](req,res,payload);
+    if (req.body && typeof(req.body)==='object'){
+        const {frameName,...payload} = req.body;
+        if(frameName){
+            if (Object.keys(framesMapper).includes(frameName)) {
+                framesMapper[frameName](req,res,payload);
+            }
+            else{
+                _soft404(res);
+            }
+        }
+        else{
+            _soft404(res);
+        }
     }
     else{
         _soft404(res);
