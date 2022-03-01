@@ -90,18 +90,25 @@ function executeTransaction(res,uri,user,password,txString,txData,thenCb){
     });
 }
 
-const funcsMapper = {
-
+function extractKeys(obj,keys){
+  output={}
 }
 
-const txMapper = {
-
+const dataMapper = {
+// entries are in the form "<funcName>":{
+//                                        requestType:"<requestType>", one of "GlobalVisitor"|"NotRegistered"|"Registered"|"Logged"
+//                                        extractionKeys: ["key0","key1",...]
+//                                        cleaningPayloadLambda:<cleaningPayloadLambdaConstName>,
+//                                        validationLambda:<validationLambdaConstName>,
+//                                        transactionString:<transactionStringConstName>
+//                                        processResultLambda:<processResultLambdaConstName>
+//                                       }
 }
 
 module.exports = (req, res) => {
   const {funcName,...payload} = req.body;
-  if (Object.keys(funcsMapper).includes(funcName)) {
-      funcsMapper[funcName](req,res,payload);
+  if (Object.keys(dataMapper).includes(funcName)) {
+      dataMapper[funcName](req,res,payload);
   }
   else{
       funcNameError(res);
