@@ -100,9 +100,9 @@ const dataMapper = {
 // entries are in the form "<funcName>":{
 //                                        requestType:"<requestType>", one of "GlobalVisitor"|"NotRegistered"|"Registered"|"Logged"
 //                                        extractionKeys: ["key0","key1",...]
-//                                        cleaningPayloadLambda:<cleaningPayloadLambdaConstName>,
+//                                        transformingPayloadLambda:<transformingPayloadLambdaConstName>,
 //                                        validationLambda:<validationLambdaConstName>,
-//                                        transactionString:<transactionStringConstName>
+//                                        transactionString:<transactionStringConstName>,
 //                                        processResultLambda:<processResultLambdaConstName>
 //                                       }
 }

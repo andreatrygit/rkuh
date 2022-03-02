@@ -21,6 +21,15 @@ function _soft404(res){
 }
 
 const framesMapper = {
+// entries are in the form "<frameName>":{
+//                                        requestType:"<requestType>", one of "GlobalVisitor"|"NotRegistered"|"Registered"|"Logged"
+//                                        extractionKeys: ["key0","key1",...]
+//                                        transformingPayloadLambda:<transformingPayloadLambdaConstName>,
+//                                        validationLambda:<validationLambdaConstName>,
+//                                        transactionString:<transactionStringConstName>,
+//                                        fileSelectionLambda:<fileSelectionLambdaConstName>,
+//                                        filetransformationLambda:<filetransformationLambdaConstName>
+//                                       }
     '/':(req,res,payload)=>{
         _200WithHtmlFile(res,"src/lambdas/templates-html/not-registered/home.html");
     }
