@@ -10,6 +10,10 @@ function response(res,obj){
   res.status(200).send(dataToResBody(obj));
 }
 
+function requestBodyError(res){
+  res.status(200).send(errorToResBody('requestBodyError','Request Body is not properly formatted.'));
+}
+
 function funcNameError(res){
   res.status(200).send(errorToResBody('FuncNameError','Function name unknown.'));
 }
@@ -106,11 +110,21 @@ const dataMapper = {
 }
 
 module.exports = (req, res) => {
-  const {funcName,...payload} = req.body;
-  if (Object.keys(dataMapper).includes(funcName)) {
-      dataMapper[funcName](req,res,payload);
+  if (req.body && typeof(req.body)==='object'){
+    const {funcName,...payload} = req.body;
+    if(funcName){
+      if (Object.keys(dataMapper).includes(funcName)) {
+          dataMapper[funcName](req,res,payload);
+      }
+      else{
+          funcNameError(res);
+      }
+    }
+    else{
+      funcNameError(res);
+    }
   }
   else{
-      funcNameError(res);
+    requestBodyError(res);
   }
 }
