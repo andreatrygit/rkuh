@@ -94,9 +94,7 @@ function executeTransaction(res,uri,user,password,txString,txData,thenCb){
     });
 }
 
-function extractKeys(obj,keys){
-  output={}
-}
+
 
 const dataMapper = {
 // entries are in the form "<funcName>":{

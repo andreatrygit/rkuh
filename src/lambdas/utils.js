@@ -74,3 +74,25 @@ module.exports.testIntegrationTokenEncDec = function(){
     assert.notDeepStrictEqual(plain,plain2);
    
 }
+
+function extractKeys(obj,keys){
+    output={}
+    if (!keys) {return output}
+    let value;
+    keys.forEach(element => {
+      output[element] = (obj && obj[element]) ? obj[element] : null;
+    });
+    return output;
+  }
+  
+  module.exports.extractKeys = extractKeys;
+  
+  module.exports.extractKeysAssertionsObject = {
+    functionName : 'extractKeys',
+    assertions : [
+      [[null,null],{},'No arguments gives {}.'],
+      [[{a:1,b:2},null],{},'No keys gives {}.'],
+      [[null,['a','b']],{a : null, b : null},'No object gives an object of nulls.'],
+      [[{a:1,b:2},['a','b']],{a:1,b:2},'Full object extraction is ok.']
+    ]
+  }
