@@ -58,12 +58,12 @@ module.exports.isTokenAssertionsObject = {
     ]
 }
 
-module.exports.isRequestLogged = function(req, isRegisteredDevice=true, isLogged=true){
+module.exports.isRequestFromLoggedInDevice = function(req, isRegisteredDevice=true, isLoggedIn=true){
     const appid = req.query.appid;
     if (this.isAppId(appid)) {
         if (process.env[appid]) { //triplets in the form uri###user###pswd are injected as env var by vercel in production, and by test script for testing
             if (isRegisteredDevice){
-                const token = req.cookies['__Host-rkuh_'+(isLogged?'session':'device')+'-appid_'+appid];
+                const token = req.cookies['__Host-rkuh_'+(isLoggedIn?'session':'device')+'-appid_'+appid];
                 if (this.isToken(token)) {
                     [tokenValue, success] = redeemToken(token);
                     if (success) {
@@ -86,8 +86,8 @@ module.exports.isRequestLogged = function(req, isRegisteredDevice=true, isLogged
     }
 }
 
-module.exports.isRequestLoggedAssertionsObject = {
-    functionName:'isRequestLogged',
+module.exports.isRequestFromLoggedInDeviceAssertionsObject = {
+    functionName:'isRequestFromLoggedInDevice',
     assertions:[
         [[{query:{}}],['AppId supplied is not an AppId', false],'{query:{}} is not a request'],
         [[{query:{appid:123}}],['AppId supplied is not an AppId', false],'{query:{appid:123}} is not a request'],
@@ -98,10 +98,10 @@ module.exports.isRequestLoggedAssertionsObject = {
     ]
 }
 
-module.exports.isRequestNotLogged = (req) => this.isRequestLogged(req,true,false);
+module.exports.isRequestFromRegisteredDevice = (req) => this.isRequestFromLoggedInDevice(req,true,false);
 
-module.exports.isRequestNotLoggedAssertionsObject = {
-    functionName:'isRequestNotLogged',
+module.exports.isRequestFromRegisteredDeviceAssertionsObject = {
+    functionName:'isRequestFromRegisteredDevice',
     assertions:[
         [[{query:{}}],['AppId supplied is not an AppId', false],'{query:{}} is not a request'],
         [[{query:{appid:123}}],['AppId supplied is not an AppId', false],'{query:{appid:123}} is not a request'],
@@ -112,10 +112,10 @@ module.exports.isRequestNotLoggedAssertionsObject = {
     ]
 }
 
-module.exports.isRequestNotRegisteredDevice = (req) => this.isRequestLogged(req,false,false);
+module.exports.isRequestFromNotRegisteredDevice = (req) => this.isRequestFromLoggedInDevice(req,false,false);
 
-module.exports.isRequestNotRegisteredDeviceAssertionsObject = {
-    functionName:'isRequestNotRegisteredDevice',
+module.exports.isRequestFromNotRegisteredDeviceAssertionsObject = {
+    functionName:'isRequestFromNotRegisteredDevice',
     assertions:[
         [[{query:{}}],['AppId supplied is not an AppId', false],'{query:{}} is not a request'],
         [[{query:{appid:123}}],['AppId supplied is not an AppId', false],'{query:{appid:123}} is not a request'],

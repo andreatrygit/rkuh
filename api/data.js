@@ -98,7 +98,7 @@ function executeTransaction(res,uri,user,password,txString,txData,thenCb){
 
 const dataMapper = {
 // entries are in the form "<funcName>":{
-//                                        requestType:"<requestType>", one of "GlobalVisitor"|"NotRegistered"|"Registered"|"Logged"
+//                                        deviceType:"<deviceType>", one of "GlobalVisitor"|"NotRegistered"|"Registered"|"LoggedIn"
 //                                        extractionKeys: ["key0","key1",...]
 //                                        transformingPayloadLambda:<transformingPayloadLambdaConstName>,
 //                                        validationLambda:<validationLambdaConstName>,
