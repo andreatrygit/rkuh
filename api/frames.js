@@ -17,7 +17,7 @@ function _200WithHtmlFile(res,filePath){
 }
 
 function _soft404(res){
-    resStatusWithHtmlFile(200,res,"src/lambdas/templates-html/global-visitor/frame-not-found.html");
+    resStatusWithHtmlFile(200,res,"src/lambdas/templates-html/global-visitor/no-frame-for-global-visitor-device.html");
 }
 
 const framesMapper = {
@@ -36,11 +36,20 @@ const framesMapper = {
 }
 
 module.exports = (req, res) => {
+    const {isRequestFromLoggedInDevice, isRequestFromRegisteredDevice, isRequestFromNotRegisteredDevice} = require('../src/lambdas/validation.js');
+    const {extractKeys} = require('../src/lambdas/utils.js');
     if (req.body && typeof(req.body)==='object'){
         const {frameName,...payload} = req.body;
         if(frameName){
             if (Object.keys(framesMapper).includes(frameName)) {
-                
+                const frameNameObj = framesMapper[frameName];
+                let requestValidationResult;
+                if (frameNameObj.deviceType==='NotRegistered'){
+                    requestValidationResult = isRequestFromNotRegisteredDeviceAssertionsObject(req);
+                    
+                }
+                if (frameNameObj.deviceType==='Registered'){requestValidationResult = isRequestFromRegisteredDevice(req)}
+                if (frameNameObj.deviceType==='LoggedIn'){requestValidationResult = isRequestFromLoggedInDevice(req)}
             }
             else{
                 _soft404(res);
