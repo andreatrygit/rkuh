@@ -76,9 +76,10 @@ module.exports.testIntegrationTokenEncDec = function(){
 }
 
 function extractKeys(obj,keys){
+    if(!keys && !obj){return {}}
+    if(!keys && obj){return obj}
+
     output={}
-    if (!keys) {return output}
-    let value;
     keys.forEach(element => {
       output[element] = (obj && obj[element]) ? obj[element] : null;
     });
@@ -91,8 +92,10 @@ function extractKeys(obj,keys){
     functionName : 'extractKeys',
     assertions : [
       [[null,null],{},'No arguments gives {}.'],
-      [[{a:1,b:2},null],{},'No keys gives {}.'],
+      [[{a:1,b:2},null],{a:1,b:2},'No keys gives original obj.'],
       [[null,['a','b']],{a : null, b : null},'No object gives an object of nulls.'],
-      [[{a:1,b:2},['a','b']],{a:1,b:2},'Full object extraction is ok.']
+      [[{a:1,b:2},['a','b']],{a:1,b:2},'Full object extraction is ok.'],
+      [[{a:1,b:2},['a','b','c']],{a:1,b:2,c:null},'Exceeding object extraction is ok.'],
+      [[{a:1,b:2},['a']],{a:1},'Deficient object extraction is ok.']
     ]
   }
