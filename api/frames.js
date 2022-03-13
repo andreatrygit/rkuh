@@ -87,7 +87,9 @@ module.exports = (req, res) => {
                         tokenValue = requestValidationResult[0];
                     }
                 }
-
+                let finalPayload;
+                finalPayload = extractKeys(payload,frameNameObj.extractionKeys);
+                finalPayload['tokenValue']=tokenValue;
             }
             else{
                 soft404(res);
