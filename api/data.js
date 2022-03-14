@@ -47,52 +47,6 @@ function semanticValidationError(res){
   res.status(200).send(errorToResBody('SemanticValidationError','Transaction refuted for failed semantic validation.'));
 }
 
-function getDbCredentials(appid){
-  return process.env[appid].split('###');
-}
-
-function executeTransaction(res,uri,user,password,txString,txData,thenCb){
-
-  const neo4j = require('neo4j-driver')
-
-  let driver;
-  try {
-     driver = neo4j.driver(uri, neo4j.auth.basic(user, password),
-        {
-            maxConnectionLifetime: 5,
-            maxConnectionPoolSize: 1,
-            connectionAcquisitionTimeout: 5,
-            maxTransactionRetryTime: 0
-        }
-    );
-    
-  } catch (error) {
-    driverError(res,error.code);
-    return;
-  }
-
-  let session;
-
-  try {
-    session = driver.session();
-  } catch (error) {
-    sessionError(res, error.code);
-    return;
-  }
-
-  const writeTxPromise = session.writeTransaction(tx => tx.run(txString,txData),{timeout: 5});
-
-  writeTxPromise.catch(error => {
-    transactionError(res,error.code);
-    return;
-  });
-
-  writeTxPromise.then(result => {
-      session.close();
-      thenCb(res,result);
-      return;    
-    });
-}
 
 
 

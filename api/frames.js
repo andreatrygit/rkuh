@@ -32,6 +32,10 @@ function softBadSessionFrameRequest(res){
     resStatusWithHtmlFile(200,res,"src/lambdas/templates-html/global-visitor/no-frame-for-logged-in-device.html");
 }
 
+function softBadParametersFrameRequest(res){
+    resStatusWithHtmlFile(200,res,"src/lambdas/templates-html/global-visitor/no-frame-by-wrong-parameters.html");
+}
+
 const framesMapper = {
 // entries are in the form "<frameName>":{
 //                                        deviceType:"<deviceType>", one of "GlobalVisitor"|"NotRegistered"|"Registered"|"LoggedIn"
@@ -89,7 +93,20 @@ module.exports = (req, res) => {
                 }
                 let finalPayload;
                 finalPayload = extractKeys(payload,frameNameObj.extractionKeys);
-                finalPayload['tokenValue']=tokenValue;
+                if(frameNameObj.transofrmingPayloadLambda){finalPayload=frameNameObj.transofrmingPayloadLambda(finalPayload)}
+                let payloadValidationResult = true;
+                if(frameNameObj.validationLambda){payloadValidationResult=frameNameObj.validationLambda(finalPayload)}
+                if(!payloadValidationResult){
+                    softBadParametersFrameRequest(res);
+                    return;
+                }
+                else{
+                    finalPayload['tokenValue']=tokenValue;
+                    if(frameNameObj.deviceType!=='GlobalVisitor'){
+                        const {executeTransaction} = require('../src/lambdas/utils.js');
+                    }
+                    //mettere la gestione del Global Visitor che non si sa a quale db eventualmente parla..
+                }
             }
             else{
                 soft404(res);

@@ -99,3 +99,55 @@ function extractKeys(obj,keys){
       [[{a:1,b:2},['a']],{a:1},'Deficient object extraction is ok.']
     ]
   }
+
+  function getDbCredentials(appid){
+    return process.env[appid].split('###');
+  }
+
+  
+  function executeTransaction(res,appid,txString,txData,thenCb){
+
+    const [uri,user,password] = getDbCredentials(appid);
+  
+    const neo4j = require('neo4j-driver')
+  
+    let driver;
+    try {
+       driver = neo4j.driver(uri, neo4j.auth.basic(user, password),
+          {
+              maxConnectionLifetime: 5,
+              maxConnectionPoolSize: 1,
+              connectionAcquisitionTimeout: 5,
+              maxTransactionRetryTime: 0
+          }
+      );
+      
+    } catch (error) {
+      driverError(res,error.code);
+      return;
+    }
+  
+    let session;
+  
+    try {
+      session = driver.session();
+    } catch (error) {
+      sessionError(res, error.code);
+      return;
+    }
+  
+    const writeTxPromise = session.writeTransaction(tx => tx.run(txString,txData),{timeout: 5});
+  
+    writeTxPromise.catch(error => {
+      transactionError(res,error.code);
+      return;
+    });
+  
+    writeTxPromise.then(result => {
+        session.close();
+        thenCb(res,result);
+        return;    
+      });
+  }
+  
+  module.exports.executeTransaction = executeTransaction;
