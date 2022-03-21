@@ -113,3 +113,76 @@ module.exports = (req, res) => {
 
 res.setHeader('Set-Cookie',[toughCookie(('rkuh_session-appid_'+req.query.appid),'@@@@@',3*60)]); //TODO anche sul db
     res.status(200).json({"info":"logged-in: personal"});
+
+
+LAST BIG frame.JS
+
+module.exports = (req, res) => {
+  const {isRequestFromLoggedInDevice, isRequestFromRegisteredDevice, isRequestFromNotRegisteredDevice} = require('../src/lambdas/validation.js');
+  const {extractKeys} = require('../src/lambdas/utils.js');
+  if (req.body && typeof(req.body)==='object'){
+      const {frameName,...payload} = req.body;
+      if(frameName){
+          if (Object.keys(framesMapper).includes(frameName)) {
+              const frameNameObj = framesMapper[frameName];
+              let requestValidationResult = null;
+              let tokenValue = null;
+              if (frameNameObj.deviceType==='NotRegistered'){
+                  requestValidationResult = isRequestFromNotRegisteredDevice(req);
+                  if (!requestValidationResult[1]){
+                      softBadAppidFrameRequest(res)
+                      return;
+                  }
+                  else{
+                      tokenValue = requestValidationResult[0];
+                  }
+              }
+              if (frameNameObj.deviceType==='Registered'){
+                  requestValidationResult = isRequestFromRegisteredDevice(req)
+                  if (!requestValidationResult[1]){
+                      softBadDeviceFrameRequest(res)
+                      return;
+                  }
+                  else{
+                      tokenValue = requestValidationResult[0];
+                  }
+              }
+              if (frameNameObj.deviceType==='LoggedIn'){
+                  requestValidationResult = isRequestFromLoggedInDevice(req)
+                  if (!requestValidationResult[1]){
+                      softBadSessionFrameRequest(res)
+                      return;
+                  }
+                  else{
+                      tokenValue = requestValidationResult[0];
+                  }
+              }
+              let finalPayload;
+              finalPayload = extractKeys(payload,frameNameObj.extractionKeys);
+              if(frameNameObj.transofrmingPayloadLambda){finalPayload=frameNameObj.transofrmingPayloadLambda(finalPayload)}
+              let payloadValidationResult = true;
+              if(frameNameObj.validationLambda){payloadValidationResult=frameNameObj.validationLambda(finalPayload)}
+              if(!payloadValidationResult){
+                  softBadParametersFrameRequest(res);
+                  return;
+              }
+              else{
+                  finalPayload['tokenValue']=tokenValue;
+                  if(frameNameObj.deviceType!=='GlobalVisitor'){
+                      const {executeTransaction} = require('../src/lambdas/utils.js');
+                  }
+                  //mettere la gestione del Global Visitor che non si sa a quale db eventualmente parla..
+              }
+          }
+          else{
+              soft404(res);
+          }
+      }
+      else{
+          soft404(res);
+      }
+  }
+  else{
+      soft404(res);
+  }
+}
